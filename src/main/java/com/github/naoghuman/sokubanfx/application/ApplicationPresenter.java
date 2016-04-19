@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -30,6 +31,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class ApplicationPresenter implements Initializable, IRegisterActions {
     
+    @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
 
     @Override
@@ -39,10 +41,18 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
 //        assert (apView != null) : "fx:id=\"apView\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         
         this.registerActions();
+        this.hideHiddenLayer();
     }
     
     public void initializeAfterWindowIsShowing() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize ApplicationPresenter after window is showing"); // NOI18N
+    }
+    
+    private void hideHiddenLayer() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Hide hidden layer");
+        
+        apHiddenLayer.setVisible(Boolean.FALSE);
+        apHiddenLayer.setManaged(Boolean.FALSE);
     }
     
     @Override
