@@ -18,12 +18,16 @@ package com.github.naoghuman.sokubanfx.application;
 
 import com.github.naoghuman.lib.action.api.IRegisterActions;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.view.preview.PreviewView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 
 /**
  *
@@ -42,6 +46,8 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
         
         this.registerActions();
         this.hideHiddenLayer();
+        
+        this.showViewPreview();
     }
     
     public void initializeAfterWindowIsShowing() {
@@ -62,6 +68,24 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
     
     public void onActionTriggerMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action trigger Menu");
+    }
+    
+    private void showViewPreview() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Show view Preview");
+        
+        final PreviewView view = new PreviewView();
+        final Parent preview = view.getView();
+        preview.setOpacity(0.0d);
+        bpGameArea.setCenter(preview);
+        
+        final FadeTransition ft = new FadeTransition();
+        ft.setDelay(Duration.millis(250.0d));
+        ft.setDuration(Duration.millis(375.0d));
+        ft.setFromValue(0.0d);
+        ft.setToValue(1.0d);
+        ft.setNode(preview);
+        
+        ft.playFromStart();
     }
     
 }
