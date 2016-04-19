@@ -20,13 +20,17 @@ import com.github.naoghuman.lib.action.api.IRegisterActions;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 
 /**
  *
  * @author Naoghuman
  */
 public class ApplicationPresenter implements Initializable, IRegisterActions {
+    
+    @FXML private BorderPane bpGameArea;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +48,10 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
     @Override
     public void registerActions() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Register actions in ApplicationPresenter"); // NOI18N
+    }
+    
+    public void onActionTriggerMenu() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action trigger Menu");
     }
     
 }
