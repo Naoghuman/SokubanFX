@@ -16,7 +16,9 @@
  */
 package com.github.naoghuman.sokubanfx.view.preview;
 
+import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.application.action.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import java.net.URL;
 import java.util.List;
@@ -29,7 +31,7 @@ import javafx.scene.control.TextArea;
  *
  * @author Naoghuman
  */
-public class PreviewPresenter implements Initializable {
+public class PreviewPresenter implements Initializable, IActionConfiguration {
     
     @FXML private TextArea ta;
     
@@ -53,6 +55,12 @@ public class PreviewPresenter implements Initializable {
             ta.appendText(line);
             ta.appendText("\n");
         }
+    }
+    
+    public void onActionStartGame() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action start Game"); // NOI18N
+        
+        ActionFacade.INSTANCE.handle(ON_ACTION__CHANGE_TO_GAMEVIEW);
     }
     
 }

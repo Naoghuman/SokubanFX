@@ -16,12 +16,18 @@
  */
 package com.github.naoghuman.sokubanfx.application;
 
+import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.action.api.IRegisterActions;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.application.action.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.view.game.GameView;
 import com.github.naoghuman.sokubanfx.view.preview.PreviewView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -33,7 +39,7 @@ import javafx.util.Duration;
  *
  * @author Naoghuman
  */
-public class ApplicationPresenter implements Initializable, IRegisterActions {
+public class ApplicationPresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
@@ -64,6 +70,59 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
     @Override
     public void registerActions() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Register actions in ApplicationPresenter"); // NOI18N
+        
+        this.registerOnActionChangeToGameView();
+    }
+    
+    private void registerOnActionChangeToGameView() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action change to GameView");
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__CHANGE_TO_GAMEVIEW,
+                (ActionEvent event) -> {
+                    this.onActionChangeToGameView();
+                }
+        );
+    }
+    
+    private void onActionChangeToGameView() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action change to GameView");
+        
+        // Hide PreviewView
+        final FadeTransition ftHidePreviewView = new FadeTransition();
+        ftHidePreviewView.setDelay(Duration.millis(125.0d));
+        ftHidePreviewView.setDuration(Duration.millis(250.0d));
+        ftHidePreviewView.setFromValue(1.0d);
+        ftHidePreviewView.setToValue(0.0d);
+        ftHidePreviewView.setNode(bpGameArea.getCenter());
+        ftHidePreviewView.setOnFinished((ActionEvent event) -> {
+            bpGameArea.setCenter(null);
+        });
+        
+        // Init GameView
+        final GameView gameView = new GameView();
+        final Parent game = gameView.getView();
+        game.setOpacity(0.0d);
+        
+        // Little pause
+        final PauseTransition pt = new PauseTransition();
+        pt.setDuration(Duration.millis(250.0d));
+        ftHidePreviewView.setOnFinished((ActionEvent event) -> {
+            bpGameArea.setCenter(game);
+        });
+        
+        // Show GameView
+        final FadeTransition ftShowGameView = new FadeTransition();
+        ftShowGameView.setDuration(Duration.millis(375.0d));
+        ftShowGameView.setFromValue(0.0d);
+        ftShowGameView.setToValue(1.0d);
+        ftShowGameView.setNode(game);
+        
+        // Animation
+        final SequentialTransition st = new SequentialTransition();
+        st.getChildren().addAll(ftHidePreviewView, pt, ftShowGameView);
+        
+        st.playFromStart();
     }
     
     public void onActionTriggerMenu() {
@@ -78,14 +137,14 @@ public class ApplicationPresenter implements Initializable, IRegisterActions {
         preview.setOpacity(0.0d);
         bpGameArea.setCenter(preview);
         
-        final FadeTransition ft = new FadeTransition();
-        ft.setDelay(Duration.millis(250.0d));
-        ft.setDuration(Duration.millis(375.0d));
-        ft.setFromValue(0.0d);
-        ft.setToValue(1.0d);
-        ft.setNode(preview);
+        final FadeTransition ftHidePreviewView = new FadeTransition();
+        ftHidePreviewView.setDelay(Duration.millis(250.0d));
+        ftHidePreviewView.setDuration(Duration.millis(375.0d));
+        ftHidePreviewView.setFromValue(0.0d);
+        ftHidePreviewView.setToValue(1.0d);
+        ftHidePreviewView.setNode(preview);
         
-        ft.playFromStart();
+        ftHidePreviewView.playFromStart();
     }
     
 }
