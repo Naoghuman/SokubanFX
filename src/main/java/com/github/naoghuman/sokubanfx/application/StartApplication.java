@@ -20,7 +20,6 @@ import static javafx.application.Application.launch;
 
 import com.airhacks.afterburner.injection.Injector;
 import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
-import com.github.naoghuman.lib.database.api.DatabaseFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
@@ -55,8 +54,6 @@ public class StartApplication extends Application implements IApplicationConfigu
         
         final Boolean dropPreferencesFileAtStart = Boolean.FALSE;
         PreferencesFacade.INSTANCE.init(dropPreferencesFileAtStart);
-        
-        DatabaseFacade.INSTANCE.register(this.getProperty(KEY__APPLICATION__DATABASE));
     }
     
     @Override
@@ -89,9 +86,6 @@ public class StartApplication extends Application implements IApplicationConfigu
     private void onCloseRequest() {
         // afterburner.fx
         Injector.forgetAll();
-        
-        // Database
-        DatabaseFacade.INSTANCE.shutdown();
         
         // Message
         final char borderSign = this.getProperty(KEY__APPLICATION__BORDER_SIGN).charAt(0);
