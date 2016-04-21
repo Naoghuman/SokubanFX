@@ -6,9 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter">
    <children>
       <Button layoutX="280.0" layoutY="361.0" mnemonicParsing="false" text="Start" />
+      <TextArea fx:id="ta" layoutX="121.0" layoutY="26.0" prefHeight="200.0" prefWidth="398.0" />
+      <Button layoutX="244.0" layoutY="234.0" mnemonicParsing="false" onAction="#onActionNextRandomMap" text="Next random map" />
    </children>
 </AnchorPane>

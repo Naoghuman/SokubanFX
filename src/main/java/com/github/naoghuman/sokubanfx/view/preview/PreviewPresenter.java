@@ -16,9 +16,14 @@
  */
 package com.github.naoghuman.sokubanfx.view.preview;
 
+import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.map.MapFacade;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -26,9 +31,28 @@ import javafx.fxml.Initializable;
  */
 public class PreviewPresenter implements Initializable {
     
+    @FXML private TextArea ta;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        // XXX Test
+        List<String> map = MapFacade.INSTANCE.loadNextRandomMap();
+        for (String line : map) {
+            ta.appendText(line);
+            ta.appendText("\n");
+        }
+    }
+    
+    public void onActionNextRandomMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action next random map"); // NOI18N
+        
+        final List<String> map = MapFacade.INSTANCE.loadNextRandomMap();
+        ta.setText(null);
+        for (String line : map) {
+            ta.appendText(line);
+            ta.appendText("\n");
+        }
     }
     
 }
