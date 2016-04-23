@@ -29,6 +29,7 @@ public enum MapFacade implements IMapConfiguration {
     
     INSTANCE;
     
+    private MapConverter mapConverter;
     private MapLoader mapLoader;
     
     MapFacade() {
@@ -38,6 +39,7 @@ public enum MapFacade implements IMapConfiguration {
     private void init() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Init MapFacade"); // NOI18N
         
+        mapConverter = new MapConverter();
         mapLoader = new MapLoader();
     }
     
@@ -50,17 +52,23 @@ public enum MapFacade implements IMapConfiguration {
         // Maps are from 1-n, not 0-n
         final int level = random.nextInt(mapMax) + 1;
         
+        MapModel mapModel = this.loadMap(level); // XXX
+        System.out.println(mapModel.toString()); // XXX
+        
         return this.readMapAsStrings(level);
     }
     
     public MapModel loadMap(int level) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load map: " + level); // NOI18N
         
-        return mapLoader.loadMap(level);
+        final List<String> mapAsStrings = mapLoader.loadMapAsStrings(level);
+        final MapModel mapModel = mapConverter.convertStringsToMap(level, mapAsStrings);
+        
+        return mapModel;
     }
     
     public List<String> readMapAsStrings(int level) {
-        return mapLoader.readMapAsStrings(level);
+        return mapLoader.loadMapAsStrings(level);
     }
     
 }

@@ -19,12 +19,6 @@ package com.github.naoghuman.sokubanfx.map;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -53,30 +47,10 @@ class MapLoader implements IMapConfiguration {
         return PropertiesFacade.INSTANCE.getProperty(KEY__MAP__RESOURCE_BUNDLE, propertyKey);
     }
     
-    MapModel loadMap(int level) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Load map: " + level); // NOI18N
-        
-        final List<String> mapAsStrings = this.readMapAsStrings(level);
-        mapAsStrings.stream().forEach((str) -> {
-            System.out.println(str);
-        });
-        
-        return null;
-    }
-    
-    public List<String> readMapAsStrings(int level) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Read map as Strings: " + level); // NOI18N
+    public List<String> loadMapAsStrings(int level) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Load map as Strings: " + level); // NOI18N
         
         final List<String> mapAsStrings = FXCollections.observableArrayList();
-        
-//        try {
-//            URI uri = this.getClass().getResource("/maps/map" + level + ".txt").toURI();
-//            mapAsStrings.addAll(Files.readAllLines(Paths.get(uri),//"/maps/map" + level + ".txt"), // NOI8N
-//                    StandardCharsets.UTF_8));
-//        } catch (IOException | URISyntaxException ex) {
-//            LoggerFacade.INSTANCE.error(this.getClass(), "Can't load map: " + level, ex); // NOI18N
-//        }
-        
         final String mapAsString = this.getProperty(KEY__MAP__POINT + level);
         final String[] splits = mapAsString.split(";"); // NOI18N
         mapAsStrings.addAll(Arrays.asList(splits));
