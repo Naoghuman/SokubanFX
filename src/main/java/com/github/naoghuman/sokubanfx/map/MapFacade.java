@@ -40,16 +40,20 @@ public enum MapFacade implements IMapConfiguration {
         mapLoader = new MapLoader();
     }
     
-    public List<String> loadNextRandomMap() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Load next random map"); // NOI18N
+    public List<String> loadRandomMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Load random map"); // NOI18N
         
         final Random random = new Random();
         final int mapMax = mapLoader.getMapMax();
-        return this.readMapAsStrings(random.nextInt(mapMax));
+        
+        // Maps are from 1-n, not 0-n
+        final int level = random.nextInt(mapMax) + 1;
+        
+        return this.readMapAsStrings(level);
     }
     
     public MapModel loadMap(int level) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Load next map: " + level); // NOI18N
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Load map: " + level); // NOI18N
         
         return mapLoader.loadMap(level);
     }
