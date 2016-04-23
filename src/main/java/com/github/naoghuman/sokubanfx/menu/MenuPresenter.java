@@ -14,15 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.application.action;
+package com.github.naoghuman.sokubanfx.menu;
+
+import com.github.naoghuman.lib.action.api.ActionFacade;
+import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.application.action.IActionConfiguration;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 /**
  *
  * @author PRo
  */
-public interface IActionConfiguration {
+public class MenuPresenter implements Initializable, IActionConfiguration {
     
-    public final static String ON_ACTION__CHANGE_TO_GAMEVIEW = "ON_ACTION__CHANGE_TO_GAMEVIEW"; // NOI18N
-    public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
+    
+    public void onActionHideMainMenu() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu");
+        
+        ActionFacade.INSTANCE.handle(ON_ACTION__HIDE_MAINMENU);
+    }
     
 }

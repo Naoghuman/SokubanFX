@@ -14,15 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.application.action;
+package com.github.naoghuman.sokubanfx.menu;
+
+import com.airhacks.afterburner.views.FXMLView;
 
 /**
  *
  * @author PRo
  */
-public interface IActionConfiguration {
+public class MenuView extends FXMLView {
     
-    public final static String ON_ACTION__CHANGE_TO_GAMEVIEW = "ON_ACTION__CHANGE_TO_GAMEVIEW"; // NOI18N
-    public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
+    public MenuPresenter getRealPresenter() {
+        return (MenuPresenter) super.getPresenter();
+    }
     
 }

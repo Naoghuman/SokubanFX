@@ -8,30 +8,31 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: AQUAMARINE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.application.ApplicationPresenter">
-   <children>
-      <BorderPane fx:id="bpGameArea" layoutX="123.0" layoutY="30.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-         <top>
-            <AnchorPane prefHeight="100.0">
-               <children>
-                  <HBox alignment="TOP_CENTER" style="-fx-background-color: LIGHTGOLDENRODYELLOW;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Label text="SokubanFX" />
-                              <Label text="by Naoghuman 2016" />
-                           </children>
+    <children>
+        <BorderPane fx:id="bpGameArea" layoutX="123.0" layoutY="30.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <top>
+                <AnchorPane prefHeight="100.0">
+                    <children>
+                        <HBox alignment="TOP_CENTER" style="-fx-background-color: LIGHTGOLDENRODYELLOW;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <VBox alignment="CENTER">
+                                    <children>
+                                        <Label text="SokubanFX" />
+                                        <Label text="by Naoghuman 2016" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" AnchorPane.rightAnchor="14.0">
+                            <children>
+                                <Button fx:id="bMenuArea" mnemonicParsing="false" onAction="#onActionShowMainMenu" text="Menu" />
+                            </children>
                         </VBox>
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER" prefHeight="100.0" AnchorPane.rightAnchor="14.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onActionTriggerMenu" text="Menu" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </top>
-      </BorderPane>
-      <AnchorPane fx:id="apHiddenLayer" mouseTransparent="true" style="-fx-background-color: rgba(0.0,0.0,0.0,0.2);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   </children>
+                    </children>
+                </AnchorPane>
+            </top>
+        </BorderPane>
+        <AnchorPane fx:id="apHiddenLayer" style="-fx-background-color: rgba(0.0,0.0,0.0,0.25);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <BorderPane fx:id="bpMenuArea" maxWidth="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefWidth="300.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+    </children>
 </AnchorPane>

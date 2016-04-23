@@ -39,7 +39,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     public void initialize(URL location, ResourceBundle resources) {
         
         // XXX Test
-        List<String> map = MapFacade.INSTANCE.loadNextRandomMap();
+        List<String> map = MapFacade.INSTANCE.loadRandomMap();
         for (String line : map) {
             ta.appendText(line);
             ta.appendText("\n");
@@ -49,7 +49,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     public void onActionNextRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action next random map"); // NOI18N
         
-        final List<String> map = MapFacade.INSTANCE.loadNextRandomMap();
+        final List<String> map = MapFacade.INSTANCE.loadRandomMap();
         ta.setText(null);
         for (String line : map) {
             ta.appendText(line);
