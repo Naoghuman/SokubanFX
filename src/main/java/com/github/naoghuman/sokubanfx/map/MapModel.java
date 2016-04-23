@@ -46,6 +46,19 @@ public class MapModel {
         this.places = FXCollections.observableArrayList();
         this.walls = FXCollections.observableArrayList();
     }
+    
+    public MapModel copy() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Copy MapModel"); // NOI18N
+        
+        final MapModel mapModel = new MapModel();
+        mapModel.setLevel(this.getLevel());
+        mapModel.setPlayer(this.getPlayer());
+        mapModel.setBoxes(this.getBoxes());
+        mapModel.setPlaces(this.getPlaces());
+        mapModel.setWalls(this.getWalls());
+        
+        return mapModel;
+    }
 
     public int getLevel() {
         return level;
