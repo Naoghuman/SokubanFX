@@ -64,6 +64,8 @@ class MapLoader implements IMapConfiguration {
     }
     
     public List<String> readMapAsStrings(int level) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Read map as Strings: " + level); // NOI18N
+        
         final List<String> mapAsStrings = FXCollections.observableArrayList();
         
 //        try {
