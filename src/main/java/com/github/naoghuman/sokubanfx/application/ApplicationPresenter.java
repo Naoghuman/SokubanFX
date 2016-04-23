@@ -19,7 +19,7 @@ package com.github.naoghuman.sokubanfx.application;
 import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.action.api.IRegisterActions;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.application.action.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.menu.MenuView;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
 import com.github.naoghuman.sokubanfx.view.preview.PreviewView;

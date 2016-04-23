@@ -18,7 +18,7 @@ package com.github.naoghuman.sokubanfx.view.preview;
 
 import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.application.action.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import java.net.URL;
 import java.util.List;

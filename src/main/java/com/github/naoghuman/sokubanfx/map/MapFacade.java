@@ -16,6 +16,7 @@
  */
 package com.github.naoghuman.sokubanfx.map;
 
+import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import java.util.List;
 import java.util.Random;
