@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 PRo
+ * Copyright (C) 2016 Naoghuman
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package com.github.naoghuman.sokubanfx.configuration;
 
 /**
  *
- * @author PRo
+ * @author Naoghuman
  */
 public interface IActionConfiguration {
     
