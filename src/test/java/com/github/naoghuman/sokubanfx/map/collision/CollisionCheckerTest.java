@@ -91,7 +91,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on x but not under the player (y=11) -> CollisionResult.BOX", CollisionResult.BOX, result);
+        assertEquals("There is a box before the player (y=11) -> CollisionResult.BOX", CollisionResult.BOX, result);
     }
     
     @Test
@@ -116,7 +116,7 @@ public class CollisionCheckerTest {
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
         assertEquals("There are boxes on x but not under the player (not y=9) -> CollisionResult.NO_BOX", CollisionResult.NO_BOX, result);
         
-        // There is a box before the player (y=9)
+        // There is a box behind the player (y=9)
         boxes.clear();
         boxes.add(new Coordinates(10,  2));
         boxes.add(new Coordinates(10,  9)); // <---
@@ -124,7 +124,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on x but not under the player (y=9) -> CollisionResult.BOX", CollisionResult.BOX, result);
+        assertEquals("There is a box behind the player (y=9) -> CollisionResult.BOX", CollisionResult.BOX, result);
     }
     
     @Test
@@ -157,7 +157,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on y but not under the player (x=9) -> CollisionResult.BOX", CollisionResult.BOX, result);
+        assertEquals("There is a box before the player (y=9) -> CollisionResult.BOX", CollisionResult.BOX, result);
     }
     
     @Test
@@ -190,7 +190,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on y but not under the player (x=11) -> CollisionResult.BOX", CollisionResult.BOX, result);
+        assertEquals("There is a box before the player (y=11) -> CollisionResult.BOX", CollisionResult.BOX, result);
     }
     
         /*
@@ -200,7 +200,7 @@ public class CollisionCheckerTest {
             RIGHT(-1, KeyEvent.VK_D, KeyEvent.VK_RIGHT),
             UP   (+1, KeyEvent.VK_W, KeyEvent.VK_UP);
         */
-//    /**
+    //    /**
 //     * Test of checkCollisionPlayerBoxBox method, of class CollisionChecker.
 //     */
 //    @Test
@@ -215,6 +215,138 @@ public class CollisionCheckerTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
+    
+    @Test
+    public void testCheckCollisionPlayerWallWithDirectionDOWN() {
+        // direction
+        final Direction direction = Direction.DOWN;
+        
+        // No walls are in the map or no walls on x
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There are walls on x but not under the player (not y=11)
+        walls.clear();
+        walls.add(new Coordinates(10,  2));
+        walls.add(new Coordinates(10,  8));
+        walls.add(new Coordinates(10, 15));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There are walls on x but not under the player (not y=11) -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There is a wall before the player (y=11)
+        walls.clear();
+        walls.add(new Coordinates(10,  2));
+        walls.add(new Coordinates(10, 11)); // <---
+        walls.add(new Coordinates(10, 15));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There is a wall before the player (y=11) -> CollisionResult.WALL", CollisionResult.WALL, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerWallWithDirectionUP() {
+        // direction
+        final Direction direction = Direction.UP;
+        
+        // No walls are in the map or no walls on x
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There are walls on x but not under the player (not y=9)
+        walls.clear();
+        walls.add(new Coordinates(10,  2));
+        walls.add(new Coordinates(10,  8));
+        walls.add(new Coordinates(10, 15));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There are walls on x but not under the player (not y=9) -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There is a wall behind the player (y=9)
+        walls.clear();
+        walls.add(new Coordinates(10,  2));
+        walls.add(new Coordinates(10,  9)); // <---
+        walls.add(new Coordinates(10, 15));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There is a wall behind the player (y=9) -> CollisionResult.WALL", CollisionResult.WALL, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerWallWithDirectionLEFT() {
+        // direction
+        final Direction direction = Direction.LEFT;
+        
+        // No walls are in the map or no walls on y
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There are walls on y but not under the player (not x=9)
+        walls.clear();
+        walls.add(new Coordinates( 2, 10));
+        walls.add(new Coordinates( 8, 10));
+        walls.add(new Coordinates(15, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There are walls on y but not under the player (not x=9) -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There is a wall before the player (y=9)
+        walls.clear();
+        walls.add(new Coordinates( 2, 10));
+        walls.add(new Coordinates( 9, 10)); // <---
+        walls.add(new Coordinates(15, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There is a wall before the player (y=9) -> CollisionResult.WALL", CollisionResult.WALL, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerWallWithDirectionRIGHT() {
+        // direction
+        final Direction direction = Direction.RIGHT;
+        
+        // No walls are in the map or no walls on y
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There are walls on y but not under the player (not x=11)
+        walls.clear();
+        walls.add(new Coordinates( 2, 10));
+        walls.add(new Coordinates( 8, 10));
+        walls.add(new Coordinates(15, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There are walls on y but not under the player (not x=11) -> CollisionResult.NO_WALL", CollisionResult.NO_WALL, result);
+        
+        // There is a wall before the player (y=11)
+        walls.clear();
+        walls.add(new Coordinates( 2, 10));
+        walls.add(new Coordinates(11, 10)); // <---
+        walls.add(new Coordinates(15, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("There is a wall before the player (y=11) -> CollisionResult.WALL", CollisionResult.WALL, result);
+    }
 
 //    /**
 //     * Test of checkCollisionPlayerBoxPlace method, of class CollisionChecker.
@@ -243,22 +375,6 @@ public class CollisionCheckerTest {
 //        CollisionChecker instance = null;
 //        CollisionResult expResult = null;
 //        CollisionResult result = instance.checkCollisionPlayerBoxWall(direction, mapModel);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-//    /**
-//     * Test of checkCollisionPlayerWall method, of class CollisionChecker.
-//     */
-//    @Test
-//    public void testCheckCollisionPlayerWall() {
-//        System.out.println("checkCollisionPlayerWall");
-//        Direction direction = null;
-//        MapModel mapModel = null;
-//        CollisionChecker instance = null;
-//        CollisionResult expResult = null;
-//        CollisionResult result = instance.checkCollisionPlayerWall(direction, mapModel);
 //        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");

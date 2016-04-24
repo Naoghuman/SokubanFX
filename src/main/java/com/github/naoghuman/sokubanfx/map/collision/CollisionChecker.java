@@ -84,14 +84,17 @@ public class CollisionChecker {
     public CollisionResult checkCollisionPlayerWall(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
-        CollisionResult collisionResult = CollisionResult.NONE;
-        
+        final Coordinates box = this.extractCoordinatesForPlayerWall(direction, mapModel);
+        CollisionResult collisionResult = CollisionResult.NO_WALL;
+        if (!Coordinates.isDefault(box)) {
+            collisionResult = CollisionResult.WALL;
+        }
         
         return collisionResult;
     }
 
     private Coordinates extractCoordinatesForPlayerBox(Direction direction, MapModel mapModel) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> Box' for direction: " + direction.toString()); // NOI18N
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial box around the player
         final Coordinates coordinatesBox = Coordinates.getDefault();
@@ -117,6 +120,35 @@ public class CollisionChecker {
         }
         
         return coordinateFoundedBox;
+    }
+
+    private Coordinates extractCoordinatesForPlayerWall(Direction direction, MapModel mapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> wall' for direction: " + direction.toString()); // NOI18N
+        
+        // Extract the Coordiantes from potenzial wall around the player
+        final Coordinates coordinatesWall = Coordinates.getDefault();
+        final Coordinates player = mapModel.getPlayer();
+        switch(direction) {
+            case DOWN : { coordinatesWall.setX(player.getX());     coordinatesWall.setY(player.getY() + 1); break; }
+            case LEFT : { coordinatesWall.setX(player.getX() - 1); coordinatesWall.setY(player.getY());     break; }
+            case RIGHT: { coordinatesWall.setX(player.getX() + 1); coordinatesWall.setY(player.getY());     break; }
+            case UP   : { coordinatesWall.setX(player.getX());     coordinatesWall.setY(player.getY() - 1); break; }
+        }
+        
+        // Check if on the potenzial coordinatesWall a wall
+        final Coordinates coordinateFoundedWall = Coordinates.getDefault();
+        if (!Coordinates.isDefault(coordinatesWall)) {
+            final List<Coordinates> walls = mapModel.getWalls();
+            for (Coordinates wall : walls) {
+                if (wall.getX() == coordinatesWall.getX() && wall.getY() == coordinatesWall.getY()) {
+                    coordinateFoundedWall.setX(wall.getX());
+                    coordinateFoundedWall.setY(wall.getY());
+                    break;
+                }
+            }
+        }
+        
+        return coordinateFoundedWall;
     }
     
 }

@@ -26,7 +26,9 @@ public enum CollisionResult {
     KEEP_GOING,  //    movement
     NONE,        //    no result
     NO_BOX,      // no box before player
+    NO_WALL,     // no wall before player -> movement
     REALLY_GOOD, //    movement + :) animation
+    WALL,        // no movement + :( animation
     WHAT_HAPPEN; // no movement + :( animation
     
 }
