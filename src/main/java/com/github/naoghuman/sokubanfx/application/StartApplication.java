@@ -32,6 +32,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -81,11 +82,6 @@ public class StartApplication extends Application implements IActionConfiguratio
         primaryStage.show();
         applicationPresenter.initializeAfterWindowIsShowing();
     }
-
-    @Override
-    public void stop() throws Exception {
-        Injector.forgetAll();
-    }
     
     private String getProperty(String propertyKey) {
         return PropertiesFacade.INSTANCE.getProperty(KEY__APPLICATION__RESOURCE_BUNDLE, propertyKey);
@@ -118,6 +114,15 @@ public class StartApplication extends Application implements IActionConfiguratio
     }
     
     private void onKeyReleased(KeyEvent event) {
+        // Listen to Application events
+        final KeyCode keyCode = event.getCode();
+        if (keyCode == KeyCode.ESCAPE) {
+            event.consume();
+            this.onCloseRequest();
+            
+            return;
+        }
+        
         // GameView
         final boolean isGameViewInitialize = PreferencesFacade.INSTANCE.getBoolean(
                 IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE, 
