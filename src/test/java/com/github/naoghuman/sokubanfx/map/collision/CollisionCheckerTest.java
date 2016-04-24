@@ -60,6 +60,114 @@ public class CollisionCheckerTest {
         CollisionChecker result = CollisionChecker.getDefault();
         assertNotNull("Instance from CollisionChecker muss != NULL", result); // NOI18N
     }
+    
+    @Test
+    public void testCheckCollisionPlayerBoxBoxWithDirectionDOWN() {
+        // direction
+        final Direction direction = Direction.DOWN;
+        
+        // There is a box before the player (y=11) and no second box (y!=12) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates(10,  2));
+        boxes.add(new Coordinates(10, 11)); // <--- 1.
+        boxes.add(new Coordinates(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.KEEP_GOING", CollisionResult.KEEP_GOING, result);
+        
+        // There is a box before the player (y=11) and a second box (y=12) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates(10,  1));
+        boxes.add(new Coordinates(10, 12)); // <--- 2.
+        boxes.add(new Coordinates(10, 11)); // <--- 1.
+        boxes.add(new Coordinates(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and a second box (y=12) before the first box -> CollisionResult.WHAT_HAPPEN", CollisionResult.WHAT_HAPPEN, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerBoxBoxWithDirectionUP() {
+        // direction
+        final Direction direction = Direction.UP;
+        
+        // There is a box before the player (y=9) and no second box (y!=8) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates(10,  2));
+        boxes.add(new Coordinates(10,  9)); // <--- 1.
+        boxes.add(new Coordinates(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.KEEP_GOING", CollisionResult.KEEP_GOING, result);
+        
+        // There is a box before the player (y=9) and a second box (y=8) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates(10,  1));
+        boxes.add(new Coordinates(10,  8)); // <--- 2.
+        boxes.add(new Coordinates(10,  9)); // <--- 1.
+        boxes.add(new Coordinates(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and a second box (y=8) before the first box -> CollisionResult.WHAT_HAPPEN", CollisionResult.WHAT_HAPPEN, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerBoxBoxWithDirectionLEFT() {
+        // direction
+        final Direction direction = Direction.LEFT;
+        
+        // There is a box before the player (x=9) and no second box (x!=8) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates( 2, 10));
+        boxes.add(new Coordinates( 9, 10)); // <--- 1.
+        boxes.add(new Coordinates(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.KEEP_GOING", CollisionResult.KEEP_GOING, result);
+        
+        // There is a box before the player (x=9) and a second box (x=8) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates( 1, 10));
+        boxes.add(new Coordinates( 8, 10)); // <--- 2.
+        boxes.add(new Coordinates( 9, 10)); // <--- 1.
+        boxes.add(new Coordinates(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and a second box (x=8) before the first box -> CollisionResult.WHAT_HAPPEN", CollisionResult.WHAT_HAPPEN, result);
+    }
+    
+    @Test
+    public void testCheckCollisionPlayerBoxBoxWithDirectionRIGHT() {
+        // direction
+        final Direction direction = Direction.RIGHT;
+        
+        // There is a box before the player (x=11) and no second box (x!=12) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates( 2, 10));
+        boxes.add(new Coordinates(11, 10)); // <--- 1.
+        boxes.add(new Coordinates(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.KEEP_GOING", CollisionResult.KEEP_GOING, result);
+        
+        // There is a box before the player (y=11) and a second box (y=12) before the first box
+        boxes.clear();
+        boxes.add(new Coordinates( 1, 10));
+        boxes.add(new Coordinates(12, 10)); // <--- 2.
+        boxes.add(new Coordinates(11, 10)); // <--- 1.
+        boxes.add(new Coordinates(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and a second box (x=12) before the first box -> CollisionResult.WHAT_HAPPEN", CollisionResult.WHAT_HAPPEN, result);
+    }
 
     @Test
     public void testCheckCollisionPlayerBoxWithDirectionDOWN() {
@@ -200,22 +308,6 @@ public class CollisionCheckerTest {
             RIGHT(-1, KeyEvent.VK_D, KeyEvent.VK_RIGHT),
             UP   (+1, KeyEvent.VK_W, KeyEvent.VK_UP);
         */
-    //    /**
-//     * Test of checkCollisionPlayerBoxBox method, of class CollisionChecker.
-//     */
-//    @Test
-//    public void testCheckCollisionPlayerBoxBox() {
-//        System.out.println("checkCollisionPlayerBoxBox");
-//        Direction direction = null;
-//        MapModel mapModel = null;
-//        CollisionChecker instance = null;
-//        CollisionResult expResult = null;
-//        CollisionResult result = instance.checkCollisionPlayerBoxBox(direction, mapModel);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    
     @Test
     public void testCheckCollisionPlayerWallWithDirectionDOWN() {
         // direction
