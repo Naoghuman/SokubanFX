@@ -16,25 +16,52 @@
  */
 package com.github.naoghuman.sokubanfx.geometry;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Naoghuman
  */
 public enum Direction {
     
-    EAST (-1),
-    NORTH(+1),
-    SOUTH(-1),
-    WEST (+1);
+    DOWN (-1, KeyEvent.VK_S, KeyEvent.VK_DOWN),
+    LEFT (+1, KeyEvent.VK_A, KeyEvent.VK_LEFT),
+    NONE ( 0),
+    RIGHT(-1, KeyEvent.VK_D, KeyEvent.VK_RIGHT),
+    UP   (+1, KeyEvent.VK_W, KeyEvent.VK_UP);
     
-    private int update = 0;
+    private int[] keyCodes = {};
     
-    Direction(int update) {
-        this.update = update;
+    private int updateTo = 0;
+    
+    Direction(int update, int... keyCodes) {
+        this.updateTo = update;
+        this.keyCodes = keyCodes;
     }
     
-    public int update() {
-        return update;
+    public Direction getDirection(int keyCode) {
+        Direction direction;
+        switch(keyCode) {
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:  { direction = DOWN;  break; }
+            
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:  { direction = LEFT;  break; }
+            
+            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT: { direction = RIGHT; break; }
+            
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:    { direction = UP;    break; }
+            
+            default: { direction = NONE; }
+        }
+        
+        return direction;
+    }
+    
+    public int updateTo() {
+        return updateTo;
     }
     
 }
