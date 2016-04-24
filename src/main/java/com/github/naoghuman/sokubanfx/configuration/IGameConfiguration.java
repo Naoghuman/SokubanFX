@@ -20,10 +20,12 @@ package com.github.naoghuman.sokubanfx.configuration;
  *
  * @author Naoghuman
  */
-public interface IActionConfiguration {
+public interface IGameConfiguration {
     
-    public final static String ON_ACTION__CHANGE_TO_GAMEVIEW = "ON_ACTION__CHANGE_TO_GAMEVIEW"; // NOI18N
-    public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
-    public final static String ON_ACTION__KEY_RELEASED__FOR_GAME = "ON_ACTION__KEY_RELEASED__FOR_GAME";
+    public static final String PROP__GAMEVIEW_IS_INITIALZE = "PROP__GAMEVIEW_IS_INITIALZE"; // NOI18N
+    public static final Boolean PROP__GAMEVIEW_IS_INITIALZE__DEFAULT_VALUE = Boolean.FALSE;
+    
+    public static final String PROP__KEY_RELEASED__FOR_GAMEVIEW = "PROP__KEY_RELEASED__FOR_GAMEVIEW"; // NOI18N
+    public static final Boolean PROP__KEY_RELEASED__FOR_GAMEVIEW__DEFAULT_VALUE = Boolean.FALSE;
     
 }

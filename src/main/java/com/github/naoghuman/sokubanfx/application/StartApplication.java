@@ -19,15 +19,20 @@ package com.github.naoghuman.sokubanfx.application;
 import static javafx.application.Application.launch;
 
 import com.airhacks.afterburner.injection.Injector;
+import com.github.naoghuman.lib.action.api.ActionFacade;
+import com.github.naoghuman.lib.action.api.TransferData;
 import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
+import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -35,7 +40,7 @@ import javafx.stage.WindowEvent;
  *
  * @author Naoghuman
  */
-public class StartApplication extends Application implements IApplicationConfiguration {
+public class StartApplication extends Application implements IActionConfiguration, IApplicationConfiguration {
 
     public static void main(String[] args) {
         launch(args);
@@ -62,6 +67,9 @@ public class StartApplication extends Application implements IApplicationConfigu
         final ApplicationPresenter applicationPresenter = applicationView.getRealPresenter();
         
         final Scene scene = new Scene(applicationView.getView(), 1280, 720);
+        scene.setOnKeyReleased((KeyEvent event) -> {
+            this.onKeyReleased(event);
+        });
         primaryStage.setTitle(this.getProperty(KEY__APPLICATION__TITLE));
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest((WindowEvent we) -> {
@@ -84,6 +92,14 @@ public class StartApplication extends Application implements IApplicationConfigu
     }
     
     private void onCloseRequest() {
+        // Cleanup for next start
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE,
+                Boolean.FALSE);
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW,
+                Boolean.FALSE);
+        
         // afterburner.fx
         Injector.forgetAll();
         
@@ -99,6 +115,23 @@ public class StartApplication extends Application implements IApplicationConfigu
             Platform.exit();
         });
         pt.playFromStart();
+    }
+    
+    private void onKeyReleased(KeyEvent event) {
+        // GameView
+        final boolean isGameViewInitialize = PreferencesFacade.INSTANCE.getBoolean(
+                IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE, 
+                IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE__DEFAULT_VALUE);
+        final boolean shouldOnKeyReleaseForGameView = PreferencesFacade.INSTANCE.getBoolean(
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW__DEFAULT_VALUE);
+        if (isGameViewInitialize && shouldOnKeyReleaseForGameView) {
+            final TransferData transferData = new TransferData();
+            transferData.setActionId(ON_ACTION__KEY_RELEASED__FOR_GAME);
+            transferData.setObject(event);
+
+            ActionFacade.INSTANCE.handle(transferData);
+        }
     }
     
 }

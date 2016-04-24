@@ -19,8 +19,11 @@ package com.github.naoghuman.sokubanfx.application;
 import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.action.api.IRegisterActions;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.menu.MenuView;
+import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
 import com.github.naoghuman.sokubanfx.view.preview.PreviewView;
 import java.net.URL;
@@ -120,6 +123,9 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         
         // Init GameView
         final GameView gameView = new GameView();
+        final GamePresenter gamePresenter = gameView.getRealPresenter();
+        gamePresenter.registerActions();
+        
         final Parent game = gameView.getView();
         game.setOpacity(0.0d);
         
@@ -146,6 +152,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     
     private void onActionHideMainMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu");
+        
+        // Listen in GameView on KeyEvents
+        PreferencesFacade.INSTANCE.putBoolean(IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+                Boolean.TRUE);
         
         // MenuView
         final Node menu = bpMenuArea.getCenter();
@@ -191,6 +201,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     
     public void onActionShowMainMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu");
+        
+        // Dont listen in GameView on KeyEvents
+        PreferencesFacade.INSTANCE.putBoolean(IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+                Boolean.FALSE);
         
         // Button
         bMenuArea.setDisable(Boolean.TRUE);
