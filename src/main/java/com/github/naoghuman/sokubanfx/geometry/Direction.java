@@ -32,10 +32,10 @@ public enum Direction {
     
     private int[] keyCodes = {};
     
-    private int updateTo = 0;
+    private int updateDirection = 0;
     
     Direction(int update, int... keyCodes) {
-        this.updateTo = update;
+        this.updateDirection = update;
         this.keyCodes = keyCodes;
     }
     
@@ -60,8 +60,8 @@ public enum Direction {
         return direction;
     }
     
-    public int updateTo() {
-        return updateTo;
+    public int updateDirection() {
+        return updateDirection;
     }
     
 }

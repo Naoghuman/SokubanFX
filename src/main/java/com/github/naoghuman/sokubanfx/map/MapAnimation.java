@@ -20,10 +20,6 @@ package com.github.naoghuman.sokubanfx.map;
  *
  * @author Naoghuman
  */
-public enum CollisionResult {
-    
-    KEEP_GOING,  //    movement
-    REALLY_GOOD, //    movement + :) animation
-    WHAT_HAPPEN; // no movement + :( animation
+public class MapAnimation {
     
 }

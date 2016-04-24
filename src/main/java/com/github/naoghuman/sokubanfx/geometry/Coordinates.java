@@ -22,6 +22,16 @@ package com.github.naoghuman.sokubanfx.geometry;
  */
 public class Coordinates {
     
+    private static final Coordinates DEFAULT = new Coordinates(-1, -1);
+    
+    public static Coordinates getDefault() {
+        return new Coordinates(DEFAULT.getX(), DEFAULT.getY());
+    }
+    
+    public static boolean isDefault(Coordinates other) {
+        return other.getX() == DEFAULT.getX() && other.getY() == DEFAULT.getY();
+    }
+    
     private int x;
     private int y;
 
@@ -44,6 +54,37 @@ public class Coordinates {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + this.x;
+        hash = 29 * hash + this.y;
+        
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Coordinates other = (Coordinates) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        
+        if (this.y != other.y) {
+            return false;
+        }
+        
+        return true;
     }
 
     @Override

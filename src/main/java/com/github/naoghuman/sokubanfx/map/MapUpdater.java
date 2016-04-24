@@ -16,7 +16,10 @@
  */
 package com.github.naoghuman.sokubanfx.map;
 
+import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.map.collision.CollisionChecker;
+import com.github.naoghuman.sokubanfx.map.collision.CollisionResult;
 
 /**
  *
@@ -24,13 +27,12 @@ import com.github.naoghuman.sokubanfx.geometry.Direction;
  */
 public class MapUpdater {
     
-    private MapModel mapModelOriginal;
-    
-    void storeOriginalMap(MapModel mapModelOriginal) {
-        this.mapModelOriginal = mapModelOriginal;
-    }
+    private MapModel actualMapModel;
+    private MapModel originalMapModel;
     
     void playerMoveTo(Direction direction) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction.toString()); // NOI18N
+        
         /*
         check:
          - checkCollisionPlayerSignSign
@@ -40,19 +42,16 @@ public class MapUpdater {
             - player <-> box <-> wall  (oh no, WHAT_HAPPEN animation)
          - checkCollisionPlayerWall
             - player <-> wall  (oh no, WHAT_HAPPEN animation)
+        */
+        final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, actualMapModel);
+        final CollisionResult collisionResultCheckCollisionPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, actualMapModel);
         
-         - checkCollisionXYs return CollisionResult
-            - CollisionResult.WHAT_HAPPEN
-               - Play WHAT_HAPPEN animation :(
-               - No updateXy() methods will be performed.
-                  - Hit: Player need to restart the level.
-            - CollisionResult.KEEP_GOING
-               - No animation
-               - Perform updateXy() methods.
-            - CollisionResult.REALLY_GOOD
-               - Play REALLY_GOOD animation :)
-               - Perform updateXy() methods.
-
+        final CollisionResult collisionResultCheckCollisionPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, actualMapModel);
+        final CollisionResult collisionResultCheckCollisionPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, actualMapModel);
+        
+        final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, actualMapModel);
+        
+        /*
         animation:
          - Play animation
          - switch(CollisionResult)
@@ -64,7 +63,9 @@ public class MapUpdater {
         
         shouldUpdate:
          - if (CollisionResult.WHAT_HAPPEN), then no update
+        */
         
+        /*
         move:
          a) Move/render wall-image and sign (direction.update() - up/down/x, left,right/y)
          b) Update MapModel
@@ -72,6 +73,14 @@ public class MapUpdater {
              - updatePlaces()
              - updateBoxes()
         */
+        
+    }
+    
+    public void putMapModel(MapModel actualMapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Put MapModel"); // NOI18N
+        
+        this.actualMapModel = actualMapModel;
+        this.originalMapModel = actualMapModel;
     }
     
 }
