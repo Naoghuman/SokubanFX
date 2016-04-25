@@ -42,14 +42,50 @@ public class CollisionChecker {
         
     }
     
+    private CollisionResult calculateCollisionResult(
+            Coordinates coordinates, CollisionResult collisionResultDefault, 
+            CollisionResult collisionResultExpected
+    ) {
+        CollisionResult collisionResult = collisionResultDefault;
+        if (!Coordinates.isDefault(coordinates)) {
+            collisionResult = collisionResultExpected;
+        }
+        
+        return collisionResult;
+    }
+    
+    private Coordinates calculateCoordinates(Direction direction, Coordinates player, int update) {
+        final Coordinates coordinates = Coordinates.getDefault();
+        switch(direction) {
+            case DOWN : { coordinates.setX(player.getX());     coordinates.setY(player.getY() + update); break; }
+            case LEFT : { coordinates.setX(player.getX() - update); coordinates.setY(player.getY());     break; }
+            case RIGHT: { coordinates.setX(player.getX() + update); coordinates.setY(player.getY());     break; }
+            case UP   : { coordinates.setX(player.getX());     coordinates.setY(player.getY() - update); break; }
+        }
+        
+        return coordinates;
+    }
+    
+    private Coordinates calculateFoundedCoordinates(Coordinates coordinatesToCheck, List<Coordinates> listCoordinates) {
+        final Coordinates coordinatesFounded = Coordinates.getDefault();
+        if (!Coordinates.isDefault(coordinatesToCheck)) {
+            for (Coordinates coordinates : listCoordinates) {
+                if (coordinates.getX() == coordinatesToCheck.getX() && coordinates.getY() == coordinatesToCheck.getY()) {
+                    coordinatesFounded.setX(coordinates.getX());
+                    coordinatesFounded.setY(coordinates.getY());
+                    break;
+                }
+            }
+        }
+        
+        return coordinatesFounded;
+    }
+    
     public CollisionResult checkCollisionPlayerBox(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = CollisionResult.NO_BOX;
-        if (!Coordinates.isDefault(box)) {
-            collisionResult = CollisionResult.BOX;
-        }
+        final CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_BOX, CollisionResult.BOX);
         
         return collisionResult;
     }
@@ -59,20 +95,12 @@ public class CollisionChecker {
         
         // Check first box
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = CollisionResult.NO_BOX;
-        if (!Coordinates.isDefault(box)) {
-            // First box is found
-            collisionResult = CollisionResult.BOX;
-        }
+        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_BOX, CollisionResult.BOX);
         
         // Check second box
         if (collisionResult.equals(CollisionResult.BOX)) {
             final Coordinates boxBox = this.extractCoordinatesForPlayerBoxBox(direction, mapModel);
-            collisionResult = CollisionResult.KEEP_GOING;
-            if (!Coordinates.isDefault(boxBox)) {
-                // Second box is found
-                collisionResult = CollisionResult.WHAT_HAPPEN;
-            }
+            collisionResult = this.calculateCollisionResult(boxBox, CollisionResult.KEEP_GOING, CollisionResult.WHAT_HAPPEN);
         }
         
         return collisionResult;
@@ -83,20 +111,12 @@ public class CollisionChecker {
         
         // Check first box
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = CollisionResult.NO_BOX;
-        if (!Coordinates.isDefault(box)) {
-            // First box is found
-            collisionResult = CollisionResult.BOX;
-        }
+        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_BOX, CollisionResult.BOX);
         
         // Check second place
         if (collisionResult.equals(CollisionResult.BOX)) {
             final Coordinates boxPlace = this.extractCoordinatesForPlayerBoxPlace(direction, mapModel);
-            collisionResult = CollisionResult.KEEP_GOING;
-            if (!Coordinates.isDefault(boxPlace)) {
-                // Second place is found
-                collisionResult = CollisionResult.REALLY_GOOD;
-            }
+            collisionResult = this.calculateCollisionResult(boxPlace, CollisionResult.KEEP_GOING, CollisionResult.REALLY_GOOD);
         }
         
         return collisionResult;
@@ -114,11 +134,8 @@ public class CollisionChecker {
     public CollisionResult checkCollisionPlayerWall(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
-        final Coordinates box = this.extractCoordinatesForPlayerWall(direction, mapModel);
-        CollisionResult collisionResult = CollisionResult.NO_WALL;
-        if (!Coordinates.isDefault(box)) {
-            collisionResult = CollisionResult.WALL;
-        }
+        final Coordinates wall = this.extractCoordinatesForPlayerWall(direction, mapModel);
+        final CollisionResult collisionResult = this.calculateCollisionResult(wall, CollisionResult.NO_WALL, CollisionResult.WALL);
         
         return collisionResult;
     }
@@ -127,27 +144,11 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial box around the player
-        final Coordinates coordinatesBox = Coordinates.getDefault();
         final Coordinates player = mapModel.getPlayer();
-        switch(direction) {
-            case DOWN : { coordinatesBox.setX(player.getX());     coordinatesBox.setY(player.getY() + 1); break; }
-            case LEFT : { coordinatesBox.setX(player.getX() - 1); coordinatesBox.setY(player.getY());     break; }
-            case RIGHT: { coordinatesBox.setX(player.getX() + 1); coordinatesBox.setY(player.getY());     break; }
-            case UP   : { coordinatesBox.setX(player.getX());     coordinatesBox.setY(player.getY() - 1); break; }
-        }
+        final Coordinates coordinatesBox = this.calculateCoordinates(direction, player, 1);
         
         // Check if on the potenzial coordinatesBox a box
-        final Coordinates coordinatesFoundedBox = Coordinates.getDefault();
-        if (!Coordinates.isDefault(coordinatesBox)) {
-            final List<Coordinates> boxes = mapModel.getBoxes();
-            for (Coordinates box : boxes) {
-                if (box.getX() == coordinatesBox.getX() && box.getY() == coordinatesBox.getY()) {
-                    coordinatesFoundedBox.setX(box.getX());
-                    coordinatesFoundedBox.setY(box.getY());
-                    break;
-                }
-            }
-        }
+        final Coordinates coordinatesFoundedBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
         
         return coordinatesFoundedBox;
     }
@@ -156,27 +157,11 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box -> box' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial sec. box around the player
-        final Coordinates coordinatesBox = Coordinates.getDefault();
         final Coordinates player = mapModel.getPlayer();
-        switch(direction) {
-            case DOWN : { coordinatesBox.setX(player.getX());     coordinatesBox.setY(player.getY() + 2); break; }
-            case LEFT : { coordinatesBox.setX(player.getX() - 2); coordinatesBox.setY(player.getY());     break; }
-            case RIGHT: { coordinatesBox.setX(player.getX() + 2); coordinatesBox.setY(player.getY());     break; }
-            case UP   : { coordinatesBox.setX(player.getX());     coordinatesBox.setY(player.getY() - 2); break; }
-        }
+        final Coordinates coordinatesBox = this.calculateCoordinates(direction, player, 2);
         
         // Check if on the potenzial coordinatesBox a boxBox
-        final Coordinates coordinatesFoundedBoxBox = Coordinates.getDefault();
-        if (!Coordinates.isDefault(coordinatesBox)) {
-            final List<Coordinates> boxes = mapModel.getBoxes();
-            for (Coordinates box : boxes) {
-                if (box.getX() == coordinatesBox.getX() && box.getY() == coordinatesBox.getY()) {
-                    coordinatesFoundedBoxBox.setX(box.getX());
-                    coordinatesFoundedBoxBox.setY(box.getY());
-                    break;
-                }
-            }
-        }
+        final Coordinates coordinatesFoundedBoxBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
         
         return coordinatesFoundedBoxBox;
     }
@@ -185,27 +170,11 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box -> place' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial place around the player
-        final Coordinates coordinatesPlace = Coordinates.getDefault();
         final Coordinates player = mapModel.getPlayer();
-        switch(direction) {
-            case DOWN : { coordinatesPlace.setX(player.getX());     coordinatesPlace.setY(player.getY() + 2); break; }
-            case LEFT : { coordinatesPlace.setX(player.getX() - 2); coordinatesPlace.setY(player.getY());     break; }
-            case RIGHT: { coordinatesPlace.setX(player.getX() + 2); coordinatesPlace.setY(player.getY());     break; }
-            case UP   : { coordinatesPlace.setX(player.getX());     coordinatesPlace.setY(player.getY() - 2); break; }
-        }
+        final Coordinates coordinatesPlace = this.calculateCoordinates(direction, player, 2);
         
         // Check if on the potenzial coordinatesPlace a boxPlace
-        final Coordinates coordinatesFoundedBoxPlace = Coordinates.getDefault();
-        if (!Coordinates.isDefault(coordinatesPlace)) {
-            final List<Coordinates> places = mapModel.getPlaces();
-            for (Coordinates place : places) {
-                if (place.getX() == coordinatesPlace.getX() && place.getY() == coordinatesPlace.getY()) {
-                    coordinatesFoundedBoxPlace.setX(place.getX());
-                    coordinatesFoundedBoxPlace.setY(place.getY());
-                    break;
-                }
-            }
-        }
+        final Coordinates coordinatesFoundedBoxPlace = this.calculateFoundedCoordinates(coordinatesPlace, mapModel.getPlaces());
         
         return coordinatesFoundedBoxPlace;
     }
@@ -214,27 +183,11 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial wall around the player
-        final Coordinates coordinatesWall = Coordinates.getDefault();
         final Coordinates player = mapModel.getPlayer();
-        switch(direction) {
-            case DOWN : { coordinatesWall.setX(player.getX());     coordinatesWall.setY(player.getY() + 1); break; }
-            case LEFT : { coordinatesWall.setX(player.getX() - 1); coordinatesWall.setY(player.getY());     break; }
-            case RIGHT: { coordinatesWall.setX(player.getX() + 1); coordinatesWall.setY(player.getY());     break; }
-            case UP   : { coordinatesWall.setX(player.getX());     coordinatesWall.setY(player.getY() - 1); break; }
-        }
-        
+        final Coordinates coordinatesWall = this.calculateCoordinates(direction, player, 1);
+
         // Check if on the potenzial coordinatesWall a wall
-        final Coordinates coordinatesFoundedWall = Coordinates.getDefault();
-        if (!Coordinates.isDefault(coordinatesWall)) {
-            final List<Coordinates> walls = mapModel.getWalls();
-            for (Coordinates wall : walls) {
-                if (wall.getX() == coordinatesWall.getX() && wall.getY() == coordinatesWall.getY()) {
-                    coordinatesFoundedWall.setX(wall.getX());
-                    coordinatesFoundedWall.setY(wall.getY());
-                    break;
-                }
-            }
-        }
+        final Coordinates coordinatesFoundedWall = this.calculateFoundedCoordinates(coordinatesWall, mapModel.getWalls());
         
         return coordinatesFoundedWall;
     }
