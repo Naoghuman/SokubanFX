@@ -56,13 +56,13 @@ public class CollisionCheckerTest {
     }
 
     @Test
-    public void testGetDefault() {
+    public void getDefault() {
         CollisionChecker result = CollisionChecker.getDefault();
         assertNotNull("Instance from CollisionChecker muss != NULL", result); // NOI18N
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxBoxWithDirectionDOWN() {
+    public void checkCollisionPlayerBoxBoxWithDirectionDOWN() {
         // direction
         final Direction direction = Direction.DOWN;
         
@@ -89,7 +89,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxBoxWithDirectionUP() {
+    public void checkCollisionPlayerBoxBoxWithDirectionUP() {
         // direction
         final Direction direction = Direction.UP;
         
@@ -116,7 +116,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxBoxWithDirectionLEFT() {
+    public void checkCollisionPlayerBoxBoxWithDirectionLEFT() {
         // direction
         final Direction direction = Direction.LEFT;
         
@@ -143,7 +143,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxBoxWithDirectionRIGHT() {
+    public void checkCollisionPlayerBoxBoxWithDirectionRIGHT() {
         // direction
         final Direction direction = Direction.RIGHT;
         
@@ -170,7 +170,7 @@ public class CollisionCheckerTest {
     }
 
     @Test
-    public void testCheckCollisionPlayerBoxWithDirectionDOWN() {
+    public void checkCollisionPlayerBoxWithDirectionDOWN() {
         // direction
         final Direction direction = Direction.DOWN;
         
@@ -203,7 +203,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxWithDirectionUP() {
+    public void checkCollisionPlayerBoxWithDirectionUP() {
         // direction
         final Direction direction = Direction.UP;
         
@@ -236,7 +236,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxWithDirectionLEFT() {
+    public void checkCollisionPlayerBoxWithDirectionLEFT() {
         // direction
         final Direction direction = Direction.LEFT;
         
@@ -269,7 +269,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerBoxWithDirectionRIGHT() {
+    public void checkCollisionPlayerBoxWithDirectionRIGHT() {
         // direction
         final Direction direction = Direction.RIGHT;
         
@@ -309,7 +309,7 @@ public class CollisionCheckerTest {
             UP   (+1, KeyEvent.VK_W, KeyEvent.VK_UP);
         */
     @Test
-    public void testCheckCollisionPlayerWallWithDirectionDOWN() {
+    public void checkCollisionPlayerWallWithDirectionDOWN() {
         // direction
         final Direction direction = Direction.DOWN;
         
@@ -342,7 +342,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerWallWithDirectionUP() {
+    public void checkCollisionPlayerWallWithDirectionUP() {
         // direction
         final Direction direction = Direction.UP;
         
@@ -375,7 +375,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerWallWithDirectionLEFT() {
+    public void checkCollisionPlayerWallWithDirectionLEFT() {
         // direction
         final Direction direction = Direction.LEFT;
         
@@ -408,7 +408,7 @@ public class CollisionCheckerTest {
     }
     
     @Test
-    public void testCheckCollisionPlayerWallWithDirectionRIGHT() {
+    public void checkCollisionPlayerWallWithDirectionRIGHT() {
         // direction
         final Direction direction = Direction.RIGHT;
         
@@ -440,36 +440,7 @@ public class CollisionCheckerTest {
         assertEquals("There is a wall before the player (y=11) -> CollisionResult.WALL", CollisionResult.WALL, result);
     }
 
-//    /**
-//     * Test of checkCollisionPlayerBoxPlace method, of class CollisionChecker.
-//     */
-//    @Test
-//    public void testCheckCollisionPlayerBoxPlace() {
-//        System.out.println("checkCollisionPlayerBoxPlace");
-//        Direction direction = null;
-//        MapModel mapModel = null;
-//        CollisionChecker instance = null;
-//        CollisionResult expResult = null;
-//        CollisionResult result = instance.checkCollisionPlayerBoxPlace(direction, mapModel);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-//    /**
-//     * Test of checkCollisionPlayerBoxWall method, of class CollisionChecker.
-//     */
-//    @Test
-//    public void testCheckCollisionPlayerBoxWall() {
-//        System.out.println("checkCollisionPlayerBoxWall");
-//        Direction direction = null;
-//        MapModel mapModel = null;
-//        CollisionChecker instance = null;
-//        CollisionResult expResult = null;
-//        CollisionResult result = instance.checkCollisionPlayerBoxWall(direction, mapModel);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+//    public void checkCollisionPlayerBoxPlace() {
+//    public void checkCollisionPlayerBoxWall() {
     
 }
