@@ -22,6 +22,7 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -83,6 +84,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         
         this.registerOnActionChangeToGameView();
         this.registerOnActionHideMainMenu();
+        this.registerOnActionShowMainMenu();
     }
     
     private void registerOnActionChangeToGameView() {
@@ -103,6 +105,17 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
                 ON_ACTION__HIDE_MAINMENU,
                 (ActionEvent event) -> {
                     this.onActionHideMainMenu();
+                }
+        );
+    }
+    
+    private void registerOnActionShowMainMenu() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show MainMenu");
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__SHOW_MAINMENU,
+                (ActionEvent event) -> {
+                    this.onActionShowMainMenu();
                 }
         );
     }
@@ -154,7 +167,8 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu");
         
         // Listen in GameView on KeyEvents
-        PreferencesFacade.INSTANCE.putBoolean(IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
                 Boolean.TRUE);
         
         // MainMenuView
@@ -190,6 +204,11 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
             bMenuArea.setDisable(Boolean.FALSE);
             apHiddenLayer.setVisible(Boolean.FALSE);
             apHiddenLayer.setManaged(Boolean.FALSE);
+            
+            // MainMenuView is hidden
+            PreferencesFacade.INSTANCE.putBoolean(
+                    IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN,
+                    Boolean.FALSE);
         });
         
         // Animate
@@ -203,8 +222,14 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu");
         
         // Dont listen in GameView on KeyEvents
-        PreferencesFacade.INSTANCE.putBoolean(IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
                 Boolean.FALSE);
+        
+        // MainMenuView is shown
+        PreferencesFacade.INSTANCE.putBoolean(
+                IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN,
+                Boolean.TRUE);
         
         // Button
         bMenuArea.setDisable(Boolean.TRUE);

@@ -31,7 +31,8 @@ public class MainMenuPresenter implements Initializable, IActionConfiguration {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize MainMenuPresenter");
+
     }
     
     public void onActionHideMainMenu() {

@@ -27,6 +27,7 @@ import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -95,6 +96,9 @@ public class StartApplication extends Application implements IActionConfiguratio
         PreferencesFacade.INSTANCE.putBoolean(
                 IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW,
                 Boolean.FALSE);
+        PreferencesFacade.INSTANCE.putBoolean(
+                IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN,
+                Boolean.FALSE);
         
         // afterburner.fx
         Injector.forgetAll();
@@ -119,6 +123,17 @@ public class StartApplication extends Application implements IActionConfiguratio
         if (keyCode == KeyCode.ESCAPE) {
             event.consume();
             this.onCloseRequest();
+            
+            return;
+        }
+        
+        // MainMenu
+        if (keyCode == KeyCode.BACK_SPACE) {
+            event.consume();
+            final boolean isMainMenuShown = PreferencesFacade.INSTANCE.getBoolean(
+                    IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN,
+                    IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN__DEFAULT_VALUE);
+            ActionFacade.INSTANCE.handle(isMainMenuShown ? ON_ACTION__HIDE_MAINMENU : ON_ACTION__SHOW_MAINMENU);
             
             return;
         }
