@@ -25,7 +25,7 @@
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="100.0" AnchorPane.rightAnchor="14.0">
                             <children>
-                                <Button fx:id="bMenuArea" mnemonicParsing="false" onAction="#onActionShowMainMenu" text="Menu" />
+                                <Button fx:id="bMenuArea" focusTraversable="false" mnemonicParsing="false" onAction="#onActionShowMainMenu" text="Menu" />
                             </children>
                         </VBox>
                     </children>
