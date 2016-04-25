@@ -56,7 +56,7 @@ public class StartApplication extends Application implements IActionConfiguratio
         
         final char borderSign = this.getProperty(KEY__APPLICATION__BORDER_SIGN).charAt(0);
         final String message = this.getProperty(KEY__APPLICATION__MESSAGE_START);
-        final String title = this.getProperty(KEY__APPLICATION__TITLE);
+        final String title = this.getProperty(KEY__APPLICATION__TITLE) + this.getProperty(KEY__APPLICATION__VERSION);
         LoggerFacade.INSTANCE.message(borderSign, 80, String.format(message, title));
         
         final Boolean dropPreferencesFileAtStart = Boolean.FALSE;
@@ -72,7 +72,7 @@ public class StartApplication extends Application implements IActionConfiguratio
         scene.setOnKeyReleased((KeyEvent event) -> {
             this.onKeyReleased(event);
         });
-        primaryStage.setTitle(this.getProperty(KEY__APPLICATION__TITLE));
+        primaryStage.setTitle(this.getProperty(KEY__APPLICATION__TITLE) + this.getProperty(KEY__APPLICATION__VERSION));
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest((WindowEvent we) -> {
            we.consume();
@@ -106,7 +106,7 @@ public class StartApplication extends Application implements IActionConfiguratio
         // Message
         final char borderSign = this.getProperty(KEY__APPLICATION__BORDER_SIGN).charAt(0);
         final String message = this.getProperty(KEY__APPLICATION__MESSAGE_STOP);
-        final String title = this.getProperty(KEY__APPLICATION__TITLE);
+        final String title = this.getProperty(KEY__APPLICATION__TITLE) + this.getProperty(KEY__APPLICATION__VERSION);
         LoggerFacade.INSTANCE.message(borderSign, 80, String.format(message, title));
         
         // Timer
