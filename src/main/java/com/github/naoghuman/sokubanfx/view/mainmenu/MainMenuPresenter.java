@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 PRo
+ * Copyright (C) 2016 Naoghuman
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.menu;
+package com.github.naoghuman.sokubanfx.view.mainmenu;
 
 import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
@@ -25,9 +25,9 @@ import javafx.fxml.Initializable;
 
 /**
  *
- * @author PRo
+ * @author Naoghuman
  */
-public class MenuPresenter implements Initializable, IActionConfiguration {
+public class MainMenuPresenter implements Initializable, IActionConfiguration {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {

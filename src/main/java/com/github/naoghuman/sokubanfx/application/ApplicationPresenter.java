@@ -22,7 +22,7 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
-import com.github.naoghuman.sokubanfx.menu.MenuView;
+import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
 import com.github.naoghuman.sokubanfx.view.preview.PreviewView;
@@ -157,7 +157,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         PreferencesFacade.INSTANCE.putBoolean(IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
                 Boolean.TRUE);
         
-        // MenuView
+        // MainMenuView
         final Node menu = bpMenuArea.getCenter();
         
         final FadeTransition ftHideMenuView = new FadeTransition();
@@ -221,9 +221,9 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ftShowHiddenLayer.setToValue(1.0d);
         ftShowHiddenLayer.setNode(apHiddenLayer);
         
-        // Init MenuView
-        final MenuView menuView = new MenuView();
-        final Parent menu = menuView.getView();
+        // Init MainMenuView
+        final MainMenuView mainMenuView = new MainMenuView();
+        final Parent menu = mainMenuView.getView();
         menu.setOpacity(0.0d);
         bpMenuArea.setCenter(null);
         bpMenuArea.setCenter(menu);

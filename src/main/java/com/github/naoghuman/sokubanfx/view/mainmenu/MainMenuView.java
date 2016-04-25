@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 PRo
+ * Copyright (C) 2016 Naoghuman
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,18 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.menu;
+package com.github.naoghuman.sokubanfx.view.mainmenu;
 
 import com.airhacks.afterburner.views.FXMLView;
 
 /**
  *
- * @author PRo
+ * @author Naoghuman
  */
-public class MenuView extends FXMLView {
+public class MainMenuView extends FXMLView {
     
-    public MenuPresenter getRealPresenter() {
-        return (MenuPresenter) super.getPresenter();
+    public MainMenuPresenter getRealPresenter() {
+        return (MainMenuPresenter) super.getPresenter();
     }
     
 }
