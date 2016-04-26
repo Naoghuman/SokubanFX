@@ -21,7 +21,11 @@
         <defaultGoal>clean package</defaultGoal>
         <!-- COMMENT OUT for release -->
         <plugins>
-            <!-- Run in your project folder: mvn jfx:jar -->
+            <!-- 
+                See JavaFX-Maven-Plugin Generator how to create the plugin configuration.
+                 - https://javafx-maven-plugin.github.io/
+                 - Run in your project folder: mvn jfx:jar 
+            -->
             <plugin>
                 <groupId>com.zenjava</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
