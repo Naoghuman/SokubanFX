@@ -39,12 +39,15 @@ public class MapConverter {
         final MapModel mapModel = new MapModel();
         mapModel.setLevel(level);
         
-        int y = 0;
+        int columns = 0;
+        int rows = 0;
         for (String line : mapAsStrings) {
             for (int x = 0; x < line.length(); x++) {
+                columns = Math.max(columns, x + 1);
+                
                 final Character c = line.charAt(x);
                 final int x1 = x + 1;
-                final int y1 = y + 1;
+                final int y1 = rows + 1;
                 switch(c) {
                     case 'A': // NOI18N
                     case 'B': { mapModel.addWall(x1, y1); break; } // NOI18N
@@ -58,8 +61,11 @@ public class MapConverter {
                 }
             }
             
-            y = y + 1;
+            rows = rows + 1;
         }
+        
+        mapModel.setColumns(columns);
+        mapModel.setRows(rows);
         
         return mapModel;
     }

@@ -27,7 +27,9 @@ import javafx.collections.FXCollections;
  */
 public class MapModel {
     
+    private int columns;
     private int level;
+    private int rows;
     
     private Coordinates player;
     
@@ -59,6 +61,14 @@ public class MapModel {
         
         return mapModel;
     }
+    
+    public int getColumns() {
+        return columns;
+    }
+    
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
 
     public int getLevel() {
         return level;
@@ -66,6 +76,14 @@ public class MapModel {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+    
+    public int getRows() {
+        return rows;
+    }
+    
+    public void setRows(int rows) {
+        this.rows = rows;
     }
     
     public Coordinates getPlayer() {
@@ -122,7 +140,9 @@ public class MapModel {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("lvl   : ").append(level).append("\n"); // NOI18N
+        sb.append("lvl   : ").append(level)
+                .append(", columns: ").append(this.getColumns())
+                .append(", rows: ").append(this.getRows()).append("\n"); // NOI18N
         sb.append("player: ").append(player.toString()).append("\n"); // NOI18N
         
         final StringBuilder sbBoxes = new StringBuilder();
