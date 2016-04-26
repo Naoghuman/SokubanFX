@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -33,7 +34,17 @@ import javafx.scene.control.TextArea;
  */
 public class PreviewPresenter implements Initializable, IActionConfiguration {
     
+//    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
+    
+    @FXML private ImageView iv;
     @FXML private TextArea ta;
+    
+//    public static final String PATH_TO_FOLDER__RESOURCES_IMAGES_MAPMARKER__WITH_FILE =
+//            "file:" // NOI18N
+//            + "resources" // NOI18N
+//            + File.separator + "images" // NOI18N
+//            + File.separator + "mapmarker" // NOI18N
+//            + File.separator;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +55,18 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
             ta.appendText(line);
             ta.appendText("\n");
         }
+        
+//        Image img = null;
+//        try {
+//            img = new Image(this.getClass().getResourceAsStream("/com/github/naoghuman/sokubanfx/view/preview/wallA.png"));
+////            img = new Image("file:images/smiley0.png");
+//        } catch (Exception e) {
+//            LoggerFacade.INSTANCE.warn(this.getClass(), String.format(
+//                    "Can't load image: %s", "wallA.png"), e); // NOI18N
+//        }
+//        ResourcesFacade.INSTANCE.register(EResourceType.IMAGE, PATH_TO_FOLDER__);
+//        Image img = ResourcesFacade.INSTANCE.loadImage("wallA.png");
+//        iv.setImage(img);
     }
     
     public void onActionNextRandomMap() {
