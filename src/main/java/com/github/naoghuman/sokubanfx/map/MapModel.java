@@ -37,6 +37,8 @@ public class MapModel {
     private List<Coordinates> places;
     private List<Coordinates> walls;
     
+    private List<String> mapAsStrings;
+    
     public MapModel() {
         this.init();
     }
@@ -44,9 +46,11 @@ public class MapModel {
     private void init() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Init MapModel"); // NOI18N
         
-        this.boxes = FXCollections.observableArrayList();
-        this.places = FXCollections.observableArrayList();
-        this.walls = FXCollections.observableArrayList();
+        boxes = FXCollections.observableArrayList();
+        places = FXCollections.observableArrayList();
+        walls = FXCollections.observableArrayList();
+        
+        mapAsStrings = FXCollections.observableArrayList();
     }
     
     public MapModel copy() {
@@ -135,6 +139,15 @@ public class MapModel {
     public void setWalls(List<Coordinates> walls) {
         this.walls.clear();
         this.walls.addAll(walls);
+    }
+    
+    public List<String> getMapAsStrings() {
+        return mapAsStrings;
+    }
+    
+    public void setMapAsStrings(List<String> mapAsStrings) {
+        this.mapAsStrings.clear();
+        this.mapAsStrings.addAll(mapAsStrings);
     }
 
     @Override
