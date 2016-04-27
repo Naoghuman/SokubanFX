@@ -43,6 +43,12 @@ public enum MapFacade implements IMapConfiguration {
         mapLoader = new MapLoader();
     }
     
+    public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Convert Map Coordinates to Strings"); // NOI18N
+        
+        return mapConverter.convertMapCoordinatesToStrings(mapModel);
+    }
+    
     public int getRandomMapIndex() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Get random Map index"); // NOI18N
         

@@ -27,6 +27,6 @@ public interface IMapConfiguration {
     public static final String KEY__MAP__RESOURCE_BUNDLE = "/com/github/naoghuman/sokubanfx/map/maps.properties"; // NOI18N
     
     public static final String PROP__ACTUAL_MAP = "PROP__ACTUAL_MAP"; // NOI18N
-    public static final int PROP__ACTUAL_MAP__DEFAULT_VALUE = 0;
+    public static final int PROP__ACTUAL_MAP__DEFAULT_VALUE = 1;
     
 }

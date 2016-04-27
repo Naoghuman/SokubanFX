@@ -23,11 +23,17 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
+import com.github.naoghuman.sokubanfx.map.MapFacade;
+import com.github.naoghuman.sokubanfx.map.MapModel;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -38,10 +44,37 @@ import javafx.scene.layout.AnchorPane;
 public class GamePresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
     @FXML private AnchorPane apGameArea;
+    @FXML private Label lMapInfo;
+    @FXML private TextArea taMapDisplay;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize GamePresenter"); // NOI18N
+        
+        this.initializePreferences();
+        this.initializeMap();
+    }
+    
+    private void initializeMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
+        
+        final int actualMap = PreferencesFacade.INSTANCE.getInt(
+                IMapConfiguration.PROP__ACTUAL_MAP,
+                IMapConfiguration.PROP__ACTUAL_MAP__DEFAULT_VALUE);
+        
+        final MapModel mapModel = MapFacade.INSTANCE.loadMap(actualMap);
+        lMapInfo.setText("Map " + mapModel.getLevel()); // NOI18N
+        
+        final List<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(mapModel);
+        taMapDisplay.setText(null);
+        mapAsStrings.stream().forEach((line) -> {
+            taMapDisplay.appendText(line);
+            taMapDisplay.appendText("\n"); // NOI18N
+        });
+    }
+    
+    private void initializePreferences() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Preferences"); // NOI18N
         
         // GameView is initialize
         PreferencesFacade.INSTANCE.putBoolean(
@@ -72,6 +105,31 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                     this.onKeyRelease(keyEvent);
                 }
         );
+    }
+    
+    public void onActionButtonDown() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
+        
+    }
+    
+    public void onActionButtonLeft() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
+        
+    }
+    
+    public void onActionButtonResetMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button reset Map"); // NOI18N
+        
+    }
+    
+    public void onActionButtonRight() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
+        
+    }
+    
+    public void onActionButtonUp() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
+        
     }
     
     private void onKeyRelease(KeyEvent keyEvent) {
