@@ -43,6 +43,16 @@ public enum MapFacade implements IMapConfiguration {
         mapLoader = new MapLoader();
     }
     
+    public int getRandomMapIndex() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Get random Map index"); // NOI18N
+        
+        final Random random = new Random();
+        final int mapMax = mapLoader.getMapMax();
+        final int randomMapIndex = random.nextInt(mapMax) + 1;
+        
+        return randomMapIndex;
+    }
+    
     public List<String> loadRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load random map"); // NOI18N
         

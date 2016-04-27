@@ -20,11 +20,14 @@ import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
+import com.github.naoghuman.sokubanfx.map.MapModel;
+import com.github.naoghuman.sokubanfx.map.MapConverter;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
@@ -37,6 +40,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
 //    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
     
     @FXML private ImageView iv;
+    @FXML private Label lMapInfo;
     @FXML private TextArea ta;
     
 //    public static final String PATH_TO_FOLDER__RESOURCES_IMAGES_MAPMARKER__WITH_FILE =
@@ -50,7 +54,23 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     public void initialize(URL location, ResourceBundle resources) {
         
         // XXX Test
-        List<String> map = MapFacade.INSTANCE.loadRandomMap();
+        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
+        lMapInfo.setText("Map " + randomMapIndex);
+        
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final MapModel mm = MapFacade.INSTANCE.loadMap(randomMapIndex);
+        System.out.println("lvl: " + mm.getLevel());
+        System.out.println("col: " + mm.getColumns());
+        System.out.println("row: " + mm.getRows());
+        
+        final MapConverter mc = new MapConverter();
+        final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
+        for (String line : map1) {
+            System.out.println(line);
+        }
+        
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final List<String> map = mm.getMapAsStrings();
         for (String line : map) {
             ta.appendText(line);
             ta.appendText("\n");
@@ -72,7 +92,23 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     public void onActionNextRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action next random map"); // NOI18N
         
-        final List<String> map = MapFacade.INSTANCE.loadRandomMap();
+        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
+        lMapInfo.setText("Map " + randomMapIndex);
+        
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final MapModel mm = MapFacade.INSTANCE.loadMap(randomMapIndex);
+        System.out.println("lvl: " + mm.getLevel());
+        System.out.println("col: " + mm.getColumns());
+        System.out.println("row: " + mm.getRows());
+        
+        final MapConverter mc = new MapConverter();
+        final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
+        for (String line : map1) {
+            System.out.println(line);
+        }
+        
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final List<String> map = mm.getMapAsStrings();
         ta.setText(null);
         for (String line : map) {
             ta.appendText(line);

@@ -17,14 +17,97 @@
 package com.github.naoghuman.sokubanfx.map;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.geometry.Coordinates;
 import java.util.List;
+import javafx.collections.FXCollections;
 
 /**
  *
  * @author Naoghuman
  */
 public class MapConverter {
-    // TODO change to englisch (also in properties file)
+    
+    public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
+        final List<String> mapAsStrings = FXCollections.observableArrayList();
+        final int columns = mapModel.getColumns();
+        final int rows = mapModel.getRows();
+        final int level = mapModel.getLevel();
+        
+        final Coordinates player = mapModel.getPlayer();
+        final List<Coordinates> boxes = mapModel.getBoxes();
+        final List<Coordinates> places = mapModel.getPlaces();
+        final List<Coordinates> walls = mapModel.getWalls();
+
+        // - = Empty sign
+        for (int ro = 0; ro < rows; ro++) {
+            final StringBuilder sb = new StringBuilder();
+            for (int col = 0; col < columns; col++) {
+                sb.append("-"); // NOI18N
+            }
+            mapAsStrings.add(sb.toString());
+        }
+        
+        // A, B = Walls from the level
+        for (int ro = 1; ro <= rows; ro++) {
+            for (int col = 1; col <= columns; col++) {
+                for (Coordinates wall : walls) {
+                    if (wall.getX() == col && wall.getY() == ro) {
+                        final StringBuilder sb = new StringBuilder();
+                        sb.append(mapAsStrings.get(ro - 1));
+                        sb.replace(col - 1, col, level % 2 != 0 ? "A" : "B"); // NOI18N
+                        mapAsStrings.remove(ro - 1);
+                        mapAsStrings.add(ro - 1, sb.toString());
+                    }
+                }
+            }
+        }
+        
+        // 1 = Place where a box is needed
+        for (int ro = 1; ro <= rows; ro++) {
+            for (int col = 1; col <= columns; col++) {
+                for (Coordinates place : places) {
+                    if (place.getX() == col && place.getY() == ro) {
+                        final StringBuilder sb = new StringBuilder();
+                        sb.append(mapAsStrings.get(ro - 1));
+                        sb.replace(col - 1, col, "1"); // NOI18N
+                        mapAsStrings.remove(ro - 1);
+                        mapAsStrings.add(ro - 1, sb.toString());
+                    }
+                }
+            }
+        }
+        
+        // 2 = Box which the player should move to the place
+        for (int ro = 1; ro <= rows; ro++) {
+            for (int col = 1; col <= columns; col++) {
+                for (Coordinates box : boxes) {
+                    if (box.getX() == col && box.getY() == ro) {
+                        final StringBuilder sb = new StringBuilder();
+                        sb.append(mapAsStrings.get(ro - 1));
+                        sb.replace(col - 1, col, "2"); // NOI18N
+                        mapAsStrings.remove(ro - 1);
+                        mapAsStrings.add(ro - 1, sb.toString());
+                    }
+                }
+            }
+        }
+        
+        // 0 = Player :)
+        for (int ro = 1; ro <= rows; ro++) {
+            for (int col = 1; col <= columns; col++) {
+                if (player.getX() == col && player.getY() == ro) {
+                    final StringBuilder sb = new StringBuilder();
+                    sb.append(mapAsStrings.get(ro - 1));
+                    sb.replace(col - 1, col, "0"); // NOI18N
+                    mapAsStrings.remove(ro - 1);
+                    mapAsStrings.add(ro - 1, sb.toString());
+                }
+            }
+        }
+
+        return mapAsStrings;
+    }
+    
     /*
         # Possible tiles are:
         #   -       = Empty sign
@@ -38,6 +121,7 @@ public class MapConverter {
         
         final MapModel mapModel = new MapModel();
         mapModel.setLevel(level);
+        mapModel.setMapAsStrings(mapAsStrings);
         
         int columns = 0;
         int rows = 0;
@@ -53,8 +137,8 @@ public class MapConverter {
                     case 'B': { mapModel.addWall(x1, y1); break; } // NOI18N
                     
                     case '0': { mapModel.setPlayer(x1, y1); break; } // NOI18N
-                    case '1': { mapModel.addBox(x1, y1); break; } // NOI18N
-                    case '2': { mapModel.addPlace(x1, y1); break; } // NOI18N
+                    case '1': { mapModel.addPlace(x1, y1); break; } // NOI18N
+                    case '2': { mapModel.addBox(x1, y1); break; } // NOI18N
                     
                     case '-': // NOI18N
                     default: { }
