@@ -137,6 +137,9 @@ public class CollisionChecker {
         final Coordinates wall = this.extractCoordinatesForPlayerWall(direction, mapModel);
         final CollisionResult collisionResult = this.calculateCollisionResult(wall, CollisionResult.NO_WALL, CollisionResult.WALL);
         
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> wall' for direction: " // NOI18N
+                + direction.toString() + " returns: " + collisionResult.toString()); // NOI18N
+        
         return collisionResult;
     }
 
@@ -149,6 +152,9 @@ public class CollisionChecker {
         
         // Check if on the potenzial coordinatesBox a box
         final Coordinates coordinatesFoundedBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
+        
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box' for direction: " // NOI18N
+                + direction.toString() + " returns: " + coordinatesFoundedBox.toString()); // NOI18N
         
         return coordinatesFoundedBox;
     }
@@ -163,6 +169,9 @@ public class CollisionChecker {
         // Check if on the potenzial coordinatesBox a boxBox
         final Coordinates coordinatesFoundedBoxBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
         
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> box' for direction: " // NOI18N
+                + direction.toString() + " returns: " + coordinatesFoundedBoxBox.toString()); // NOI18N
+        
         return coordinatesFoundedBoxBox;
     }
     
@@ -176,6 +185,9 @@ public class CollisionChecker {
         // Check if on the potenzial coordinatesPlace a boxPlace
         final Coordinates coordinatesFoundedBoxPlace = this.calculateFoundedCoordinates(coordinatesPlace, mapModel.getPlaces());
         
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> place' for direction: " // NOI18N
+                + direction.toString() + " returns: " + coordinatesFoundedBoxPlace.toString()); // NOI18N
+        
         return coordinatesFoundedBoxPlace;
     }
 
@@ -188,6 +200,9 @@ public class CollisionChecker {
 
         // Check if on the potenzial coordinatesWall a wall
         final Coordinates coordinatesFoundedWall = this.calculateFoundedCoordinates(coordinatesWall, mapModel.getWalls());
+        
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> wall' for direction: " // NOI18N
+                + direction.toString() + " returns: " + coordinatesFoundedWall.toString()); // NOI18N
         
         return coordinatesFoundedWall;
     }
