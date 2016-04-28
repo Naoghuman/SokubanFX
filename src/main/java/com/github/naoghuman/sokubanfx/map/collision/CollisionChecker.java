@@ -43,12 +43,12 @@ public class CollisionChecker {
     }
     
     private CollisionResult calculateCollisionResult(
-            Coordinates coordinates, CollisionResult collisionResultDefault, 
-            CollisionResult collisionResultExpected
+            Coordinates coordinates, CollisionResult collisionResultIsNotOkay, 
+            CollisionResult collisionResultIsOkay
     ) {
-        CollisionResult collisionResult = collisionResultDefault;
+        CollisionResult collisionResult = collisionResultIsNotOkay;
         if (!Coordinates.isDefault(coordinates)) {
-            collisionResult = collisionResultExpected;
+            collisionResult = collisionResultIsOkay;
         }
         
         return collisionResult;
@@ -57,10 +57,10 @@ public class CollisionChecker {
     private Coordinates calculateCoordinates(Direction direction, Coordinates player, int update) {
         final Coordinates coordinates = Coordinates.getDefault();
         switch(direction) {
-            case DOWN : { coordinates.setX(player.getX());     coordinates.setY(player.getY() + update); break; }
-            case LEFT : { coordinates.setX(player.getX() - update); coordinates.setY(player.getY());     break; }
-            case RIGHT: { coordinates.setX(player.getX() + update); coordinates.setY(player.getY());     break; }
-            case UP   : { coordinates.setX(player.getX());     coordinates.setY(player.getY() - update); break; }
+            case DOWN : { coordinates.setX(player.getX());          coordinates.setY(player.getY() + update); break; }
+            case LEFT : { coordinates.setX(player.getX() - update); coordinates.setY(player.getY());          break; }
+            case RIGHT: { coordinates.setX(player.getX() + update); coordinates.setY(player.getY());          break; }
+            case UP   : { coordinates.setX(player.getX());          coordinates.setY(player.getY() - update); break; }
         }
         
         return coordinates;
