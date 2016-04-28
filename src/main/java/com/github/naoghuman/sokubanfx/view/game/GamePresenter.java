@@ -24,6 +24,7 @@ import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
+import com.github.naoghuman.sokubanfx.geometry.Direction;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.MapModel;
 import java.net.URL;
@@ -46,6 +47,8 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     @FXML private AnchorPane apGameArea;
     @FXML private Label lMapInfo;
     @FXML private TextArea taMapDisplay;
+    
+    private MapModel actualMapModel;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,10 +80,10 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                 IMapConfiguration.PROP__ACTUAL_MAP,
                 IMapConfiguration.PROP__ACTUAL_MAP__DEFAULT_VALUE);
         
-        final MapModel mapModel = MapFacade.INSTANCE.loadMap(actualMap);
-        lMapInfo.setText("Map " + mapModel.getLevel()); // NOI18N
+        actualMapModel = MapFacade.INSTANCE.loadMap(actualMap);
+        lMapInfo.setText("Map " + actualMapModel.getLevel()); // NOI18N
         
-        final List<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(mapModel);
+        final List<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
         taMapDisplay.setText(null);
         mapAsStrings.stream().forEach((line) -> {
             taMapDisplay.appendText(line);
@@ -111,11 +114,13 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonDown() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
         
+        MapFacade.INSTANCE.playerMoveTo(Direction.DOWN, actualMapModel);
     }
     
     public void onActionButtonLeft() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
         
+        MapFacade.INSTANCE.playerMoveTo(Direction.LEFT, actualMapModel);
     }
     
     public void onActionButtonResetMap() {
@@ -127,16 +132,19 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonRight() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
         
+        MapFacade.INSTANCE.playerMoveTo(Direction.RIGHT, actualMapModel);
     }
     
     public void onActionButtonUp() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
         
+        MapFacade.INSTANCE.playerMoveTo(Direction.UP, actualMapModel);
     }
     
     private void onKeyRelease(KeyEvent keyEvent) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On KeyRelease: " + keyEvent.getCode()); // NOI18N
         
+        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO check keyevent"); // NOI18N
     }
     
 }

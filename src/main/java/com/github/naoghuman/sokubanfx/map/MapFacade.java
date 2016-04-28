@@ -18,6 +18,7 @@ package com.github.naoghuman.sokubanfx.map;
 
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.sokubanfx.geometry.Direction;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,7 @@ public enum MapFacade implements IMapConfiguration {
     
     private MapConverter mapConverter;
     private MapLoader mapLoader;
+    private MapUpdater mapUpdater;
     
     MapFacade() {
         this.init();
@@ -41,6 +43,7 @@ public enum MapFacade implements IMapConfiguration {
         
         mapConverter = new MapConverter();
         mapLoader = new MapLoader();
+        mapUpdater = new MapUpdater();
     }
     
     public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
@@ -81,6 +84,10 @@ public enum MapFacade implements IMapConfiguration {
         final MapModel mapModel = mapConverter.convertStringsToMap(level, mapAsStrings);
         
         return mapModel;
+    }
+    
+    public void playerMoveTo(Direction direction, MapModel mapModel) {
+        mapUpdater.playerMoveTo(direction, mapModel);
     }
     
     public List<String> readMapAsStrings(int level) {

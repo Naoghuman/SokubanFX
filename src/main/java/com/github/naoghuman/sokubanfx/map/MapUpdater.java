@@ -27,29 +27,64 @@ import com.github.naoghuman.sokubanfx.map.collision.CollisionResult;
  */
 public class MapUpdater {
     
-    private MapModel actualMapModel;
-    private MapModel originalMapModel;
-    
-    void playerMoveTo(Direction direction) {
+    void playerMoveTo(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction.toString()); // NOI18N
+  
+        /*
+           CollisionResult.NO_WALL
+            - if -> then okay, next check
+           CollisionResult.WALL
+            - if -> WHAT_HAPPEN animation + NO more movement
+        */
+        final CollisionResult collisionResultCheckCollisionPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        if (collisionResultCheckCollisionPlayerWall.equals(CollisionResult.WALL)) {
+            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation WHAT_HAPPEN for 'player -> wall'"); // NOI18N
+            return;
+        }
         
         /*
-        check:
-         - checkCollisionPlayerSignSign
-            - player <-> box <-> box   (oh no, WHAT_HAPPEN animation)
-            - player <-> box <-> place (yeah!, REALLY_GOOD animation)
-         - checkCollisionPlayerSignWall
-            - player <-> box <-> wall  (oh no, WHAT_HAPPEN animation)
-         - checkCollisionPlayerWall
-            - player <-> wall  (oh no, WHAT_HAPPEN animation)
+           CollisionResult.NO_BOX
+            - if -> NO animation + MOVEMENT
+           CollisionResult.BOX
+            - if -> other checks...
         */
-        final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, actualMapModel);
-        final CollisionResult collisionResultCheckCollisionPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, actualMapModel);
+        final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.BOX)) {
+            /*
+                CollisionResult.KEEP_GOING
+                 - if -> its okay go to other checks
+                CollisionResult.WHAT_HAPPEN
+                 - if -> NO more movement
+            */
+            final CollisionResult collisionResultCheckCollisionPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+            if (collisionResultCheckCollisionPlayerBoxBox.equals(CollisionResult.WHAT_HAPPEN)) {
+                LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation WHAT_HAPPEN for 'player -> box -> box'"); // NOI18N
+                return;
+            }
+
+            /*
+               CollisionResult.KEEP_GOING
+                - if -> its okay go to other checks
+               CollisionResult.WHAT_HAPPEN
+                - if ->  + NO more movement
+            */
+            final CollisionResult collisionResultCheckCollisionPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO add collision check for 'player -> box -> wall'"); // NOI18N
+
+            /*
+               CollisionResult.KEEP_GOING
+                - if -> do movement
+               CollisionResult.REALLY_GOOD
+                - if -> play animation + do movement
+            */
+            final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+            if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.REALLY_GOOD)) {
+                LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation REALLY_GOOD for 'player -> box -> place'"); // NOI18N
+            }
+            
+            return;
+        }
         
-        final CollisionResult collisionResultCheckCollisionPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, actualMapModel);
-        final CollisionResult collisionResultCheckCollisionPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, actualMapModel);
-        
-        final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, actualMapModel);
         
         /*
         animation:
@@ -74,13 +109,6 @@ public class MapUpdater {
              - updateBoxes()
         */
         
-    }
-    
-    public void putMapModel(MapModel actualMapModel) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Put MapModel"); // NOI18N
-        
-        this.actualMapModel = actualMapModel;
-        this.originalMapModel = actualMapModel;
     }
     
 }
