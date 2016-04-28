@@ -52,10 +52,25 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize GamePresenter"); // NOI18N
         
         this.initializePreferences();
-        this.initializeMap();
+        
+        this.loadActualMap();
     }
     
-    private void initializeMap() {
+    private void initializePreferences() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Preferences"); // NOI18N
+        
+        // GameView is initialize
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE,
+                Boolean.TRUE);
+        
+        // Listen in GameView on KeyEvents
+        PreferencesFacade.INSTANCE.putBoolean(
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW,
+                Boolean.TRUE);
+    }
+    
+    private void loadActualMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
         
         final int actualMap = PreferencesFacade.INSTANCE.getInt(
@@ -71,20 +86,6 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             taMapDisplay.appendText(line);
             taMapDisplay.appendText("\n"); // NOI18N
         });
-    }
-    
-    private void initializePreferences() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Preferences"); // NOI18N
-        
-        // GameView is initialize
-        PreferencesFacade.INSTANCE.putBoolean(
-                IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE,
-                Boolean.TRUE);
-        
-        // Listen in GameView on KeyEvents
-        PreferencesFacade.INSTANCE.putBoolean(
-                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW,
-                Boolean.TRUE);
     }
 
     @Override
@@ -120,6 +121,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonResetMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button reset Map"); // NOI18N
         
+        this.loadActualMap();
     }
     
     public void onActionButtonRight() {
