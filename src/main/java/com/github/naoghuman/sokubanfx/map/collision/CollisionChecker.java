@@ -87,6 +87,9 @@ public class CollisionChecker {
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
         final CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_BOX, CollisionResult.BOX);
         
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box' for direction: " // NOI18N
+                + direction.toString() + " returns: " + collisionResult.toString()); // NOI18N
+        
         return collisionResult;
     }
     
@@ -102,6 +105,9 @@ public class CollisionChecker {
             final Coordinates boxBox = this.extractCoordinatesForPlayerBoxBox(direction, mapModel);
             collisionResult = this.calculateCollisionResult(boxBox, CollisionResult.KEEP_GOING, CollisionResult.WHAT_HAPPEN);
         }
+        
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> box' for direction: " // NOI18N
+                + direction.toString() + " returns: " + collisionResult.toString()); // NOI18N
         
         return collisionResult;
     }
@@ -119,6 +125,9 @@ public class CollisionChecker {
             collisionResult = this.calculateCollisionResult(boxPlace, CollisionResult.KEEP_GOING, CollisionResult.REALLY_GOOD);
         }
         
+        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> place' for direction: " // NOI18N
+                + direction.toString() + " returns: " + collisionResult.toString()); // NOI18N
+        
         return collisionResult;
     }
     
@@ -126,7 +135,7 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> wall' for direction: " + direction.toString()); // NOI18N
         
         CollisionResult collisionResult = CollisionResult.NONE;
-        
+        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO add collision check for 'player -> box -> wall'"); // NOI18N
         
         return collisionResult;
     }
@@ -153,9 +162,6 @@ public class CollisionChecker {
         // Check if on the potenzial coordinatesBox a box
         final Coordinates coordinatesFoundedBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
         
-        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box' for direction: " // NOI18N
-                + direction.toString() + " returns: " + coordinatesFoundedBox.toString()); // NOI18N
-        
         return coordinatesFoundedBox;
     }
     
@@ -168,9 +174,6 @@ public class CollisionChecker {
         
         // Check if on the potenzial coordinatesBox a boxBox
         final Coordinates coordinatesFoundedBoxBox = this.calculateFoundedCoordinates(coordinatesBox, mapModel.getBoxes());
-        
-        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> box' for direction: " // NOI18N
-                + direction.toString() + " returns: " + coordinatesFoundedBoxBox.toString()); // NOI18N
         
         return coordinatesFoundedBoxBox;
     }
@@ -185,9 +188,6 @@ public class CollisionChecker {
         // Check if on the potenzial coordinatesPlace a boxPlace
         final Coordinates coordinatesFoundedBoxPlace = this.calculateFoundedCoordinates(coordinatesPlace, mapModel.getPlaces());
         
-        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> place' for direction: " // NOI18N
-                + direction.toString() + " returns: " + coordinatesFoundedBoxPlace.toString()); // NOI18N
-        
         return coordinatesFoundedBoxPlace;
     }
 
@@ -200,9 +200,6 @@ public class CollisionChecker {
 
         // Check if on the potenzial coordinatesWall a wall
         final Coordinates coordinatesFoundedWall = this.calculateFoundedCoordinates(coordinatesWall, mapModel.getWalls());
-        
-        LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box -> wall' for direction: " // NOI18N
-                + direction.toString() + " returns: " + coordinatesFoundedWall.toString()); // NOI18N
         
         return coordinatesFoundedWall;
     }
