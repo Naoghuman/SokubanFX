@@ -63,21 +63,6 @@ public class MapConverter {
             }
         }
         
-        // 1 = Box which the player should move to the place
-        for (int ro = 1; ro <= rows; ro++) {
-            for (int col = 1; col <= columns; col++) {
-                for (Coordinates box : boxes) {
-                    if (box.getX() == col && box.getY() == ro) {
-                        final StringBuilder sb = new StringBuilder();
-                        sb.append(mapAsStrings.get(ro - 1));
-                        sb.replace(col - 1, col, "1"); // NOI18N
-                        mapAsStrings.remove(ro - 1);
-                        mapAsStrings.add(ro - 1, sb.toString());
-                    }
-                }
-            }
-        }
-        
         // 2 = Place where a box is needed
         for (int ro = 1; ro <= rows; ro++) {
             for (int col = 1; col <= columns; col++) {
@@ -86,6 +71,21 @@ public class MapConverter {
                         final StringBuilder sb = new StringBuilder();
                         sb.append(mapAsStrings.get(ro - 1));
                         sb.replace(col - 1, col, "2"); // NOI18N
+                        mapAsStrings.remove(ro - 1);
+                        mapAsStrings.add(ro - 1, sb.toString());
+                    }
+                }
+            }
+        }
+        
+        // 1 = Box which the player should move to the place
+        for (int ro = 1; ro <= rows; ro++) {
+            for (int col = 1; col <= columns; col++) {
+                for (Coordinates box : boxes) {
+                    if (box.getX() == col && box.getY() == ro) {
+                        final StringBuilder sb = new StringBuilder();
+                        sb.append(mapAsStrings.get(ro - 1));
+                        sb.replace(col - 1, col, "1"); // NOI18N
                         mapAsStrings.remove(ro - 1);
                         mapAsStrings.add(ro - 1, sb.toString());
                     }

@@ -24,9 +24,13 @@ import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
+import com.github.naoghuman.sokubanfx.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.geometry.Direction;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
+import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
+import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
+import com.github.naoghuman.sokubanfx.map.movement.EMovement;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -87,6 +91,48 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         });
     }
     
+    private void evaluate(CheckMovementResult checkMovementResult) {
+        final EAnimation animation = checkMovementResult.getAnimation();
+        if (
+                animation.equals(EAnimation.REALLY_GREAT)
+                || animation.equals(EAnimation.WHAT_HAPPEN)
+        ) {
+            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation: " + animation); // NOI18N
+            
+        }
+        
+        final EMovement movement = checkMovementResult.getMovement();
+        if (
+                movement.equals(EMovement.PLAYER)
+                || movement.equals(EMovement.PLAYER_AND_BOX)
+        ) {
+            // Update player
+            final Coordinates player = actualMapModel.getPlayer();
+            player.setX(player.getTranslateX());
+            player.setY(player.getTranslateY());
+            
+            if (movement.equals(EMovement.PLAYER)) {
+                this.displayMap();
+                return;
+            }
+            
+            // Update box
+            final Coordinates boxToMove = movement.getCoordinatesBoxToMove();
+            final List<Coordinates> boxes = actualMapModel.getBoxes();
+            for (Coordinates box : boxes) {
+                if (
+                        box.getX() == boxToMove.getX()
+                        && box.getY() == boxToMove.getY()
+                ) {
+                    box.setX(boxToMove.getTranslateX());
+                    box.setY(boxToMove.getTranslateY());
+                }
+            }
+            
+            this.displayMap();
+        }
+    }
+    
     private void loadActualMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
         
@@ -132,31 +178,36 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonDown() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
         
-        MapFacade.INSTANCE.playerMoveTo(Direction.DOWN, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.DOWN, actualMapModel);
+        this.evaluate(checkMovementResult);
     }
     
     public void onActionButtonLeft() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
         
-        MapFacade.INSTANCE.playerMoveTo(Direction.LEFT, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.LEFT, actualMapModel);
+        this.evaluate(checkMovementResult);
     }
     
     public void onActionButtonResetMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button reset Map"); // NOI18N
         
         this.loadActualMap();
+        this.displayMap();
     }
     
     public void onActionButtonRight() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
         
-        MapFacade.INSTANCE.playerMoveTo(Direction.RIGHT, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.RIGHT, actualMapModel);
+        this.evaluate(checkMovementResult);
     }
     
     public void onActionButtonUp() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
         
-        MapFacade.INSTANCE.playerMoveTo(Direction.UP, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.UP, actualMapModel);
+        this.evaluate(checkMovementResult);
     }
     
     private void onKeyRelease(KeyEvent keyEvent) {

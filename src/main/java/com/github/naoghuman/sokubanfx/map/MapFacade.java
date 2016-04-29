@@ -80,7 +80,7 @@ public enum MapFacade implements IMapConfiguration {
         MapModel mapModel = this.loadMap(level); // XXX
         System.out.println(mapModel.toString()); // XXX
         
-        return this.readMapAsStrings(level);
+        return mapLoader.loadMapAsStrings(level);
     }
     
     public MapModel loadMap(int level) {
@@ -92,33 +92,11 @@ public enum MapFacade implements IMapConfiguration {
         return mapModel;
     }
     
-    public void playerMoveTo(Direction direction, MapModel mapModel) {
+    public CheckMovementResult playerMoveTo(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction); // NOI18N
 
         final CheckMovementResult checkMovementResult = mapMovement.checkMovePlayerTo(direction, mapModel);
-        final EAnimation animation = checkMovementResult.getAnimation();
-        if (
-                animation.equals(EAnimation.REALLY_GREAT)
-                || animation.equals(EAnimation.WHAT_HAPPEN)
-        ) {
-            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation: " + animation); // NOI18N
-            
-        }
-        
-        final EMovement movement = checkMovementResult.getMovement();
-        if (
-                movement.equals(EMovement.PLAYER)
-                || movement.equals(EMovement.PLAYER_AND_BOX)
-        ) {
-            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO do movement: " + movement + " to direction: " + direction); // NOI18N
-            
-            
-            
-        }
-    }
-    
-    public List<String> readMapAsStrings(int level) {
-        return mapLoader.loadMapAsStrings(level);
+        return checkMovementResult;
     }
     
 }
