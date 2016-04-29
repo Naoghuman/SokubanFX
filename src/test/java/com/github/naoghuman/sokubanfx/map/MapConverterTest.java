@@ -16,6 +16,8 @@
  */
 package com.github.naoghuman.sokubanfx.map;
 
+import com.github.naoghuman.sokubanfx.map.model.MapModel;
+import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

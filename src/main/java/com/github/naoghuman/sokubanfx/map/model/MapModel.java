@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.map;
+package com.github.naoghuman.sokubanfx.map.model;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.Coordinates;
@@ -99,7 +99,7 @@ public class MapModel {
     }
 
     public void setPlayer(int x, int y) {
-        this.player = new Coordinates(x, y);
+        this.player = Coordinates.getDefault(x, y);
     }
 
     public List<Coordinates> getBoxes() {
@@ -107,7 +107,7 @@ public class MapModel {
     }
     
     public void addBox(int x, int y) {
-        boxes.add(new Coordinates(x, y));
+        boxes.add(Coordinates.getDefault(x, y));
     }
 
     public void setBoxes(List<Coordinates> boxes) {
@@ -120,7 +120,7 @@ public class MapModel {
     }
     
     public void addPlace(int x, int y) {
-        places.add(new Coordinates(x, y));
+        places.add(Coordinates.getDefault(x, y));
     }
 
     public void setPlaces(List<Coordinates> places) {
@@ -133,7 +133,7 @@ public class MapModel {
     }
     
     public void addWall(int x, int y) {
-        walls.add(new Coordinates(x, y));
+        walls.add(Coordinates.getDefault(x, y));
     }
 
     public void setWalls(List<Coordinates> walls) {

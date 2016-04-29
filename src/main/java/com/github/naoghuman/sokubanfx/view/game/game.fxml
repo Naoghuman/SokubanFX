@@ -12,7 +12,7 @@
         <Label fx:id="lMapInfo" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Map" />
         <TextArea fx:id="taMapDisplay" editable="false" focusTraversable="false" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="400.0">
             <font>
-                <Font name="Monospaced Regular" size="13.0" />
+                <Font name="Monospaced Regular" size="20.0" />
             </font>
         </TextArea>
         <Button focusTraversable="false" layoutX="474.0" layoutY="31.0" mnemonicParsing="false" onAction="#onActionButtonUp" prefHeight="25.0" prefWidth="52.0" text="Up" />
@@ -20,7 +20,7 @@
         <Button focusTraversable="false" layoutX="526.0" layoutY="68.0" mnemonicParsing="false" onAction="#onActionButtonRight" prefHeight="25.0" prefWidth="52.0" text="Right" />
         <Button focusTraversable="false" layoutX="474.0" layoutY="102.0" mnemonicParsing="false" onAction="#onActionButtonDown" prefHeight="25.0" prefWidth="52.0" text="Down" />
         <Button focusTraversable="false" layoutX="422.0" layoutY="142.0" mnemonicParsing="false" onAction="#onActionButtonResetMap" prefHeight="25.0" prefWidth="159.0" text="Reset Map" />
-        <TextArea focusTraversable="false" layoutX="14.0" layoutY="393.0" prefHeight="20.0" prefWidth="400.0" text="# &#10;# Tiles are:&#10;#  -    = Empty sign&#10;#  A, B = Walls from the level&#10;#  0    = Player :)&#10;#  1    = Place where a box is needed&#10;#  2    = Box which the player should move to the place&#10;#" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="390.0">
+        <TextArea focusTraversable="false" layoutX="14.0" layoutY="393.0" prefHeight="20.0" prefWidth="400.0" text="# &#10;# Tiles are:&#10;#  -    = Empty sign&#10;#  A, B = Walls from the level&#10;#  0    = Player :)&#10;#  1    = Box which the player should move to the place&#10;#  2    = Place where a box is needed&#10;#" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="390.0">
             <font>
                 <Font name="Monospaced Regular" size="11.0" />
             </font>

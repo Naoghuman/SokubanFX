@@ -14,18 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.configuration;
+package com.github.naoghuman.sokubanfx.map.animation;
 
 /**
  *
  * @author Naoghuman
  */
-public interface IActionConfiguration {
+public enum EAnimation {
     
-    public final static String ON_ACTION__CHANGE_TO_GAMEVIEW = "ON_ACTION__CHANGE_TO_GAMEVIEW"; // NOI18N
-    public final static String ON_ACTION__DISPLAY_MAP = "ON_ACTION__DISPLAY_MAP"; // NOI18N
-    public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
-    public final static String ON_ACTION__KEY_RELEASED__FOR_GAME = "ON_ACTION__KEY_RELEASED__FOR_GAME"; // NOI18N
-    public final static String ON_ACTION__SHOW_MAINMENU = "ON_ACTION__SHOW_MAINMENU";  // NOI18N
+    FINISH_THE_MAP,
+    NONE,
+    REALLY_GREAT,
+    WHAT_HAPPEN;
     
 }

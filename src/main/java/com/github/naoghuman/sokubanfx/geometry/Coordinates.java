@@ -28,14 +28,20 @@ public class Coordinates {
         return new Coordinates(DEFAULT.getX(), DEFAULT.getY());
     }
     
+    public static Coordinates getDefault(int x, int y) {
+        return new Coordinates(x, y);
+    }
+    
     public static boolean isDefault(Coordinates other) {
         return other.getX() == DEFAULT.getX() && other.getY() == DEFAULT.getY();
     }
     
+    private int translateX;
+    private int translateY;
     private int x;
     private int y;
 
-    public Coordinates(int x, int y) {
+    private Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -54,6 +60,22 @@ public class Coordinates {
 
     public void setY(int y) {
         this.y = y;
+    }
+    
+    public int getTranslateX() {
+        return translateX;
+    }
+    
+    public void setTranslateX(int translateX) {
+        this.translateX = translateX;
+    }
+    
+    public int getTranslateY() {
+        return translateY;
+    }
+    
+    public void setTranslateY(int translateY) {
+        this.translateY = translateY;
     }
 
     @Override

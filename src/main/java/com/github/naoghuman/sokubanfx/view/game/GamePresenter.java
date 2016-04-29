@@ -26,7 +26,7 @@ import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.sokubanfx.geometry.Direction;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
-import com.github.naoghuman.sokubanfx.map.MapModel;
+import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -57,6 +57,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         this.initializePreferences();
         
         this.loadActualMap();
+        this.displayMap();
     }
     
     private void initializePreferences() {
@@ -73,14 +74,9 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                 Boolean.TRUE);
     }
     
-    private void loadActualMap() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
+    private void displayMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Display Map"); // NOI18N
         
-        final int actualMap = PreferencesFacade.INSTANCE.getInt(
-                IMapConfiguration.PROP__ACTUAL_MAP,
-                IMapConfiguration.PROP__ACTUAL_MAP__DEFAULT_VALUE);
-        
-        actualMapModel = MapFacade.INSTANCE.loadMap(actualMap);
         lMapInfo.setText("Map " + actualMapModel.getLevel()); // NOI18N
         
         final List<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
@@ -90,12 +86,34 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             taMapDisplay.appendText("\n"); // NOI18N
         });
     }
+    
+    private void loadActualMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
+        
+        final int actualMap = PreferencesFacade.INSTANCE.getInt(
+                IMapConfiguration.PROP__ACTUAL_MAP,
+                IMapConfiguration.PROP__ACTUAL_MAP__DEFAULT_VALUE);
+        
+        actualMapModel = MapFacade.INSTANCE.loadMap(actualMap);
+    }
 
     @Override
     public void registerActions() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Register actions in GamePresenter"); // NOI18N
         
+        this.registerOnActionDisplayMap();
         this.registerOnKeyReleased();
+    }
+    
+    private void registerOnActionDisplayMap() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action display Map"); // NOI18N
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__DISPLAY_MAP,
+                (ActionEvent event) -> {
+                    this.displayMap();
+                }
+        );
     }
 
     private void registerOnKeyReleased() {

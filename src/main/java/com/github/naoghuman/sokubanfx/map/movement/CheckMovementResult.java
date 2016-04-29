@@ -14,22 +14,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.map.collision;
+package com.github.naoghuman.sokubanfx.map.movement;
+
+import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 
 /**
  *
  * @author Naoghuman
  */
-public enum CollisionResult {
+public class CheckMovementResult {
     
-    NO_COLLISION,              // player -> no box, no wall
-    PLAYER_AGAINST__BOX,       // player -> box
-    PLAYER_AGAINST__BOX_BOX,   // player -> box -> box
-    PLAYER_AGAINST__BOX_NONE,  // player -> box -> none
-    PLAYER_AGAINST__BOX_PLACE, // player -> box -> place
-    PLAYER_AGAINST__BOX_WALL,  // player -> box -> wall
-    PLAYER_AGAINST__WALL;      // player -> wall
+    public static final CheckMovementResult getDefault() {
+        return new CheckMovementResult();
+    }
     
-    // PLAYER_AGAINST_PLACE -> suprice what is here?
+    private CheckMovementResult() { }
+    
+    private EAnimation animation = EAnimation.NONE;
+    private EMovement movement = EMovement.NONE;
+
+    public EAnimation getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(EAnimation animation) {
+        this.animation = animation;
+    }
+
+    public EMovement getMovement() {
+        return movement;
+    }
+
+    public void setMovement(EMovement movement) {
+        this.movement = movement;
+    }
     
 }

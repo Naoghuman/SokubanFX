@@ -16,9 +16,15 @@
  */
 package com.github.naoghuman.sokubanfx.map;
 
+import com.github.naoghuman.sokubanfx.map.model.MapModel;
+import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
+import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
+import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
+import com.github.naoghuman.sokubanfx.map.movement.EMovement;
 import java.util.List;
 import java.util.Random;
 
@@ -32,7 +38,7 @@ public enum MapFacade implements IMapConfiguration {
     
     private MapConverter mapConverter;
     private MapLoader mapLoader;
-    private MapUpdater mapUpdater;
+    private MapMovement mapMovement;
     
     MapFacade() {
         this.init();
@@ -43,7 +49,7 @@ public enum MapFacade implements IMapConfiguration {
         
         mapConverter = new MapConverter();
         mapLoader = new MapLoader();
-        mapUpdater = new MapUpdater();
+        mapMovement = new MapMovement();
     }
     
     public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
@@ -87,7 +93,28 @@ public enum MapFacade implements IMapConfiguration {
     }
     
     public void playerMoveTo(Direction direction, MapModel mapModel) {
-        mapUpdater.playerMoveTo(direction, mapModel);
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction); // NOI18N
+
+        final CheckMovementResult checkMovementResult = mapMovement.checkMovePlayerTo(direction, mapModel);
+        final EAnimation animation = checkMovementResult.getAnimation();
+        if (
+                animation.equals(EAnimation.REALLY_GREAT)
+                || animation.equals(EAnimation.WHAT_HAPPEN)
+        ) {
+            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO play animation: " + animation); // NOI18N
+            
+        }
+        
+        final EMovement movement = checkMovementResult.getMovement();
+        if (
+                movement.equals(EMovement.PLAYER)
+                || movement.equals(EMovement.PLAYER_AND_BOX)
+        ) {
+            LoggerFacade.INSTANCE.trace(this.getClass(), "TODO do movement: " + movement + " to direction: " + direction); // NOI18N
+            
+            
+            
+        }
     }
     
     public List<String> readMapAsStrings(int level) {
