@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -10,13 +11,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter">
     <children>
-        <Button focusTraversable="false" layoutX="280.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionStartGame" text="Start" />
-        <TextArea fx:id="ta" editable="false" focusTraversable="false" layoutX="121.0" layoutY="26.0" prefHeight="200.0" prefWidth="398.0">
-            <font>
-                <Font name="Monospaced Regular" size="13.0" />
-            </font>
-        </TextArea>
-        <Button focusTraversable="false" layoutX="244.0" layoutY="234.0" mnemonicParsing="false" onAction="#onActionNextRandomMap" text="Next random map" />
         <StackPane layoutX="20.0" layoutY="259.0" prefHeight="77.0" prefWidth="93.0" style="-fx-background-color: green;">
             <children>
                 <ImageView fx:id="iv" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
@@ -26,6 +20,20 @@
                 </ImageView>
             </children>
         </StackPane>
-        <Label fx:id="lMapInfo" alignment="CENTER" layoutX="121.0" layoutY="6.0" prefHeight="17.0" prefWidth="398.0" text="Map xy" />
+        <StackPane alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox fx:id="vbRandomMap" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: 0,0,0,0.5;">
+                    <StackPane.margin>
+                        <Insets bottom="100.0" top="50.0" />
+                    </StackPane.margin>
+                </VBox>
+            </children>
+        </StackPane>
+      <VBox alignment="BOTTOM_CENTER" layoutX="240.0" layoutY="361.0" spacing="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="336.0">
+         <children>
+              <Button focusTraversable="false" mnemonicParsing="false" onAction="#onActionNextRandomMap" prefWidth="120.0" text="Next random map" />
+              <Button focusTraversable="false" layoutX="240.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionStartGame" prefHeight="25.0" prefWidth="120.0" text="Play" AnchorPane.bottomAnchor="14.0" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

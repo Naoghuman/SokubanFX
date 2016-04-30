@@ -28,8 +28,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -40,8 +41,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
 //    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
     
     @FXML private ImageView iv;
-    @FXML private Label lMapInfo;
-    @FXML private TextArea ta;
+    @FXML private VBox vbRandomMap;
     
 //    public static final String PATH_TO_FOLDER__RESOURCES_IMAGES_MAPMARKER__WITH_FILE =
 //            "file:" // NOI18N
@@ -54,10 +54,8 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     public void initialize(URL location, ResourceBundle resources) {
         
         // XXX Test
-        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
-        lMapInfo.setText("Map " + randomMapIndex);
-        
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
         final MapModel mm = MapFacade.INSTANCE.loadMap(randomMapIndex);
         System.out.println("lvl: " + mm.getLevel());
         System.out.println("col: " + mm.getColumns());
@@ -65,16 +63,20 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         
         final MapConverter mc = new MapConverter();
         final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
-        for (String line : map1) {
+        map1.stream().forEach(line -> {
             System.out.println(line);
-        }
+        });
         
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        
+        vbRandomMap.getChildren().clear();
+        vbRandomMap.getChildren().add(this.getLabel("Map: " + randomMapIndex));
+        vbRandomMap.getChildren().add(this.getLabel(""));
+        
         final List<String> map = mm.getMapAsStrings();
-        for (String line : map) {
-            ta.appendText(line);
-            ta.appendText("\n");
-        }
+        map.stream().forEach(line -> {
+            vbRandomMap.getChildren().add(this.getLabel(line));
+        });
         
 //        Image img = null;
 //        try {
@@ -89,13 +91,18 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
 //        iv.setImage(img);
     }
     
+    private Label getLabel(String text) {
+        final Label label = new Label(text);
+        label.setFont(new Font("Monospaced Regular", 18.0d));
+        
+        return label;
+    }
+    
     public void onActionNextRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action next random map"); // NOI18N
         
-        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
-        lMapInfo.setText("Map " + randomMapIndex);
-        
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
         final MapModel mm = MapFacade.INSTANCE.loadMap(randomMapIndex);
         System.out.println("lvl: " + mm.getLevel());
         System.out.println("col: " + mm.getColumns());
@@ -103,17 +110,20 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         
         final MapConverter mc = new MapConverter();
         final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
-        for (String line : map1) {
+        map1.stream().forEach(line -> {
             System.out.println(line);
-        }
+        });
         
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        
+        vbRandomMap.getChildren().clear();
+        vbRandomMap.getChildren().add(this.getLabel("Map: " + randomMapIndex));
+        vbRandomMap.getChildren().add(this.getLabel(""));
+        
         final List<String> map = mm.getMapAsStrings();
-        ta.setText(null);
-        for (String line : map) {
-            ta.appendText(line);
-            ta.appendText("\n");
-        }
+        map.stream().forEach(line -> {
+            vbRandomMap.getChildren().add(this.getLabel(line));
+        });
     }
     
     public void onActionStartGame() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -33,6 +34,6 @@
             </top>
         </BorderPane>
         <AnchorPane fx:id="apHiddenLayer" style="-fx-background-color: rgba(0.0,0.0,0.0,0.25);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <BorderPane fx:id="bpMenuArea" maxWidth="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefWidth="300.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+        <BorderPane fx:id="bpMenuArea" maxWidth="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefWidth="350.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
     </children>
 </AnchorPane>

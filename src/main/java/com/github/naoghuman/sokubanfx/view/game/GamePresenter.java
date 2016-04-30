@@ -113,10 +113,12 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                 actualMap + 1);
         
         // play animation
+        
         // load next map
-        // keyevents= true
         this.loadActualMap();
         this.displayMap();
+        
+        // keyevents= true
     }
     
     private void evaluatePlayerMoveTo(CheckMovementResult checkMovementResult) {
