@@ -25,7 +25,7 @@ import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
@@ -206,7 +206,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonDown() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.DOWN, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.DOWN, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
         final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
@@ -219,7 +219,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonLeft() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.LEFT, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.LEFT, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
         final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
@@ -243,7 +243,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonRight() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.RIGHT, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.RIGHT, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
         final boolean checkIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
@@ -256,7 +256,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonUp() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.UP, actualMapModel);
+        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.UP, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
         final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();

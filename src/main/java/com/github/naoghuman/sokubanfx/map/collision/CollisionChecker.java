@@ -18,7 +18,7 @@ package com.github.naoghuman.sokubanfx.map.collision;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import java.util.List;
 
@@ -54,7 +54,7 @@ public class CollisionChecker {
         return collisionResult;
     }
     
-    private Coordinates calculateCoordinates(Direction direction, Coordinates player, int update) {
+    private Coordinates calculateCoordinates(EDirection direction, Coordinates player, int update) {
         final Coordinates coordinates = Coordinates.getDefault();
         switch(direction) {
             case DOWN : { coordinates.setX(player.getX());          coordinates.setY(player.getY() + update); break; }
@@ -85,7 +85,7 @@ public class CollisionChecker {
         return coordinatesFounded;
     }
     
-    public CollisionResult checkCollisionPlayerBox(Direction direction, MapModel mapModel) {
+    public CollisionResult checkCollisionPlayerBox(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
@@ -97,7 +97,7 @@ public class CollisionChecker {
         return collisionResult;
     }
     
-    public CollisionResult checkCollisionPlayerBoxBox(Direction direction, MapModel mapModel) {
+    public CollisionResult checkCollisionPlayerBoxBox(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> box' for direction: " + direction.toString()); // NOI18N
         
         // Check first box
@@ -116,7 +116,7 @@ public class CollisionChecker {
         return collisionResult;
     }
     
-    public CollisionResult checkCollisionPlayerBoxPlace(Direction direction, MapModel mapModel) {
+    public CollisionResult checkCollisionPlayerBoxPlace(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> place' for direction: " + direction.toString()); // NOI18N
         
         // Check first box
@@ -164,7 +164,7 @@ public class CollisionChecker {
         return collisionResult;
     }
     
-    public CollisionResult checkCollisionPlayerBoxWall(Direction direction, MapModel mapModel) {
+    public CollisionResult checkCollisionPlayerBoxWall(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> wall' for direction: " + direction.toString()); // NOI18N
         
         // Check first box
@@ -183,7 +183,7 @@ public class CollisionChecker {
         return collisionResult;
     }
     
-    public CollisionResult checkCollisionPlayerWall(Direction direction, MapModel mapModel) {
+    public CollisionResult checkCollisionPlayerWall(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
         final Coordinates wall = this.extractCoordinatesForPlayerWall(direction, mapModel);
@@ -195,7 +195,7 @@ public class CollisionChecker {
         return collisionResult;
     }
 
-    private Coordinates extractCoordinatesForPlayerBox(Direction direction, MapModel mapModel) {
+    private Coordinates extractCoordinatesForPlayerBox(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial box around the player
@@ -208,7 +208,7 @@ public class CollisionChecker {
         return coordinatesFoundedBox;
     }
     
-    private Coordinates extractCoordinatesForPlayerBoxBox(Direction direction, MapModel mapModel) {
+    private Coordinates extractCoordinatesForPlayerBoxBox(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box -> box' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial sec. box around the player
@@ -221,7 +221,7 @@ public class CollisionChecker {
         return coordinatesFoundedBoxBox;
     }
     
-    private Coordinates extractCoordinatesForPlayerBoxPlace(Direction direction, MapModel mapModel) {
+    private Coordinates extractCoordinatesForPlayerBoxPlace(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box -> place' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial place around the player
@@ -234,7 +234,7 @@ public class CollisionChecker {
         return coordinatesFoundedBoxPlace;
     }
     
-    private Coordinates extractCoordinatesForPlayerBoxWall(Direction direction, MapModel mapModel) {
+    private Coordinates extractCoordinatesForPlayerBoxWall(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> box -> wall' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial sec. wall around the player
@@ -247,7 +247,7 @@ public class CollisionChecker {
         return coordinatesFoundedBoxWall;
     }
 
-    private Coordinates extractCoordinatesForPlayerWall(Direction direction, MapModel mapModel) {
+    private Coordinates extractCoordinatesForPlayerWall(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Extract Coordinates for 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
         // Extract the Coordiantes from potenzial wall around the player

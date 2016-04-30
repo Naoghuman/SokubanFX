@@ -18,7 +18,7 @@ package com.github.naoghuman.sokubanfx.map.movement;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.collision.CollisionChecker;
@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class MapMovement {
     
-    private Coordinates calculateCoordinates(Direction direction, Coordinates coordinates) {
+    private Coordinates calculateCoordinates(EDirection direction, Coordinates coordinates) {
         final Coordinates coordinatesCalculated = Coordinates.getDefault();
         switch(direction) {
             case DOWN : { coordinatesCalculated.setX(coordinates.getX());     coordinatesCalculated.setY(coordinates.getY() + 1); break; }
@@ -58,7 +58,7 @@ public class MapMovement {
         return checkMovementResult;
     }
     
-    public CheckMovementResult checkMovePlayerTo(Direction direction, MapModel mapModel) {
+    public CheckMovementResult checkMovePlayerTo(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check move player to direction: " + direction.toString()); // NOI18N
         
         // Player -> Wall
@@ -125,7 +125,7 @@ public class MapMovement {
         return checkMovementResult;
     }
     
-    private Coordinates tranlateCoordinatesForBoxToMove(Direction direction, Coordinates player, List<Coordinates> coordinatesBoxes) {
+    private Coordinates tranlateCoordinatesForBoxToMove(EDirection direction, Coordinates player, List<Coordinates> coordinatesBoxes) {
         final Coordinates coordinatesCalculatedBox = this.calculateCoordinates(direction, player);
         Coordinates coordinatesCalculatedBoxToMove = Coordinates.getDefault();
         for (Coordinates coordinatesBox : coordinatesBoxes) {
@@ -146,7 +146,7 @@ public class MapMovement {
         return coordinatesCalculatedBoxToMove;
     }
     
-    private Coordinates translateCoordinates(Direction direction, Coordinates coordinates) {
+    private Coordinates translateCoordinates(EDirection direction, Coordinates coordinates) {
         final Coordinates coordinatesCalculated = this.calculateCoordinates(direction, coordinates);
         coordinates.setTranslateX(coordinatesCalculated.getX());
         coordinates.setTranslateY(coordinatesCalculated.getY());

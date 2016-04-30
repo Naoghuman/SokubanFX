@@ -22,7 +22,7 @@ import java.awt.event.KeyEvent;
  *
  * @author Naoghuman
  */
-public enum Direction {
+public enum EDirection {
     
     DOWN (-1, KeyEvent.VK_S, KeyEvent.VK_DOWN),
     LEFT (+1, KeyEvent.VK_A, KeyEvent.VK_LEFT),
@@ -34,13 +34,13 @@ public enum Direction {
     
     private int updateDirection = 0;
     
-    Direction(int update, int... keyCodes) {
+    EDirection(int update, int... keyCodes) {
         this.updateDirection = update;
         this.keyCodes = keyCodes;
     }
     
-    public Direction getDirection(int keyCode) {
-        Direction direction;
+    public EDirection getDirection(int keyCode) {
+        EDirection direction;
         switch(keyCode) {
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:  { direction = DOWN;  break; }

@@ -17,7 +17,7 @@
 package com.github.naoghuman.sokubanfx.map.collision;
 
 import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxBoxWithDirectionDOWN() {
         // direction
-        final Direction direction = Direction.DOWN;
+        final EDirection direction = EDirection.DOWN;
         
         // There is a box before the player (y=11) and no second box (y!=12) before the first box
         boxes.clear();
@@ -92,7 +92,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxBoxWithDirectionUP() {
         // direction
-        final Direction direction = Direction.UP;
+        final EDirection direction = EDirection.UP;
         
         // There is a box before the player (y=9) and no second box (y!=8) before the first box
         boxes.clear();
@@ -119,7 +119,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxBoxWithDirectionLEFT() {
         // direction
-        final Direction direction = Direction.LEFT;
+        final EDirection direction = EDirection.LEFT;
         
         // There is a box before the player (x=9) and no second box (x!=8) before the first box
         boxes.clear();
@@ -146,7 +146,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxBoxWithDirectionRIGHT() {
         // direction
-        final Direction direction = Direction.RIGHT;
+        final EDirection direction = EDirection.RIGHT;
         
         // There is a box before the player (x=11) and no second box (x!=12) before the first box
         boxes.clear();
@@ -173,7 +173,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxPlaceWithDirectionDOWN() {
         // direction
-        final Direction direction = Direction.DOWN;
+        final EDirection direction = EDirection.DOWN;
         
         // There is a box before the player (y=11) but no place at (y=12)
         boxes.clear();
@@ -208,7 +208,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxPlaceWithDirectionUP() {
         // direction
-        final Direction direction = Direction.UP;
+        final EDirection direction = EDirection.UP;
         
         // There is a box before the player (y=9) but no place at (y=8)
         boxes.clear();
@@ -243,7 +243,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxPlaceWithDirectionLEFT() {
         // direction
-        final Direction direction = Direction.LEFT;
+        final EDirection direction = EDirection.LEFT;
         
         // There is a box before the player (x=9) but no place at (x=8)
         boxes.clear();
@@ -278,7 +278,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxPlaceWithDirectionRIGHT() {
         // direction
-        final Direction direction = Direction.RIGHT;
+        final EDirection direction = EDirection.RIGHT;
         
         // There is a box before the player (x=11) but no place at (x=12)
         boxes.clear();
@@ -313,7 +313,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxWithDirectionDOWN() {
         // direction
-        final Direction direction = Direction.DOWN;
+        final EDirection direction = EDirection.DOWN;
         
         // No boxes are in the map or no boxes on x
         boxes.clear();
@@ -346,7 +346,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxWithDirectionUP() {
         // direction
-        final Direction direction = Direction.UP;
+        final EDirection direction = EDirection.UP;
         
         // No boxes are in the map or no boxes on x
         boxes.clear();
@@ -379,7 +379,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxWithDirectionLEFT() {
         // direction
-        final Direction direction = Direction.LEFT;
+        final EDirection direction = EDirection.LEFT;
         
         // No boxes are in the map or no boxes on y
         boxes.clear();
@@ -412,7 +412,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerBoxWithDirectionRIGHT() {
         // direction
-        final Direction direction = Direction.RIGHT;
+        final EDirection direction = EDirection.RIGHT;
         
         // No boxes are in the map or no boxes on y
         boxes.clear();
@@ -445,7 +445,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerWallWithDirectionDOWN() {
         // direction
-        final Direction direction = Direction.DOWN;
+        final EDirection direction = EDirection.DOWN;
         
         // No walls are in the map or no walls on x
         walls.clear();
@@ -478,7 +478,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerWallWithDirectionUP() {
         // direction
-        final Direction direction = Direction.UP;
+        final EDirection direction = EDirection.UP;
         
         // No walls are in the map or no walls on x
         walls.clear();
@@ -511,7 +511,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerWallWithDirectionLEFT() {
         // direction
-        final Direction direction = Direction.LEFT;
+        final EDirection direction = EDirection.LEFT;
         
         // No walls are in the map or no walls on y
         walls.clear();
@@ -544,7 +544,7 @@ public class CollisionCheckerTest {
     @Test
     public void checkCollisionPlayerWallWithDirectionRIGHT() {
         // direction
-        final Direction direction = Direction.RIGHT;
+        final EDirection direction = EDirection.RIGHT;
         
         // No walls are in the map or no walls on y
         walls.clear();

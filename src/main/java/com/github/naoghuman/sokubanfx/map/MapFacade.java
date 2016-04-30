@@ -21,7 +21,7 @@ import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.geometry.Direction;
+import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
 import com.github.naoghuman.sokubanfx.map.movement.EMovement;
@@ -100,7 +100,7 @@ public enum MapFacade implements IMapConfiguration {
         return mapModel;
     }
     
-    public CheckMovementResult playerMoveTo(Direction direction, MapModel mapModel) {
+    public CheckMovementResult playerMoveTo(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction); // NOI18N
 
         final CheckMovementResult checkMovementResult = mapMovement.checkMovePlayerTo(direction, mapModel);
