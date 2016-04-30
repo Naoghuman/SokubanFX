@@ -22,16 +22,15 @@
         </StackPane>
         <StackPane alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox fx:id="vbRandomMap" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: 0,0,0,0.5;">
+                <VBox fx:id="vbRandomMap" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0.3);">
                     <StackPane.margin>
-                        <Insets bottom="100.0" top="50.0" />
+                        <Insets bottom="90.0" top="90.0" />
                     </StackPane.margin>
                 </VBox>
             </children>
         </StackPane>
-      <VBox alignment="BOTTOM_CENTER" layoutX="240.0" layoutY="361.0" spacing="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="336.0">
+      <VBox alignment="BOTTOM_CENTER" layoutX="240.0" layoutY="361.0" spacing="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <children>
-              <Button focusTraversable="false" mnemonicParsing="false" onAction="#onActionNextRandomMap" prefWidth="120.0" text="Next random map" />
               <Button focusTraversable="false" layoutX="240.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionStartGame" prefHeight="25.0" prefWidth="120.0" text="Play" AnchorPane.bottomAnchor="14.0" />
          </children>
       </VBox>
