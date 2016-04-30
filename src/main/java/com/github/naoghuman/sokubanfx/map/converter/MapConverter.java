@@ -135,11 +135,11 @@ public class MapConverter {
                 final int y1 = rows + 1;
                 switch(c) {
                     case 'A': // NOI18N
-                    case 'B': { mapModel.addWall(x1, y1); break; } // NOI18N
+                    case 'B': { mapModel.addWall(x1, y1);   break; } // NOI18N
                     
                     case '0': { mapModel.setPlayer(x1, y1); break; } // NOI18N
-                    case '1': { mapModel.addBox(x1, y1); break; } // NOI18N
-                    case '2': { mapModel.addPlace(x1, y1); break; } // NOI18N
+                    case '1': { mapModel.addBox(x1, y1);    break; } // NOI18N
+                    case '2': { mapModel.addPlace(x1, y1);  break; } // NOI18N
                     
                     case '-': // NOI18N
                     default: { }

@@ -89,7 +89,7 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box' for direction: " + direction.toString()); // NOI18N
         
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        final CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_COLLISION, CollisionResult.PLAYER_AGAINST__BOX);
+        final CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NONE, CollisionResult.PLAYER_AGAINST__BOX);
         
         LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> box' for direction: " // NOI18N
                 + direction.toString() + " returns: " + collisionResult); // NOI18N
@@ -102,7 +102,7 @@ public class CollisionChecker {
         
         // Check first box
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_COLLISION, CollisionResult.PLAYER_AGAINST__BOX);
+        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NONE, CollisionResult.PLAYER_AGAINST__BOX);
         
         // Check second box
         if (collisionResult.equals(CollisionResult.PLAYER_AGAINST__BOX)) {
@@ -121,7 +121,7 @@ public class CollisionChecker {
         
         // Check first box
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_COLLISION, CollisionResult.PLAYER_AGAINST__BOX);
+        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NONE, CollisionResult.PLAYER_AGAINST__BOX);
         
         // Check second place
         if (collisionResult.equals(CollisionResult.PLAYER_AGAINST__BOX)) {
@@ -135,12 +135,41 @@ public class CollisionChecker {
         return collisionResult;
     }
     
+    public CollisionResult checkCollisionPlayerBoxPlaceFinish(MapModel mapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> place -> finish'"); // NOI18N
+        
+        final List<Coordinates> places = mapModel.getPlaces();
+        final List<Coordinates> boxes = mapModel.getBoxes();
+        int counter = 0;
+        for (Coordinates place : places) {
+            for (Coordinates box : boxes) {
+                if (
+                        place.getX() == box.getX()
+                        && place.getY() == box.getY()
+                ) {
+                    ++counter;
+                    break;
+                }
+            }
+        }
+        
+        // All boxes are on places?
+        final int maxPlaces = places.size();
+        final boolean allBoxesAreOnPlaces = (maxPlaces == counter);
+        CollisionResult collisionResult = CollisionResult.NONE;
+        if (allBoxesAreOnPlaces) {
+            collisionResult = CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH;
+        }
+        
+        return collisionResult;
+    }
+    
     public CollisionResult checkCollisionPlayerBoxWall(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> wall' for direction: " + direction.toString()); // NOI18N
         
         // Check first box
         final Coordinates box = this.extractCoordinatesForPlayerBox(direction, mapModel);
-        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NO_COLLISION, CollisionResult.PLAYER_AGAINST__BOX);
+        CollisionResult collisionResult = this.calculateCollisionResult(box, CollisionResult.NONE, CollisionResult.PLAYER_AGAINST__BOX);
         
         // Check second box
         if (collisionResult.equals(CollisionResult.PLAYER_AGAINST__BOX)) {
@@ -158,7 +187,7 @@ public class CollisionChecker {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> wall' for direction: " + direction.toString()); // NOI18N
         
         final Coordinates wall = this.extractCoordinatesForPlayerWall(direction, mapModel);
-        final CollisionResult collisionResult = this.calculateCollisionResult(wall, CollisionResult.NO_COLLISION, CollisionResult.PLAYER_AGAINST__WALL);
+        final CollisionResult collisionResult = this.calculateCollisionResult(wall, CollisionResult.NONE, CollisionResult.PLAYER_AGAINST__WALL);
         
         LoggerFacade.INSTANCE.info(this.getClass(), "Check collision 'player -> wall' for direction: " // NOI18N
                 + direction.toString() + " returns: " + collisionResult); // NOI18N

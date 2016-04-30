@@ -22,7 +22,6 @@ package com.github.naoghuman.sokubanfx.map.animation;
  */
 public enum EAnimation {
     
-    FINISH_THE_MAP,
     NONE,
     REALLY_GREAT,
     WHAT_HAPPEN;

@@ -22,11 +22,12 @@ package com.github.naoghuman.sokubanfx.map.collision;
  */
 public enum CollisionResult {
     
-    NO_COLLISION,              // player -> no box, no wall
+    NONE,                      // ...
     PLAYER_AGAINST__BOX,       // player -> box
     PLAYER_AGAINST__BOX_BOX,   // player -> box -> box
     PLAYER_AGAINST__BOX_NONE,  // player -> box -> none
     PLAYER_AGAINST__BOX_PLACE, // player -> box -> place
+    PLAYER_AGAINST__BOX_PLACE_AND_FINISH, // player -> box -> place -> finish
     PLAYER_AGAINST__BOX_WALL,  // player -> box -> wall
     PLAYER_AGAINST__WALL;      // player -> wall
     

@@ -26,8 +26,7 @@ public enum EMovement {
     
     NONE,
     PLAYER,
-    PLAYER_AND_BOX,
-    WAIT_FOR_NEXT_CHECK;
+    PLAYER_AND_BOX;
     
     private Coordinates coordinatesBoxToMove = Coordinates.getDefault();
     private Coordinates coordinatesPlayerToMove = Coordinates.getDefault();

@@ -43,6 +43,21 @@ public class MapMovement {
         return coordinatesCalculated;
     }
     
+    public CheckMovementResult checkIsMapFinish(MapModel mapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Check is Map finish"); // NOI18N
+        
+        // Player -> Box -> Place -> Finished
+        final CollisionResult collisionResultCheckCollisionPlayerBoxPlaceFinish = 
+                CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
+        
+        final CheckMovementResult checkMovementResult = CheckMovementResult.getDefault();
+        if (collisionResultCheckCollisionPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
+            checkMovementResult.setCheckIsMapFinish(Boolean.TRUE);
+        }
+        
+        return checkMovementResult;
+    }
+    
     public CheckMovementResult checkMovePlayerTo(Direction direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check move player to direction: " + direction.toString()); // NOI18N
         
@@ -58,7 +73,7 @@ public class MapMovement {
 
         // Player -> Box
         final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.NO_COLLISION)) {
+        if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.NONE)) {
             checkMovementResult.setAnimation(EAnimation.NONE);
             
             final EMovement movement = EMovement.PLAYER;
@@ -92,6 +107,7 @@ public class MapMovement {
         final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
             checkMovementResult.setAnimation(EAnimation.REALLY_GREAT);
+            checkMovementResult.setCheckIsMapFinish(Boolean.TRUE);
         }
         
         // Player -> Box -> None

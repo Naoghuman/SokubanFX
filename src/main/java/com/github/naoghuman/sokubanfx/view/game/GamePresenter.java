@@ -90,8 +90,36 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             taMapDisplay.appendText("\n"); // NOI18N
         });
     }
+
+    private void evaluateIsMapFinish(boolean isMapFinish) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Evaluate is Map finish"); // NOI18N
+        
+        // Keep going :)
+        if (!isMapFinish) {
+            return;
+        }
+        
+        // Map is finish !!
+        System.out.println("---------------------> map is finish :))");
+        // no movement
+        // keyevents=false
+        
+        // map-level += 1
+        final int actualMap = PreferencesFacade.INSTANCE.getInt(
+                IMapConfiguration.PROP__ACTUAL_MAP,
+                IMapConfiguration.PROP__ACTUAL_MAP__DEFAULT_VALUE);
+        PreferencesFacade.INSTANCE.putInt(
+                IMapConfiguration.PROP__ACTUAL_MAP,
+                actualMap + 1);
+        
+        // play animation
+        // load next map
+        // keyevents= true
+        this.loadActualMap();
+        this.displayMap();
+    }
     
-    private void evaluate(CheckMovementResult checkMovementResult) {
+    private void evaluatePlayerMoveTo(CheckMovementResult checkMovementResult) {
         final EAnimation animation = checkMovementResult.getAnimation();
         if (
                 animation.equals(EAnimation.REALLY_GREAT)
@@ -179,35 +207,63 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
         
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.DOWN, actualMapModel);
-        this.evaluate(checkMovementResult);
+        this.evaluatePlayerMoveTo(checkMovementResult);
+        
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        if (shouldCheckIfMapIsFinished) {
+            final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
+            this.evaluateIsMapFinish(isMapFinish);
+        }
     }
     
     public void onActionButtonLeft() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
         
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.LEFT, actualMapModel);
-        this.evaluate(checkMovementResult);
+        this.evaluatePlayerMoveTo(checkMovementResult);
+        
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        if (shouldCheckIfMapIsFinished) {
+            final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
+            this.evaluateIsMapFinish(isMapFinish);
+        }
     }
     
     public void onActionButtonResetMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button reset Map"); // NOI18N
         
+        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO listen keyevents=false"); // NOI18N
+        
         this.loadActualMap();
         this.displayMap();
+        
+        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO listen keyevent=true"); // NOI18N
     }
     
     public void onActionButtonRight() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
         
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.RIGHT, actualMapModel);
-        this.evaluate(checkMovementResult);
+        this.evaluatePlayerMoveTo(checkMovementResult);
+        
+        final boolean checkIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        if (checkIfMapIsFinished) {
+            final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
+            this.evaluateIsMapFinish(isMapFinish);
+        }
     }
     
     public void onActionButtonUp() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
         
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(Direction.UP, actualMapModel);
-        this.evaluate(checkMovementResult);
+        this.evaluatePlayerMoveTo(checkMovementResult);
+        
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        if (shouldCheckIfMapIsFinished) {
+            final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
+            this.evaluateIsMapFinish(isMapFinish);
+        }
     }
     
     private void onKeyRelease(KeyEvent keyEvent) {

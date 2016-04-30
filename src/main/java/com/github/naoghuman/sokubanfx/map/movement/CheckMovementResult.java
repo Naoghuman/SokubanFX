@@ -28,10 +28,20 @@ public class CheckMovementResult {
         return new CheckMovementResult();
     }
     
-    private CheckMovementResult() { }
+    private boolean checkIsMapFinish = Boolean.FALSE;
     
     private EAnimation animation = EAnimation.NONE;
     private EMovement movement = EMovement.NONE;
+    
+    private CheckMovementResult() { }
+
+    public boolean isCheckIsMapFinish() {
+        return checkIsMapFinish;
+    }
+
+    public void setCheckIsMapFinish(boolean checkIsMapFinish) {
+        this.checkIsMapFinish = checkIsMapFinish;
+    }
 
     public EAnimation getAnimation() {
         return animation;

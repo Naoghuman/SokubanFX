@@ -67,6 +67,14 @@ public enum MapFacade implements IMapConfiguration {
         
         return randomMapIndex;
     }
+
+    public boolean isMapFinish(MapModel mapModel) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Is Map finish"); // NOI18N
+        
+        final CheckMovementResult checkMovementResult = mapMovement.checkIsMapFinish(mapModel);
+        
+        return checkMovementResult.isCheckIsMapFinish();
+    }
     
     public List<String> loadRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load random map"); // NOI18N
