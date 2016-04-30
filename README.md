@@ -28,7 +28,8 @@ Screenshots<a name="Screenshots" />
 ---
 
 ##### SokubanFX v0.1.0-PROTOTYPE
-![sokubanfx_v0.1.0-PROTOTYPE.png][sokubanfx_v0.1.0-PROTOTYPE]
+Click on the picture to see the prototype in action ![emoticon_smile.png][emoticon_smile] in YouTube.
+[![sokubanfx_v0.1.0-PROTOTYPE.png][sokubanfx_v0.1.0-PROTOTYPE]](https://www.youtube.com/watch?v=Kp1vWjLTIvY "SokubanFX v0.1.0-PROTOTYPE")
 
 
 
