@@ -24,11 +24,11 @@
                                 </VBox>
                             </children>
                         </HBox>
-                        <VBox alignment="CENTER" prefHeight="100.0" AnchorPane.rightAnchor="14.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Button fx:id="bMenuArea" focusTraversable="false" mnemonicParsing="false" onAction="#onActionShowMainMenu" text="Menu" />
+                                <Label fx:id="lMenuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActionShowMainMenu" prefHeight="64.0" prefWidth="64.0" text="menu" />
                             </children>
-                        </VBox>
+                        </HBox>
                     </children>
                 </AnchorPane>
             </top>

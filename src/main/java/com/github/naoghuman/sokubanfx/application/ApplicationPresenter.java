@@ -37,12 +37,15 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -53,18 +56,34 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
     @FXML private BorderPane bpMenuArea;
-    @FXML private Button bMenuArea;
+    @FXML private Label lMenuButton;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LoggerFacade.INSTANCE.info(this.getClass(), "Initialize ApplicationPresenter"); // NOI18N
         
-//        assert (apView != null) : "fx:id=\"apView\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (apHiddenLayer != null) : "fx:id=\"apHiddenLayer\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (bpGameArea != null)    : "fx:id=\"bpGameArea\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (bpMenuArea != null)    : "fx:id=\"bpMenuArea\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (lMenuButton != null)   : "fx:id=\"lMenuButton\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        
+        this.initializeMenuButton();
         
         this.registerActions();
         this.hideHiddenLayer();
         
         this.showViewPreview();
+    }
+    
+    private void initializeMenuButton() {
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize MenuButton"); // NOI18N
+        
+        lMenuButton.setText(null);
+        lMenuButton.setCursor(Cursor.HAND);
+        
+        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_BLOCK_MENU);
+        fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
+        lMenuButton.setGraphic(fiBlockMenu);
     }
     
     public void initializeAfterWindowIsShowing() {
@@ -201,7 +220,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ftHideHiddenLayer.setToValue(0.0d);
         ftHideHiddenLayer.setNode(apHiddenLayer);
         ftHideHiddenLayer.setOnFinished((ActionEvent event) -> {
-            bMenuArea.setDisable(Boolean.FALSE);
+            lMenuButton.setDisable(Boolean.FALSE);
             apHiddenLayer.setVisible(Boolean.FALSE);
             apHiddenLayer.setManaged(Boolean.FALSE);
             
@@ -232,7 +251,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
                 Boolean.TRUE);
         
         // Button
-        bMenuArea.setDisable(Boolean.TRUE);
+        lMenuButton.setDisable(Boolean.TRUE);
         
         // HiddenLayer
         apHiddenLayer.setOpacity(0.0d);
