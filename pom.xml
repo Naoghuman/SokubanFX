@@ -110,6 +110,14 @@
         <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
     
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>com.github.naoghuman</groupId>
@@ -148,7 +156,17 @@
             <version>1.7.0</version>
             <scope>compile</scope>
         </dependency>
-        
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-metrizeicons-pack</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
