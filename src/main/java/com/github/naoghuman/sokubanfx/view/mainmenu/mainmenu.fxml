@@ -41,7 +41,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea promptText="TODO add special thanks" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                <TextArea text="Adam Bien&#10;- for his library 'afterburner.fx'&#10;- https://github.com/AdamBien/afterburner.fx&#10;&#10;Andres Almiray&#10;- for his library 'ikonli'&#10;- https://github.com/aalmiray/ikonli" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                             </children>
                         </AnchorPane>
                     </content>
