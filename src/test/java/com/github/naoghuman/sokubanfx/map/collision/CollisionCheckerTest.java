@@ -63,6 +63,147 @@ public class CollisionCheckerTest {
     }
     
     @Test
+    public void checkCollisionPlayerBoxWallWithDirectionDOWN() {
+        // direction
+        final EDirection direction = EDirection.DOWN;
+        
+        // There is a box before the player (y=11) and no second box (y!=12) before the first box
+        boxes.clear();
+        boxes.add(Coordinates.getDefault(10,  2));
+        boxes.add(Coordinates.getDefault(10, 11)); // <--- 1.
+        boxes.add(Coordinates.getDefault(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        
+        // There is a box before the player (y=11) and a wall at (y=12)
+        boxes.clear();
+        boxes.add(Coordinates.getDefault(10,  1));
+        boxes.add(Coordinates.getDefault(10, 11)); // <--- 1.
+        boxes.add(Coordinates.getDefault(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        walls.add(Coordinates.getDefault(10,  2));
+        walls.add(Coordinates.getDefault(10, 12)); // <--- 2.
+        walls.add(Coordinates.getDefault(10, 14));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and a wall at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+    }
+    
+    @Test
+    public void checkCollisionPlayerBoxWallWithDirectionUP() {
+        // direction
+        final EDirection direction = EDirection.UP;
+        
+        // There is a box before the player (y=9) and no second box (y!=8) before the first box
+        boxes.clear();
+        boxes.add(Coordinates.getDefault(10,  2));
+        boxes.add(Coordinates.getDefault(10,  9)); // <--- 1.
+        boxes.add(Coordinates.getDefault(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        
+        // There is a box before the player (y=9) and a wall at (y=8)
+        boxes.clear();
+        boxes.add(Coordinates.getDefault(10,  1));
+        boxes.add(Coordinates.getDefault(10,  9)); // <--- 1.
+        boxes.add(Coordinates.getDefault(10, 15));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        walls.add(Coordinates.getDefault(10,  2));
+        walls.add(Coordinates.getDefault(10,  8)); // <--- 2.
+        walls.add(Coordinates.getDefault(10, 14));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and a wall at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+    }
+    
+    @Test
+    public void checkCollisionPlayerBoxWallWithDirectionLEFT() {
+        // direction
+        final EDirection direction = EDirection.LEFT;
+        
+        // There is a box before the player (x=9) and no second box (x!=8) before the first box
+        boxes.clear();
+        boxes.add(Coordinates.getDefault( 2, 10));
+        boxes.add(Coordinates.getDefault( 9, 10)); // <--- 1.
+        boxes.add(Coordinates.getDefault(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        
+        // There is a box before the player (x=9) and a wall at (x=8)
+        boxes.clear();
+        boxes.add(Coordinates.getDefault( 1, 10));
+        boxes.add(Coordinates.getDefault( 9, 10)); // <--- 1.
+        boxes.add(Coordinates.getDefault(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        walls.add(Coordinates.getDefault( 2, 10));
+        walls.add(Coordinates.getDefault( 8, 10)); // <--- 2.
+        walls.add(Coordinates.getDefault(14, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and a wall at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+    }
+    
+    
+    @Test
+    public void checkCollisionPlayerBoxWallWithDirectionRIGHT() {
+        // direction
+        final EDirection direction = EDirection.RIGHT;
+        
+        // There is a box before the player (x=11) and no second box (x!=12) before the first box
+        boxes.clear();
+        boxes.add(Coordinates.getDefault( 2, 10));
+        boxes.add(Coordinates.getDefault(11, 10)); // <--- 1.
+        boxes.add(Coordinates.getDefault(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        mapModel.setWalls(walls);
+        
+        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        
+        // There is a box before the player (x=11) and a wall at (x=12)
+        boxes.clear();
+        boxes.add(Coordinates.getDefault( 1, 10));
+        boxes.add(Coordinates.getDefault(11, 10)); // <--- 1.
+        boxes.add(Coordinates.getDefault(15, 10));
+        mapModel.setBoxes(boxes);
+        
+        walls.clear();
+        walls.add(Coordinates.getDefault( 2, 10));
+        walls.add(Coordinates.getDefault(12, 10)); // <--- 2.
+        walls.add(Coordinates.getDefault(14, 10));
+        mapModel.setWalls(walls);
+        
+        result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and a wall at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+    }
+    
+    @Test
     public void checkCollisionPlayerBoxBoxWithDirectionDOWN() {
         // direction
         final EDirection direction = EDirection.DOWN;
