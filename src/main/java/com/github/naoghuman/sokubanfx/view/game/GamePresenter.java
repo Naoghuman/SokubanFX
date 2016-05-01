@@ -56,7 +56,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize GamePresenter"); // NOI18N
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize GamePresenter"); // NOI18N
         
         this.initializePreferences();
         
@@ -65,7 +65,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     }
     
     private void initializePreferences() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Preferences"); // NOI18N
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize Preferences"); // NOI18N
         
         // GameView is initialize
         PreferencesFacade.INSTANCE.putBoolean(

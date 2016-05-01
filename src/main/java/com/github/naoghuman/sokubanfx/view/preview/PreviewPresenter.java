@@ -29,7 +29,6 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -60,7 +59,9 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize PreviewPresenter"); // NOI18N
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize PreviewPresenter"); // NOI18N
+        
+        assert (vbRandomMap != null) : "fx:id=\"vbRandomMap\" was not injected: check your FXML file 'Preview.fxml'."; // NOI18N
         
         this.initializeShowNextRandomMap();
         
@@ -105,7 +106,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
     }
     
     private void initializeShowNextRandomMap() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), " Initialize show next random Map"); // NOI18N
+        LoggerFacade.INSTANCE.info(this.getClass(), " Initialize show next random Map"); // NOI18N
         
         if (
                 ptShowNextRandomMap != null

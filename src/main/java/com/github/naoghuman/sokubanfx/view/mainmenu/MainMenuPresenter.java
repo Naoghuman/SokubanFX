@@ -21,7 +21,12 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.control.Label;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -29,10 +34,26 @@ import javafx.fxml.Initializable;
  */
 public class MainMenuPresenter implements Initializable, IActionConfiguration {
     
+    @FXML private Label lMenuButton;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize MainMenuPresenter");
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize MainMenuPresenter");
 
+        assert (lMenuButton != null) : "fx:id=\"lMenuButton\" was not injected: check your FXML file 'Preview.fxml'."; // NOI18N
+        
+        this.initializeMenuButton();
+    }
+    
+    private void initializeMenuButton() {
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize MenuButton"); // NOI18N
+        
+        lMenuButton.setText(null);
+        lMenuButton.setCursor(Cursor.HAND);
+        
+        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_BUTTON_CLOSE);
+        fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
+        lMenuButton.setGraphic(fiBlockMenu);
     }
     
     public void onActionHideMainMenu() {
