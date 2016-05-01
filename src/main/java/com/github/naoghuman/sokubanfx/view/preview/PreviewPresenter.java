@@ -31,11 +31,14 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -46,6 +49,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
 //    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
     
     @FXML private ImageView iv;
+    @FXML private Label lPlayGame;
     @FXML private VBox vbRandomMap;
     
     private PauseTransition ptShowNextRandomMap;
@@ -63,6 +67,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         
         assert (vbRandomMap != null) : "fx:id=\"vbRandomMap\" was not injected: check your FXML file 'Preview.fxml'."; // NOI18N
         
+        this.initializeButtonPlayGame();
         this.initializeShowNextRandomMap();
         
         this.onActionNextRandomMap();
@@ -103,6 +108,17 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
 //        ResourcesFacade.INSTANCE.register(EResourceType.IMAGE, PATH_TO_FOLDER__);
 //        Image img = ResourcesFacade.INSTANCE.loadImage("wallA.png");
 //        iv.setImage(img);
+    }
+    
+    private void initializeButtonPlayGame() {
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize button PlayGame"); // NOI18N
+        
+        lPlayGame.setText(null);
+        lPlayGame.setCursor(Cursor.HAND);
+        
+        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_ARROW_RIGHT);
+        fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
+        lPlayGame.setGraphic(fiBlockMenu);
     }
     
     private void initializeShowNextRandomMap() {
