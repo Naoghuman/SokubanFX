@@ -22,9 +22,7 @@ import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.geometry.EDirection;
-import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
-import com.github.naoghuman.sokubanfx.map.movement.EMovement;
 import java.util.List;
 import java.util.Random;
 
@@ -36,9 +34,21 @@ public enum MapFacade implements IMapConfiguration {
     
     INSTANCE;
     
+    public static final int[] INDEX_PREVIEW_MAPS = { 
+        1, 4, 8, 9, 10, 13, 15, 17, 19, 22, 24//, 
+//        57, 62, 66, 69, 70, 71, 72, 73, 74, 76, 
+//        81, 82, 83, 85, 86, 88, 89, 90, 92, 93, 
+//        96, 97, 98, 99, 100, 101, 103, 107, 111, 
+//        113, 114, 115, 117, 128, 129, 130, 132, 
+//        133, 134, 135, 136, 137, 138, 139, 146, 
+//        147, 149, 151, 152, 153, 158, 159, 160
+    };
+    
     private MapConverter mapConverter;
     private MapLoader mapLoader;
     private MapMovement mapMovement;
+    
+    private int randomMapIndex = -1;
     
     MapFacade() {
         this.init();
@@ -62,8 +72,15 @@ public enum MapFacade implements IMapConfiguration {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Get random Map index"); // NOI18N
         
         final Random random = new Random();
-        final int mapMax = mapLoader.getMapMax();
-        final int randomMapIndex = random.nextInt(mapMax) + 1;
+        final int oldRandomMapIndex = randomMapIndex;
+        int counter = 0;
+        while (
+                oldRandomMapIndex == randomMapIndex
+                && counter <= 3
+        ) {
+            randomMapIndex = INDEX_PREVIEW_MAPS[random.nextInt(INDEX_PREVIEW_MAPS.length)];
+            ++counter;
+        }
         
         return randomMapIndex;
     }
@@ -74,21 +91,6 @@ public enum MapFacade implements IMapConfiguration {
         final CheckMovementResult checkMovementResult = mapMovement.checkIsMapFinish(mapModel);
         
         return checkMovementResult.isCheckIsMapFinish();
-    }
-    
-    public List<String> loadRandomMap() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Load random map"); // NOI18N
-        
-        final Random random = new Random();
-        final int mapMax = mapLoader.getMapMax();
-        
-        // Maps are from 1-n, not 0-n
-        final int level = random.nextInt(mapMax) + 1;
-        
-        MapModel mapModel = this.loadMap(level); // XXX
-        System.out.println(mapModel.toString()); // XXX
-        
-        return mapLoader.loadMapAsStrings(level);
     }
     
     public MapModel loadMap(int level) {

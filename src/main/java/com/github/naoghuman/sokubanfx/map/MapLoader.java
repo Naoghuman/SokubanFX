@@ -39,10 +39,6 @@ class MapLoader implements IMapConfiguration {
         PropertiesFacade.INSTANCE.register(KEY__MAP__RESOURCE_BUNDLE);
     }
     
-    public int getMapMax() {
-        return Integer.valueOf(this.getProperty(KEY__MAP__MAX));
-    }
-    
     private String getProperty(String propertyKey) {
         return PropertiesFacade.INSTANCE.getProperty(KEY__MAP__RESOURCE_BUNDLE, propertyKey);
     }
