@@ -39,11 +39,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
- *
+ * 
  * @author Naoghuman
  */
 public class GamePresenter implements Initializable, IActionConfiguration, IRegisterActions {
@@ -267,11 +268,57 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             this.evaluateIsMapFinish(isMapFinish);
         }
     }
-    
+    /*
+    * KeyEvents in GameView
+    * W UP        -> move up
+    * S DOWN      -> move down
+    * A LEFT      -> move left
+    * D RIGHT     -> move right
+    * ENTER SPACE -> reset map
+    * ESC         -> close application (from ApplicationView)
+    */
     private void onKeyRelease(KeyEvent keyEvent) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "On KeyRelease: " + keyEvent.getCode()); // NOI18N
+        final KeyCode keyCode = keyEvent.getCode();
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On KeyRelease: " + keyCode); // NOI18N
+
+        if (
+                keyCode.equals(KeyCode.ENTER)
+                || keyCode.equals(KeyCode.SPACE)
+        ) {
+            this.onActionButtonResetMap();
+            return;
+        }
         
-        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO check keyevent"); // NOI18N
+        if (
+                keyCode.equals(KeyCode.W)
+                || keyCode.equals(KeyCode.UP)
+        ) {
+            this.onActionButtonUp();
+            return;
+        }
+        
+        if (
+                keyCode.equals(KeyCode.S)
+                || keyCode.equals(KeyCode.DOWN)
+        ) {
+            this.onActionButtonDown();
+            return;
+        }
+        
+        if (
+                keyCode.equals(KeyCode.A)
+                || keyCode.equals(KeyCode.LEFT)
+        ) {
+            this.onActionButtonLeft();
+            return;
+        }
+        
+        if (
+                keyCode.equals(KeyCode.D)
+                || keyCode.equals(KeyCode.RIGHT)
+        ) {
+            this.onActionButtonRight();
+        }
     }
     
 }
