@@ -20,13 +20,9 @@ package com.github.naoghuman.sokubanfx.configuration;
  *
  * @author Naoghuman
  */
-public interface IActionConfiguration {
+public interface IPreviewConfiguration {
     
-    public final static String ON_ACTION__CHANGE_TO_GAMEVIEW = "ON_ACTION__CHANGE_TO_GAMEVIEW"; // NOI18N
-    public final static String ON_ACTION__DISPLAY_MAP = "ON_ACTION__DISPLAY_MAP"; // NOI18N
-    public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
-    public final static String ON_ACTION__KEY_RELEASED__FOR_GAME = "ON_ACTION__KEY_RELEASED__FOR_GAME"; // NOI18N
-    public final static String ON_ACTION__KEY_RELEASED__FOR_PREVIEW = "ON_ACTION__KEY_RELEASED__FOR_PREVIEW"; // NOI18N
-    public final static String ON_ACTION__SHOW_MAINMENU = "ON_ACTION__SHOW_MAINMENU";  // NOI18N
+    public static final String PROP__KEY_RELEASED__FOR_PREVIEW = "PROP__KEY_RELEASED__FOR_PREVIEW"; // NOI18N
+    public static final Boolean PROP__KEY_RELEASED__FOR_PREVIEW__DEFAULT_VALUE = Boolean.TRUE;
     
 }

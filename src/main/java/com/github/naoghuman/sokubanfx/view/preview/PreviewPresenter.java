@@ -17,8 +17,12 @@
 package com.github.naoghuman.sokubanfx.view.preview;
 
 import com.github.naoghuman.lib.action.api.ActionFacade;
+import com.github.naoghuman.lib.action.api.IRegisterActions;
+import com.github.naoghuman.lib.action.api.TransferData;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
+import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
@@ -34,6 +38,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -44,7 +50,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
  *
  * @author Naoghuman
  */
-public class PreviewPresenter implements Initializable, IActionConfiguration {
+public class PreviewPresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
 //    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
     
@@ -146,6 +152,37 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         
         return label;
     }
+
+    @Override
+    public void registerActions() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register actions in PreviewPresenter"); // NOI18N
+        
+        this.initializePreferences();
+        
+        this.registerOnKeyReleased();
+    }
+    
+    private void initializePreferences() {
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize Preferences"); // NOI18N
+
+        // Listen in GameView on KeyEvents
+        PreferencesFacade.INSTANCE.putBoolean(
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW,
+                Boolean.TRUE);
+    }
+
+    private void registerOnKeyReleased() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on KeyReleased"); // NOI18N
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__KEY_RELEASED__FOR_PREVIEW,
+                (ActionEvent event) -> {
+                    final TransferData transferData = (TransferData) event.getSource();
+                    final KeyEvent keyEvent = (KeyEvent) transferData.getObject();
+                    this.onKeyRelease(keyEvent);
+                }
+        );
+    }
     
     private void onActionHideMap() {
         final FadeTransition ftHideMap = new FadeTransition();
@@ -195,6 +232,22 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         }
         
         ActionFacade.INSTANCE.handle(ON_ACTION__CHANGE_TO_GAMEVIEW);
+    }
+    
+    /*
+    * ENTER SPACE -> play game
+    * ESC         -> close application (from ApplicationView)
+    */
+    private void onKeyRelease(KeyEvent keyEvent) {
+        final KeyCode keyCode = keyEvent.getCode();
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On KeyRelease: " + keyCode); // NOI18N
+
+        if (
+                keyCode.equals(KeyCode.ENTER)
+                || keyCode.equals(KeyCode.SPACE)
+        ) {
+            this.onActionStartGame();
+        }
     }
     
     private void printMapToConsole(MapModel mm) {

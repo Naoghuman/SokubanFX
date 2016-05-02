@@ -28,6 +28,7 @@ import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -138,7 +139,19 @@ public class StartApplication extends Application implements IActionConfiguratio
             return;
         }
         
-        // GameView
+        // Preview
+        final boolean shouldOnKeyReleaseForPreview = PreferencesFacade.INSTANCE.getBoolean(
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW, 
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW__DEFAULT_VALUE);
+        if (shouldOnKeyReleaseForPreview) {
+            final TransferData transferData = new TransferData();
+            transferData.setActionId(ON_ACTION__KEY_RELEASED__FOR_PREVIEW);
+            transferData.setObject(event);
+
+            ActionFacade.INSTANCE.handle(transferData);
+        }
+        
+        // Game
         final boolean isGameViewInitialize = PreferencesFacade.INSTANCE.getBoolean(
                 IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE, 
                 IGameConfiguration.PROP__GAMEVIEW_IS_INITIALZE__DEFAULT_VALUE);

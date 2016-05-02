@@ -23,9 +23,11 @@ import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
+import com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter;
 import com.github.naoghuman.sokubanfx.view.preview.PreviewView;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -112,6 +114,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ActionFacade.INSTANCE.register(
                 ON_ACTION__CHANGE_TO_GAMEVIEW,
                 (ActionEvent event) -> {
+                    PreferencesFacade.INSTANCE.putBoolean(
+                            IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW, 
+                            Boolean.FALSE);
+        
                     this.onActionChangeToGameView();
                 }
         );
@@ -185,10 +191,13 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     private void onActionHideMainMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu");
         
-        // Listen in GameView on KeyEvents
+        // Listen in Preview or GameView on KeyEvents
         PreferencesFacade.INSTANCE.putBoolean(
                 IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
                 Boolean.TRUE);
+        PreferencesFacade.INSTANCE.putBoolean(
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW, 
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW__DEFAULT_VALUE);
         
         // MainMenuView
         final Node menu = bpMenuArea.getCenter();
@@ -240,9 +249,12 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     public void onActionShowMainMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu");
         
-        // Dont listen in GameView on KeyEvents
+        // Dont listen in Preview and GameView on KeyEvents
         PreferencesFacade.INSTANCE.putBoolean(
                 IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW, 
+                IGameConfiguration.PROP__KEY_RELEASED__FOR_GAMEVIEW__DEFAULT_VALUE);
+        PreferencesFacade.INSTANCE.putBoolean(
+                IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW, 
                 Boolean.FALSE);
         
         // MainMenuView is shown
@@ -301,6 +313,9 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         LoggerFacade.INSTANCE.debug(this.getClass(), "Show view Preview");
         
         final PreviewView view = new PreviewView();
+        final PreviewPresenter presenter = view.getRealPresenter();
+        presenter.registerActions();
+        
         final Parent preview = view.getView();
         preview.setOpacity(0.0d);
         bpGameArea.setCenter(preview);
