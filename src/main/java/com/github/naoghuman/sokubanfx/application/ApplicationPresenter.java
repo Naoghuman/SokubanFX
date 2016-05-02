@@ -82,7 +82,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         lMenuButton.setCursor(Cursor.HAND);
         
         final FontIcon fiBlockMenu = new FontIcon(Elusive.LINES);
-        fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
+        fiBlockMenu.setIconSize(56);
         lMenuButton.setGraphic(fiBlockMenu);
     }
     

@@ -33,7 +33,7 @@
          <children>
               <Button focusTraversable="false" layoutX="240.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionStartGame" prefHeight="100.0" prefWidth="240.0" AnchorPane.bottomAnchor="14.0">
                <graphic>
-                  <Label fx:id="lPlayGame" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" text="icon" />
+                  <Label fx:id="lPlayGame" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="56.0" text="icon" />
                </graphic>
                <font>
                   <Font size="40.0" />

@@ -24,9 +24,9 @@
                                 </VBox>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="TOP_RIGHT" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                             <children>
-                                <Label fx:id="lMenuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActionShowMainMenu" prefHeight="64.0" prefWidth="64.0" text="menu" />
+                                <Label fx:id="lMenuButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onActionShowMainMenu" prefHeight="56.0" prefWidth="56.0" text="menu" />
                             </children>
                         </HBox>
                     </children>

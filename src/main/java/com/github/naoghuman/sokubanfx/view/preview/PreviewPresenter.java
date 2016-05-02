@@ -117,7 +117,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         lPlayGame.setCursor(Cursor.HAND);
         
         final FontIcon fiBlockMenu = new FontIcon(Elusive.PLAY_ALT);
-        fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
+        fiBlockMenu.setIconSize(56);
         lPlayGame.setGraphic(fiBlockMenu);
     }
     
