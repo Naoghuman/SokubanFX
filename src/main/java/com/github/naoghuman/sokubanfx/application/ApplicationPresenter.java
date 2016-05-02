@@ -44,8 +44,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
+import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -81,7 +81,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         lMenuButton.setText(null);
         lMenuButton.setCursor(Cursor.HAND);
         
-        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_BLOCK_MENU);
+        final FontIcon fiBlockMenu = new FontIcon(Elusive.LINES);
         fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
         lMenuButton.setGraphic(fiBlockMenu);
     }

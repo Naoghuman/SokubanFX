@@ -159,17 +159,17 @@
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-core</artifactId>
-            <version>1.4.0</version>
+            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-javafx</artifactId>
-            <version>1.4.0</version>
+            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-metrizeicons-pack</artifactId>
-            <version>1.4.0</version>
+            <artifactId>ikonli-elusive-pack</artifactId>
+            <version>1.5.0</version>
         </dependency>
 
         <dependency>

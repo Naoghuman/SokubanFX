@@ -37,8 +37,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -116,7 +116,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration {
         lPlayGame.setText(null);
         lPlayGame.setCursor(Cursor.HAND);
         
-        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_ARROW_RIGHT);
+        final FontIcon fiBlockMenu = new FontIcon(Elusive.PLAY_ALT);
         fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
         lPlayGame.setGraphic(fiBlockMenu);
     }

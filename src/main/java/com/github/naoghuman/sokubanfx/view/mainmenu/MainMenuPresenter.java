@@ -25,8 +25,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.metrizeicons.MetrizeIcons;
 
 /**
  *
@@ -51,7 +51,7 @@ public class MainMenuPresenter implements Initializable, IActionConfiguration {
         lMenuButton.setText(null);
         lMenuButton.setCursor(Cursor.HAND);
         
-        final FontIcon fiBlockMenu = new FontIcon(MetrizeIcons.MET_BUTTON_CLOSE);
+        final FontIcon fiBlockMenu = new FontIcon(Elusive.REMOVE_SIGN);
         fiBlockMenu.setIconSize(72); // 100 - (2 * 14)
         lMenuButton.setGraphic(fiBlockMenu);
     }
