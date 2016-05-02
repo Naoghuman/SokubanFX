@@ -27,9 +27,9 @@ import javafx.collections.FXCollections;
  */
 public class MapModel {
     
-    private int columns;
-    private int level;
-    private int rows;
+    private int columns = 0;
+    private int level = 0;
+    private int rows = 0;
     
     private Coordinates player;
     
@@ -54,16 +54,21 @@ public class MapModel {
     }
     
     public MapModel copy() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Copy MapModel"); // NOI18N
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Copy deeply MapModel"); // NOI18N
         
-        final MapModel mapModel = new MapModel();
-        mapModel.setLevel(this.getLevel());
-        mapModel.setPlayer(this.getPlayer());
-        mapModel.setBoxes(this.getBoxes());
-        mapModel.setPlaces(this.getPlaces());
-        mapModel.setWalls(this.getWalls());
+        final MapModel mapModelCopy = new MapModel();
+        mapModelCopy.setLevel(this.getLevel());
+        mapModelCopy.setPlayer(this.getPlayer());
+        mapModelCopy.setColumns(this.getColumns());
+        mapModelCopy.setRows(this.getRows());
         
-        return mapModel;
+        mapModelCopy.setBoxes(this.getBoxes());
+        mapModelCopy.setPlaces(this.getPlaces());
+        mapModelCopy.setWalls(this.getWalls());
+        
+        mapModelCopy.setMapAsStrings(this.getMapAsStrings());
+        
+        return mapModelCopy;
     }
     
     public int getColumns() {
