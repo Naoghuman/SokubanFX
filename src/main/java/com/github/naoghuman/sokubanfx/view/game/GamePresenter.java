@@ -53,6 +53,8 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     @FXML private Label lMapInfo;
     @FXML private TextArea taMapDisplay;
     
+    private boolean listenToKeyEvents = Boolean.TRUE;
+    
     private MapModel actualMapModel;
     
     @Override
@@ -235,12 +237,10 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonResetMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button reset Map"); // NOI18N
         
-        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO listen keyevents=false"); // NOI18N
-        
+        listenToKeyEvents = Boolean.FALSE;
         this.loadActualMap();
         this.displayMap();
-        
-        LoggerFacade.INSTANCE.trace(this.getClass(), "TODO listen keyevent=true"); // NOI18N
+        listenToKeyEvents = Boolean.TRUE;
     }
     
     public void onActionButtonRight() {
@@ -286,6 +286,10 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                 || keyCode.equals(KeyCode.SPACE)
         ) {
             this.onActionButtonResetMap();
+            return;
+        }
+        
+        if (!listenToKeyEvents) {
             return;
         }
         
