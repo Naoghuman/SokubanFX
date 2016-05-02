@@ -25,5 +25,22 @@
                 <Font name="Monospaced Regular" size="11.0" />
             </font>
         </TextArea>
+      <VBox mouseTransparent="true" prefWidth="275.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Label text="KeyEvents">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label text="- ESC -&gt; close the application" />
+            <Label text="- BACKSPACE -&gt; shows the menu" />
+            <Label text="- W or UP -&gt; move the player up" />
+            <Label text="- S or DOWN -&gt; move the player down" />
+            <Label text="- A or LEFT -&gt; move the player left" />
+            <Label text="- D or RIGHT -&gt; move the player right" />
+            <Label text="- ENTER -&gt; reset the map" />
+            <Label text="- SPACE -&gt; reset the map" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

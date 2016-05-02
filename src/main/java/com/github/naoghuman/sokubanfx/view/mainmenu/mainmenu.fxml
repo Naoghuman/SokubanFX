@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -49,5 +50,15 @@
                 </TitledPane>
             </panes>
         </Accordion>
+      <VBox mouseTransparent="true" prefHeight="17.0" prefWidth="270.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Label text="KeyEvents">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label prefWidth="300.0" text="- BACKSPACE -&gt; close the menu" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

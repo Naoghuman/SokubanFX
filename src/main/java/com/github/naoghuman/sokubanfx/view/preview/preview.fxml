@@ -43,5 +43,18 @@
                </cursor></Button>
          </children>
       </VBox>
+      <VBox mouseTransparent="true" prefWidth="300.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Label text="KeyEvents">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label text="- ESC -&gt; close the application" />
+            <Label text="- BACKSPACE -&gt; shows the menu" />
+            <Label text="- ENTER -&gt; start the game" />
+            <Label text="- SPACE -&gt; start the game" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
