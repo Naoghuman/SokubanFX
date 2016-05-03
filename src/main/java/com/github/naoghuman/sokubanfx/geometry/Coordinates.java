@@ -36,8 +36,8 @@ public class Coordinates {
         return other.getX() == DEFAULT.getX() && other.getY() == DEFAULT.getY();
     }
     
-    private int translateX;
-    private int translateY;
+    private int translateX = 0;
+    private int translateY = 0;
     private int x;
     private int y;
 
@@ -111,7 +111,14 @@ public class Coordinates {
 
     @Override
     public String toString() {
-        return "(x=" + x + ",y=" + y + ")"; // NOI18N
+        final StringBuilder sb = new StringBuilder();
+        sb.append("(x=").append(x); // NOI18N
+        sb.append(", y=").append(y); // NOI18N
+        sb.append(", t-x=").append(translateX); // NOI18N
+        sb.append(", t-y=").append(translateY); // NOI18N
+        sb.append(")"); // NOI18N
+        
+        return sb.toString();
     }
     
 }
