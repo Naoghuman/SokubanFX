@@ -21,7 +21,6 @@ import com.github.naoghuman.sokubanfx.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -49,10 +48,6 @@ public class CollisionCheckerTest {
         boxes = new ArrayList<>();
         places = new ArrayList<>();
         walls = new ArrayList<>();
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     @Test

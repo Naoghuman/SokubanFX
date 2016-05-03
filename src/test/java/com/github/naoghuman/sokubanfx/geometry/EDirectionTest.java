@@ -16,26 +16,25 @@
  */
 package com.github.naoghuman.sokubanfx.geometry;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
  *
  * @author Naoghuman
  */
-public enum EDirection {
+public class EDirectionTest {
     
-    DOWN (-1),
-    LEFT (+1),
-    NONE ( 0),
-    RIGHT(-1),
-    UP   (+1);
-    
-    private int updateDirection = 0;
-    
-    EDirection(int update) {
-        this.updateDirection = update;
+    public EDirectionTest() {
     }
-    
-    public int updateDirection() {
-        return updateDirection;
+
+    @Test
+    public void updateDirection() {
+        assertEquals(-1, EDirection.DOWN.updateDirection());
+        assertEquals(+1, EDirection.LEFT.updateDirection());
+        assertEquals( 0, EDirection.NONE.updateDirection());
+        assertEquals(-1, EDirection.RIGHT.updateDirection());
+        assertEquals(+1, EDirection.UP.updateDirection());
     }
     
 }
