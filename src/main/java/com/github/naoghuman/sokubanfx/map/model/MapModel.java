@@ -17,7 +17,7 @@
 package com.github.naoghuman.sokubanfx.map.model;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.geometry.Coordinates;
+import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import java.util.List;
 import javafx.collections.FXCollections;
 

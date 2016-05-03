@@ -16,7 +16,7 @@
  */
 package com.github.naoghuman.sokubanfx.map.movement;
 
-import com.github.naoghuman.sokubanfx.geometry.Coordinates;
+import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 
 /**
  *

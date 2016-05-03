@@ -16,8 +16,8 @@
  */
 package com.github.naoghuman.sokubanfx.map.collision;
 
-import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.EDirection;
+import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
+import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import java.util.ArrayList;
 import java.util.List;

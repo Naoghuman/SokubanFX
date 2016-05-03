@@ -17,8 +17,8 @@
 package com.github.naoghuman.sokubanfx.map.movement;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.geometry.Coordinates;
-import com.github.naoghuman.sokubanfx.geometry.EDirection;
+import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
+import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.collision.CollisionChecker;

@@ -21,7 +21,7 @@ import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import com.github.naoghuman.sokubanfx.geometry.EDirection;
+import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
 import java.util.List;
 import java.util.Random;
