@@ -182,96 +182,116 @@ public class MapModelTest {
         assertEquals(10, m1.getPlayer().getY());
     }
 
-//    @Test
-//    public void getBoxes() {
-//        MapModel instance = new MapModel();
-//        List<Coordinates> expResult = null;
-//        List<Coordinates> result = instance.getBoxes();
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void getBoxes() {
+        MapModel m1 = new MapModel();
+        
+        assertNotNull(m1.getBoxes());
+        assertEquals(0, m1.getBoxes().size());
+    }
 
-//    @Test
-//    public void addBox() {
-//        int x = 0;
-//        int y = 0;
-//        MapModel instance = new MapModel();
-//        instance.addBox(x, y);
-//    }
+    @Test
+    public void addBox() {
+        MapModel m1 = new MapModel();
+        m1.addBox(2, 3);
+        
+        assertNotNull(m1.getBoxes());
+        assertEquals(1, m1.getBoxes().size());
+        assertEquals(2, m1.getBoxes().get(0).getX());
+        assertEquals(3, m1.getBoxes().get(0).getY());
+    }
 
-//    @Test
-//    public void setBoxes() {
-//        List<Coordinates> boxes = null;
-//        MapModel instance = new MapModel();
-//        instance.setBoxes(boxes);
-//    }
+    @Test
+    public void setBoxes() {
+        MapModel m1 = new MapModel();
+        boxes.add(Coordinates.getDefault(2, 3));
+        m1.setBoxes(boxes);
+        
+        assertNotNull(m1.getBoxes());
+        assertEquals(1, m1.getBoxes().size());
+        assertEquals(2, m1.getBoxes().get(0).getX());
+        assertEquals(3, m1.getBoxes().get(0).getY());
+    }
 
-//    @Test
-//    public void getPlaces() {
-//        MapModel instance = new MapModel();
-//        List<Coordinates> expResult = null;
-//        List<Coordinates> result = instance.getPlaces();
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void getPlaces() {
+        MapModel m1 = new MapModel();
+        
+        assertNotNull(m1.getPlaces());
+        assertEquals(0, m1.getPlaces().size());
+    }
 
-//    @Test
-//    public void addPlace() {
-//        int x = 0;
-//        int y = 0;
-//        MapModel instance = new MapModel();
-//        instance.addPlace(x, y);
-//    }
+    @Test
+    public void addPlace() {
+        MapModel m1 = new MapModel();
+        m1.addPlace(2, 3);
+        
+        assertNotNull(m1.getPlaces());
+        assertEquals(1, m1.getPlaces().size());
+        assertEquals(2, m1.getPlaces().get(0).getX());
+        assertEquals(3, m1.getPlaces().get(0).getY());
+    }
 
-//    @Test
-//    public void setPlaces() {
-//        List<Coordinates> places = null;
-//        MapModel instance = new MapModel();
-//        instance.setPlaces(places);
-//    }
+    @Test
+    public void setPlaces() {
+        MapModel m1 = new MapModel();
+        places.add(Coordinates.getDefault(2, 3));
+        m1.setPlaces(places);
+        
+        assertNotNull(m1.getPlaces());
+        assertEquals(1, m1.getPlaces().size());
+        assertEquals(2, m1.getPlaces().get(0).getX());
+        assertEquals(3, m1.getPlaces().get(0).getY());
+    }
 
-//    @Test
-//    public void getWalls() {
-//        MapModel instance = new MapModel();
-//        List<Coordinates> expResult = null;
-//        List<Coordinates> result = instance.getWalls();
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void getWalls() {
+        MapModel m1 = new MapModel();
+        
+        assertNotNull(m1.getWalls());
+        assertEquals(0, m1.getWalls().size());
+    }
 
-//    @Test
-//    public void addWall() {
-//        int x = 0;
-//        int y = 0;
-//        MapModel instance = new MapModel();
-//        instance.addWall(x, y);
-//    }
+    @Test
+    public void addWall() {
+        MapModel m1 = new MapModel();
+        m1.addWall(2, 3);
+        
+        assertNotNull(m1.getWalls());
+        assertEquals(1, m1.getWalls().size());
+        assertEquals(2, m1.getWalls().get(0).getX());
+        assertEquals(3, m1.getWalls().get(0).getY());
+    }
 
-//    @Test
-//    public void setWalls() {
-//        List<Coordinates> walls = null;
-//        MapModel instance = new MapModel();
-//        instance.setWalls(walls);
-//    }
+    @Test
+    public void setWalls() {
+        MapModel m1 = new MapModel();
+        walls.add(Coordinates.getDefault(2, 3));
+        m1.setWalls(walls);
+        
+        assertNotNull(m1.getWalls());
+        assertEquals(1, m1.getWalls().size());
+        assertEquals(2, m1.getWalls().get(0).getX());
+        assertEquals(3, m1.getWalls().get(0).getY());
+    }
 
-//    @Test
-//    public void getMapAsStrings() {
-//        MapModel instance = new MapModel();
-//        List<String> expResult = null;
-//        List<String> result = instance.getMapAsStrings();
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void getMapAsStrings() {
+        MapModel m1 = new MapModel();
+        
+        assertNotNull(m1.getMapAsStrings());
+        assertEquals(0, m1.getMapAsStrings().size());
+    }
 
-//    @Test
-//    public void setMapAsStrings() {
-//        List<String> mapAsStrings = null;
-//        MapModel instance = new MapModel();
-//        instance.setMapAsStrings(mapAsStrings);
-//    }
-
-//    @Test
-//    public void goString() {
-//        MapModel instance = new MapModel();
-//        String expResult = "";
-//        String result = instance.toString();
-//        assertEquals(expResult, result);
-//    }
+    @Test
+    public void setMapAsStrings() {
+        MapModel m1 = new MapModel();
+        mapAsStrings.add("hello sokuban");
+        m1.setMapAsStrings(mapAsStrings);
+        
+        assertNotNull(m1.getMapAsStrings());
+        assertEquals(1, m1.getMapAsStrings().size());
+        assertEquals("hello sokuban", m1.getMapAsStrings().get(0));
+    }
     
 }
