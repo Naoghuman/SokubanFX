@@ -37,11 +37,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import org.kordamp.ikonli.elusive.Elusive;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * 
@@ -50,6 +54,11 @@ import javafx.scene.layout.AnchorPane;
 public class GamePresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
     @FXML private AnchorPane apGameArea;
+    @FXML private Button bMovePlayerDown;
+    @FXML private Button bMovePlayerLeft;
+    @FXML private Button bMovePlayerRight;
+    @FXML private Button bMovePlayerUp;
+    @FXML private Button bResetMap;
     @FXML private Label lMapInfo;
     @FXML private TextArea taMapDisplay;
     
@@ -61,10 +70,53 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void initialize(URL location, ResourceBundle resources) {
         LoggerFacade.INSTANCE.info(this.getClass(), "Initialize GamePresenter"); // NOI18N
         
+        assert (apGameArea != null)   : "fx:id=\"apGameArea\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (bMovePlayerDown != null)  : "fx:id=\"bMovePlayerDown\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (bMovePlayerLeft != null)  : "fx:id=\"bMovePlayerLeft\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (bMovePlayerRight != null) : "fx:id=\"bMovePlayerRight\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (bMovePlayerUp != null)    : "fx:id=\"bMovePlayerUp\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (bResetMap != null)    : "fx:id=\"bResetMap\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (lMapInfo != null)     : "fx:id=\"lMapInfo\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (taMapDisplay != null) : "fx:id=\"taMapDisplay\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        
+        this.initializeButtons();
         this.initializePreferences();
         
         this.loadActualMap();
         this.displayMap();
+    }
+    
+    private void initializeButtons() {
+        LoggerFacade.INSTANCE.info(this.getClass(), "Initialize buttons"); // NOI18N
+        
+        FontIcon fi = new FontIcon(Elusive.ARROW_DOWN);
+        fi.setIconSize(24);
+        bMovePlayerDown.setGraphic(fi);
+        bMovePlayerDown.setText(null);
+        bMovePlayerDown.setTooltip(new Tooltip("Move player down")); // NOI18N
+        
+        fi = new FontIcon(Elusive.ARROW_LEFT);
+        fi.setIconSize(24);
+        bMovePlayerLeft.setGraphic(fi);
+        bMovePlayerLeft.setText(null);
+        bMovePlayerLeft.setTooltip(new Tooltip("Move player down")); // NOI18N
+        
+        fi = new FontIcon(Elusive.ARROW_RIGHT);
+        fi.setIconSize(24);
+        bMovePlayerRight.setGraphic(fi);
+        bMovePlayerRight.setText(null);
+        bMovePlayerRight.setTooltip(new Tooltip("Move player down")); // NOI18N
+        
+        fi = new FontIcon(Elusive.ARROW_UP);
+        fi.setIconSize(24);
+        bMovePlayerUp.setGraphic(fi);
+        bMovePlayerUp.setText(null);
+        bMovePlayerUp.setTooltip(new Tooltip("Move player down")); // NOI18N
+        
+        fi = new FontIcon(Elusive.REFRESH);
+        fi.setIconSize(24);
+        bResetMap.setGraphic(fi);
+        bResetMap.setTooltip(new Tooltip("Reset the map")); // NOI18N
     }
     
     private void initializePreferences() {
