@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.map;
+package com.github.naoghuman.sokubanfx.map.converter;
 
+import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
