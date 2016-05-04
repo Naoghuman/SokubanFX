@@ -52,20 +52,11 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class PreviewPresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
-//    public static final String PATH_TO_FOLDER__ = "file:resources" + File.separator + "images" + File.separator;
-    
     @FXML private ImageView iv;
     @FXML private Label lPlayGame;
     @FXML private VBox vbRandomMap;
     
     private PauseTransition ptShowNextRandomMap;
-    
-//    public static final String PATH_TO_FOLDER__RESOURCES_IMAGES_MAPMARKER__WITH_FILE =
-//            "file:" // NOI18N
-//            + "resources" // NOI18N
-//            + File.separator + "images" // NOI18N
-//            + File.separator + "mapmarker" // NOI18N
-//            + File.separator;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,43 +68,6 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         this.initializeShowNextRandomMap();
         
         this.onActionNextRandomMap();
-        
-        // XXX Test
-//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//        final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();
-//        final MapModel mm = MapFacade.INSTANCE.loadMap(randomMapIndex);
-//        System.out.println("lvl: " + mm.getLevel());
-//        System.out.println("col: " + mm.getColumns());
-//        System.out.println("row: " + mm.getRows());
-//        
-//        final MapConverter mc = new MapConverter();
-//        final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
-//        map1.stream().forEach(line -> {
-//            System.out.println(line);
-//        });
-//        
-//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//        
-//        vbRandomMap.getChildren().clear();
-//        vbRandomMap.getChildren().add(this.getLabel("Map: " + randomMapIndex));
-//        vbRandomMap.getChildren().add(this.getLabel(""));
-//        
-//        final List<String> map = mm.getMapAsStrings();
-//        map.stream().forEach(line -> {
-//            vbRandomMap.getChildren().add(this.getLabel(line));
-//        });
-        
-//        Image img = null;
-//        try {
-//            img = new Image(this.getClass().getResourceAsStream("/com/github/naoghuman/sokubanfx/view/preview/wallA.png"));
-////            img = new Image("file:images/smiley0.png");
-//        } catch (Exception e) {
-//            LoggerFacade.INSTANCE.warn(this.getClass(), String.format(
-//                    "Can't load image: %s", "wallA.png"), e); // NOI18N
-//        }
-//        ResourcesFacade.INSTANCE.register(EResourceType.IMAGE, PATH_TO_FOLDER__);
-//        Image img = ResourcesFacade.INSTANCE.loadImage("wallA.png");
-//        iv.setImage(img);
     }
     
     private void initializeButtonPlayGame() {
