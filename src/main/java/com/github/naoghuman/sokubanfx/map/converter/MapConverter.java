@@ -19,6 +19,7 @@ package com.github.naoghuman.sokubanfx.map.converter;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
+import java.util.stream.IntStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -30,78 +31,79 @@ public class MapConverter {
     
     public ObservableList<String> convertMapCoordinatesToStrings(MapModel mapModel) {
         final ObservableList<String> mapAsStrings = FXCollections.observableArrayList();
-        final int columns = mapModel.getColumns();
         final int rows = mapModel.getRows();
-        final int level = mapModel.getLevel();
-        
-        final Coordinates player = mapModel.getPlayer();
-        final ObservableList<Coordinates> boxes = mapModel.getBoxes();
-        final ObservableList<Coordinates> places = mapModel.getPlaces();
-        final ObservableList<Coordinates> walls = mapModel.getWalls();
+        final int columns = mapModel.getColumns();
 
         // - = Empty sign
-        for (int ro = 0; ro < rows; ro++) {
-            final StringBuilder sb = new StringBuilder();
-            for (int col = 0; col < columns; col++) {
-                sb.append("-"); // NOI18N
-            }
-            mapAsStrings.add(sb.toString());
-        }
+        IntStream.range(0, rows)
+                .forEach(row -> {
+                    final StringBuilder sb = new StringBuilder();
+                    IntStream.range(0, columns)
+                            .forEach(column -> {
+                                sb.append("-"); // NOI18N
+                            });
+                    mapAsStrings.add(sb.toString());
+                });
         
         // A, B = Walls from the level
-        for (int ro = 1; ro <= rows; ro++) {
-            for (int col = 1; col <= columns; col++) {
+        final ObservableList<Coordinates> walls = mapModel.getWalls();
+        final int level = mapModel.getLevel();
+        for (int row = 1; row <= rows; row++) {
+            for (int column = 1; column <= columns; column++) {
                 for (Coordinates wall : walls) {
-                    if (wall.getX() == col && wall.getY() == ro) {
+                    if (wall.getX() == column && wall.getY() == row) {
                         final StringBuilder sb = new StringBuilder();
-                        sb.append(mapAsStrings.get(ro - 1));
-                        sb.replace(col - 1, col, level % 2 != 0 ? "A" : "B"); // NOI18N
-                        mapAsStrings.remove(ro - 1);
-                        mapAsStrings.add(ro - 1, sb.toString());
+                        sb.append(mapAsStrings.get(row - 1));
+                        sb.replace(column - 1, column, level % 2 != 0 ? "A" : "B"); // NOI18N
+                        mapAsStrings.remove(row - 1);
+                        mapAsStrings.add(row - 1, sb.toString());
                     }
                 }
             }
         }
         
         // 2 = Place where a box is needed
-        for (int ro = 1; ro <= rows; ro++) {
-            for (int col = 1; col <= columns; col++) {
+        final ObservableList<Coordinates> places = mapModel.getPlaces();
+        for (int row = 1; row <= rows; row++) {
+            for (int column = 1; column <= columns; column++) {
                 for (Coordinates place : places) {
-                    if (place.getX() == col && place.getY() == ro) {
+                    if (place.getX() == column && place.getY() == row) {
                         final StringBuilder sb = new StringBuilder();
-                        sb.append(mapAsStrings.get(ro - 1));
-                        sb.replace(col - 1, col, "2"); // NOI18N
-                        mapAsStrings.remove(ro - 1);
-                        mapAsStrings.add(ro - 1, sb.toString());
+                        sb.append(mapAsStrings.get(row - 1));
+                        sb.replace(column - 1, column, "2"); // NOI18N
+                        mapAsStrings.remove(row - 1);
+                        mapAsStrings.add(row - 1, sb.toString());
                     }
                 }
             }
         }
         
         // 1 = Box which the player should move to the place
-        for (int ro = 1; ro <= rows; ro++) {
-            for (int col = 1; col <= columns; col++) {
+        final ObservableList<Coordinates> boxes = mapModel.getBoxes();
+        for (int row = 1; row <= rows; row++) {
+            for (int column = 1; column <= columns; column++) {
                 for (Coordinates box : boxes) {
-                    if (box.getX() == col && box.getY() == ro) {
+                    if (box.getX() == column && box.getY() == row) {
                         final StringBuilder sb = new StringBuilder();
-                        sb.append(mapAsStrings.get(ro - 1));
-                        sb.replace(col - 1, col, "1"); // NOI18N
-                        mapAsStrings.remove(ro - 1);
-                        mapAsStrings.add(ro - 1, sb.toString());
+                        sb.append(mapAsStrings.get(row - 1));
+                        sb.replace(column - 1, column, "1"); // NOI18N
+                        mapAsStrings.remove(row - 1);
+                        mapAsStrings.add(row - 1, sb.toString());
                     }
                 }
             }
         }
         
         // 0 = Player :)
-        for (int ro = 1; ro <= rows; ro++) {
-            for (int col = 1; col <= columns; col++) {
-                if (player.getX() == col && player.getY() == ro) {
+        final Coordinates player = mapModel.getPlayer();
+        for (int row = 1; row <= rows; row++) {
+            for (int column = 1; column <= columns; column++) {
+                if (player.getX() == column && player.getY() == row) {
                     final StringBuilder sb = new StringBuilder();
-                    sb.append(mapAsStrings.get(ro - 1));
-                    sb.replace(col - 1, col, "0"); // NOI18N
-                    mapAsStrings.remove(ro - 1);
-                    mapAsStrings.add(ro - 1, sb.toString());
+                    sb.append(mapAsStrings.get(row - 1));
+                    sb.replace(column - 1, column, "0"); // NOI18N
+                    mapAsStrings.remove(row - 1);
+                    mapAsStrings.add(row - 1, sb.toString());
                 }
             }
         }
