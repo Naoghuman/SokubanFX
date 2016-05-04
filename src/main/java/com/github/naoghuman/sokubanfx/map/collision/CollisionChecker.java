@@ -69,17 +69,18 @@ public class CollisionChecker {
     private Coordinates calculateFoundedCoordinates(Coordinates coordinatesToCheck, ObservableList<Coordinates> listCoordinates) {
         final Coordinates coordinatesFounded = Coordinates.getDefault();
         if (!Coordinates.isDefault(coordinatesToCheck)) {
-            for (Coordinates coordinates : listCoordinates) {
-                if (
-                        coordinates.getX() == coordinatesToCheck.getX()
-                        && coordinates.getY() == coordinatesToCheck.getY()
-                ) {
-                    coordinatesFounded.setX(coordinates.getX());
-                    coordinatesFounded.setY(coordinates.getY());
-                    
-                    break;
-                }
-            }
+            listCoordinates.stream()
+                    .filter(coordinates -> {
+                        final boolean shouldCoordinatesUpdate = 
+                                coordinates.getX() == coordinatesToCheck.getX()
+                                && coordinates.getY() == coordinatesToCheck.getY(); 
+                        return shouldCoordinatesUpdate;
+                    })
+                    .findFirst()
+                    .ifPresent(coordinates -> {
+                        coordinatesFounded.setX(coordinates.getX());
+                        coordinatesFounded.setY(coordinates.getY());
+                    });
         }
         
         return coordinatesFounded;
