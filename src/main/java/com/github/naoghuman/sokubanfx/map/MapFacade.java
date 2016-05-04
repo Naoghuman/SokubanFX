@@ -34,9 +34,9 @@ public enum MapFacade implements IMapConfiguration {
     
     INSTANCE;
     
-    public static final int[] INDEX_PREVIEW_MAPS = { 
-        1, 4, 8, 9, 10, 13, 15, 17, 19, 22, 24//, 
-//        57, 62, 66, 69, 70, 71, 72, 73, 74, 76, 
+    private static final int[] INDEX_PREVIEW_MAPS = { 
+        1, 4, 8, 9, 10, 13, 15, 17, 19, 22, 24, 
+        57, 62, 66, 69, 70, 71, 72, 73, 74, 76//, 
 //        81, 82, 83, 85, 86, 88, 89, 90, 92, 93, 
 //        96, 97, 98, 99, 100, 101, 103, 107, 111, 
 //        113, 114, 115, 117, 128, 129, 130, 132, 
