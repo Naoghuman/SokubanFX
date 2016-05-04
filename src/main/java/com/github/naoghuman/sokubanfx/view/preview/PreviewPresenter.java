@@ -92,7 +92,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         }
         
         ptShowNextRandomMap = new PauseTransition();
-        ptShowNextRandomMap.setDuration(Duration.seconds(5.0d));
+        ptShowNextRandomMap.setDuration(Duration.seconds(10.0d));
         ptShowNextRandomMap.setOnFinished((ActionEvent event) -> {
             this.onActionHideMap();
         });
@@ -140,7 +140,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
     
     private void onActionHideMap() {
         final FadeTransition ftHideMap = new FadeTransition();
-        ftHideMap.setDuration(Duration.millis(250.0d));
+        ftHideMap.setDuration(Duration.millis(375.0d));
         ftHideMap.setFromValue(1.0d);
         ftHideMap.setToValue(0.0d);
         ftHideMap.setNode(vbRandomMap);
@@ -170,7 +170,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         });
         
         final FadeTransition ftShowNextRandomMap = new FadeTransition();
-        ftShowNextRandomMap.setDuration(Duration.millis(375.0d));
+        ftShowNextRandomMap.setDuration(Duration.millis(550.0d));
         ftShowNextRandomMap.setFromValue(0.0d);
         ftShowNextRandomMap.setToValue(1.0d);
         ftShowNextRandomMap.setNode(vbRandomMap);
