@@ -16,7 +16,6 @@
  */
 package com.github.naoghuman.sokubanfx.map.geometry;
 
-import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,11 +30,11 @@ public class EDirectionTest {
 
     @Test
     public void updateDirection() {
-        assertEquals(-1, EDirection.DOWN.updateDirection());
-        assertEquals(+1, EDirection.LEFT.updateDirection());
-        assertEquals( 0, EDirection.NONE.updateDirection());
-        assertEquals(-1, EDirection.RIGHT.updateDirection());
-        assertEquals(+1, EDirection.UP.updateDirection());
+        assertEquals(-1, EDirection.DOWN.translate());
+        assertEquals(+1, EDirection.LEFT.translate());
+        assertEquals( 0, EDirection.NONE.translate());
+        assertEquals(-1, EDirection.RIGHT.translate());
+        assertEquals(+1, EDirection.UP.translate());
     }
     
 }

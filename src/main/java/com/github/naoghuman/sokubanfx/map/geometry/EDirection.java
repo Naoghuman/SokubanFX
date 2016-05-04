@@ -28,14 +28,14 @@ public enum EDirection {
     RIGHT(-1),
     UP   (+1);
     
-    private int updateDirection = 0;
+    private int translate = 0;
     
-    EDirection(int update) {
-        this.updateDirection = update;
+    EDirection(int translate) {
+        this.translate = translate;
     }
     
-    public int updateDirection() {
-        return updateDirection;
+    public int translate() {
+        return translate;
     }
     
 }
