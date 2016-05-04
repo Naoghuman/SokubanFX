@@ -204,15 +204,17 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             // Update box
             final Coordinates boxToMove = movement.getCoordinatesBoxToMove();
             final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
-            for (Coordinates box : boxes) {
-                if (
-                        box.getX() == boxToMove.getX()
-                        && box.getY() == boxToMove.getY()
-                ) {
-                    box.setX(boxToMove.getTranslateX());
-                    box.setY(boxToMove.getTranslateY());
-                }
-            }
+            boxes.stream()
+                    .filter(box -> {
+                        final boolean shouldBoxUpdate = 
+                                box.getX() == boxToMove.getX()
+                                && box.getY() == boxToMove.getY();
+                        return shouldBoxUpdate;
+                    })
+                    .forEach(box -> {
+                        box.setX(boxToMove.getTranslateX());
+                        box.setY(boxToMove.getTranslateY());
+                    });
             
             this.displayMap();
         }
