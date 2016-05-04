@@ -20,7 +20,7 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -66,7 +66,7 @@ public class CollisionChecker {
         return coordinates;
     }
     
-    private Coordinates calculateFoundedCoordinates(Coordinates coordinatesToCheck, List<Coordinates> listCoordinates) {
+    private Coordinates calculateFoundedCoordinates(Coordinates coordinatesToCheck, ObservableList<Coordinates> listCoordinates) {
         final Coordinates coordinatesFounded = Coordinates.getDefault();
         if (!Coordinates.isDefault(coordinatesToCheck)) {
             for (Coordinates coordinates : listCoordinates) {
@@ -138,8 +138,8 @@ public class CollisionChecker {
     public CollisionResult checkCollisionPlayerBoxPlaceFinish(MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check collision 'player -> box -> place -> finish'"); // NOI18N
         
-        final List<Coordinates> places = mapModel.getPlaces();
-        final List<Coordinates> boxes = mapModel.getBoxes();
+        final ObservableList<Coordinates> places = mapModel.getPlaces();
+        final ObservableList<Coordinates> boxes = mapModel.getBoxes();
         int counter = 0;
         for (Coordinates place : places) {
             for (Coordinates box : boxes) {

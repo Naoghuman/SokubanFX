@@ -20,8 +20,8 @@ import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import java.util.Arrays;
-import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -43,10 +43,10 @@ class MapLoader implements IMapConfiguration {
         return PropertiesFacade.INSTANCE.getProperty(KEY__MAP__RESOURCE_BUNDLE, propertyKey);
     }
     
-    public List<String> loadMapAsStrings(int level) {
+    public ObservableList<String> loadMapAsStrings(int level) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load map as Strings: " + level); // NOI18N
         
-        final List<String> mapAsStrings = FXCollections.observableArrayList();
+        final ObservableList<String> mapAsStrings = FXCollections.observableArrayList();
         final String mapAsString = this.getProperty(KEY__MAP__POINT + level);
         final String[] splits = mapAsString.split(";"); // NOI18N
         mapAsStrings.addAll(Arrays.asList(splits));

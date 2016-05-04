@@ -18,8 +18,8 @@ package com.github.naoghuman.sokubanfx.map.model;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
-import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -33,11 +33,11 @@ public class MapModel {
     
     private Coordinates player;
     
-    private List<Coordinates> boxes;
-    private List<Coordinates> places;
-    private List<Coordinates> walls;
+    private ObservableList<Coordinates> boxes;
+    private ObservableList<Coordinates> places;
+    private ObservableList<Coordinates> walls;
     
-    private List<String> mapAsStrings;
+    private ObservableList<String> mapAsStrings;
     
     public MapModel() {
         this.init();
@@ -107,7 +107,7 @@ public class MapModel {
         this.player = Coordinates.getDefault(x, y);
     }
 
-    public List<Coordinates> getBoxes() {
+    public ObservableList<Coordinates> getBoxes() {
         return boxes;
     }
     
@@ -115,12 +115,12 @@ public class MapModel {
         boxes.add(Coordinates.getDefault(x, y));
     }
 
-    public void setBoxes(List<Coordinates> boxes) {
+    public void setBoxes(ObservableList<Coordinates> boxes) {
         this.boxes.clear();
         this.boxes.addAll(boxes);
     }
 
-    public List<Coordinates> getPlaces() {
+    public ObservableList<Coordinates> getPlaces() {
         return places;
     }
     
@@ -128,12 +128,12 @@ public class MapModel {
         places.add(Coordinates.getDefault(x, y));
     }
 
-    public void setPlaces(List<Coordinates> places) {
+    public void setPlaces(ObservableList<Coordinates> places) {
         this.places.clear();
         this.places.addAll(places);
     }
 
-    public List<Coordinates> getWalls() {
+    public ObservableList<Coordinates> getWalls() {
         return walls;
     }
     
@@ -141,16 +141,16 @@ public class MapModel {
         walls.add(Coordinates.getDefault(x, y));
     }
 
-    public void setWalls(List<Coordinates> walls) {
+    public void setWalls(ObservableList<Coordinates> walls) {
         this.walls.clear();
         this.walls.addAll(walls);
     }
     
-    public List<String> getMapAsStrings() {
+    public ObservableList<String> getMapAsStrings() {
         return mapAsStrings;
     }
     
-    public void setMapAsStrings(List<String> mapAsStrings) {
+    public void setMapAsStrings(ObservableList<String> mapAsStrings) {
         this.mapAsStrings.clear();
         this.mapAsStrings.addAll(mapAsStrings);
     }
@@ -164,26 +164,27 @@ public class MapModel {
         sb.append("player: ").append(player.toString()).append("\n"); // NOI18N
         
         final StringBuilder sbBoxes = new StringBuilder();
-        for (Coordinates box : boxes) {
+        boxes.stream().forEach((box) -> {
             sbBoxes.append(box.toString());
             sbBoxes.append(", "); // NOI18N
-        }
+        });
         sbBoxes.delete(sbBoxes.length() - 2, sbBoxes.length());
         sb.append("boxes : ").append(sbBoxes.toString()).append("\n"); // NOI18N
         
         final StringBuilder sbPlaces = new StringBuilder();
-        for (Coordinates place : places) {
+        places.stream().forEach((place) -> {
             sbPlaces.append(place.toString());
             sbPlaces.append(", "); // NOI18N
-        }
+        });
         sbPlaces.delete(sbPlaces.length() - 2, sbPlaces.length());
         sb.append("places: ").append(sbPlaces.toString()).append("\n"); // NOI18N
         
         final StringBuilder sbWalls = new StringBuilder();
-        for (Coordinates wall : walls) {
+        walls.stream().forEach((wall) -> {
             sbWalls.append(wall.toString());
             sbWalls.append(", "); // NOI18N
-        }
+        });
+        
         sbWalls.delete(sbWalls.length() - 2, sbWalls.length());
         sb.append("walls : ").append(sbWalls.toString()).append("\n"); // NOI18N
         

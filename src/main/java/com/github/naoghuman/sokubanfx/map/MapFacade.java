@@ -23,8 +23,8 @@ import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
-import java.util.List;
 import java.util.Random;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -62,7 +62,7 @@ public enum MapFacade implements IMapConfiguration {
         mapMovement = new MapMovement();
     }
     
-    public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
+    public ObservableList<String> convertMapCoordinatesToStrings(MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Convert Map Coordinates to Strings"); // NOI18N
         
         return mapConverter.convertMapCoordinatesToStrings(mapModel);
@@ -96,7 +96,7 @@ public enum MapFacade implements IMapConfiguration {
     public MapModel loadMap(int level) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load map: " + level); // NOI18N
         
-        final List<String> mapAsStrings = mapLoader.loadMapAsStrings(level);
+        final ObservableList<String> mapAsStrings = mapLoader.loadMapAsStrings(level);
         final MapModel mapModel = mapConverter.convertStringsToMap(level, mapAsStrings);
         
         return mapModel;

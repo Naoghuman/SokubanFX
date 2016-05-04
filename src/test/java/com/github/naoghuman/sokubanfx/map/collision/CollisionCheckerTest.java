@@ -19,8 +19,8 @@ package com.github.naoghuman.sokubanfx.map.collision;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,9 +33,9 @@ public class CollisionCheckerTest {
     
     private MapModel mapModel;
     
-    private List<Coordinates> boxes;
-    private List<Coordinates> places;
-    private List<Coordinates> walls;
+    private ObservableList<Coordinates> boxes;
+    private ObservableList<Coordinates> places;
+    private ObservableList<Coordinates> walls;
     
     public CollisionCheckerTest() {
     }
@@ -45,9 +45,9 @@ public class CollisionCheckerTest {
         mapModel = new MapModel();
         mapModel.setPlayer(10, 10);
         
-        boxes = new ArrayList<>();
-        places = new ArrayList<>();
-        walls = new ArrayList<>();
+        boxes = FXCollections.observableArrayList();
+        places = FXCollections.observableArrayList();
+        walls = FXCollections.observableArrayList();
     }
 
     @Test

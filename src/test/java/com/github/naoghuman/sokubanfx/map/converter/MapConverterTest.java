@@ -18,7 +18,7 @@ package com.github.naoghuman.sokubanfx.map.converter;
 
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import java.util.List;
+import javafx.collections.ObservableList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -48,9 +48,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel1() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(1);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 8);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -67,9 +66,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel2() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(2);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 10);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -88,9 +86,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel3() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(3);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 8);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -107,9 +104,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel4() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(4);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 9);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -127,9 +123,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel5() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(5);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 13);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -151,9 +146,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel6() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(6);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 10);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -172,9 +166,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel7() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(7);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 11);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -194,9 +187,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel8() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(8);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 7);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());
@@ -212,9 +204,8 @@ public class MapConverterTest {
     @Test
     public void convertMapToStringsAndModelLevel9() {
         MapModel mm1 = MapFacade.INSTANCE.loadMap(9);
-        List<String> mm1AsStrings = mm1.getMapAsStrings();
-        
-        List<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
+        ObservableList<String> mm1AsStrings = mm1.getMapAsStrings();
+        ObservableList<String> mm2AsStrings = mapConverter.convertMapCoordinatesToStrings(mm1);
         
         assertEquals(mm1.getRows(), 9);
         assertEquals(mm1AsStrings.size(), mm2AsStrings.size());

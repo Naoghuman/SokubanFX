@@ -19,8 +19,8 @@ package com.github.naoghuman.sokubanfx.map.converter;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -28,16 +28,16 @@ import javafx.collections.FXCollections;
  */
 public class MapConverter {
     
-    public List<String> convertMapCoordinatesToStrings(MapModel mapModel) {
-        final List<String> mapAsStrings = FXCollections.observableArrayList();
+    public ObservableList<String> convertMapCoordinatesToStrings(MapModel mapModel) {
+        final ObservableList<String> mapAsStrings = FXCollections.observableArrayList();
         final int columns = mapModel.getColumns();
         final int rows = mapModel.getRows();
         final int level = mapModel.getLevel();
         
         final Coordinates player = mapModel.getPlayer();
-        final List<Coordinates> boxes = mapModel.getBoxes();
-        final List<Coordinates> places = mapModel.getPlaces();
-        final List<Coordinates> walls = mapModel.getWalls();
+        final ObservableList<Coordinates> boxes = mapModel.getBoxes();
+        final ObservableList<Coordinates> places = mapModel.getPlaces();
+        final ObservableList<Coordinates> walls = mapModel.getWalls();
 
         // - = Empty sign
         for (int ro = 0; ro < rows; ro++) {
@@ -117,7 +117,7 @@ public class MapConverter {
         #   1       = Box which the player will move
         #   2       = Place where a box is needed
     */
-    public MapModel convertStringsToMap(final int level, final List<String> mapAsStrings) {
+    public MapModel convertStringsToMap(final int level, final ObservableList<String> mapAsStrings) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Convert strings to MapModel"); // NOI18N
         
         final MapModel mapModel = new MapModel();

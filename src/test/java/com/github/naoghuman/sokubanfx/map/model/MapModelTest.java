@@ -17,8 +17,8 @@
 package com.github.naoghuman.sokubanfx.map.model;
 
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
-import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,10 +33,10 @@ public class MapModelTest {
     public MapModelTest() {
     }
     
-    private static List<Coordinates> boxes;
-    private static List<Coordinates> places;
-    private static List<Coordinates> walls;
-    private static List<String> mapAsStrings;
+    private static ObservableList<Coordinates> boxes;
+    private static ObservableList<Coordinates> places;
+    private static ObservableList<Coordinates> walls;
+    private static ObservableList<String> mapAsStrings;
     
     @BeforeClass
     public static void setUpClass() {

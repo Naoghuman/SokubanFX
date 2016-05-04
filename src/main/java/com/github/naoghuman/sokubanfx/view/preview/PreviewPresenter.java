@@ -27,11 +27,11 @@ import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -210,7 +210,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         vbRandomMap.getChildren().add(this.getLabel("Map: " + randomMapIndex)); // NOI18N
         vbRandomMap.getChildren().add(this.getLabel("")); // NOI18N
         
-        final List<String> map = mm.getMapAsStrings();
+        final ObservableList<String> map = mm.getMapAsStrings();
         map.stream().forEach(line -> {
             vbRandomMap.getChildren().add(this.getLabel(line));
         });
@@ -258,7 +258,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         System.out.println("row: " + mm.getRows());
         
         final MapConverter mc = new MapConverter();
-        final List<String> map1 = mc.convertMapCoordinatesToStrings(mm);
+        final ObservableList<String> map1 = mc.convertMapCoordinatesToStrings(mm);
         map1.stream().forEach(line -> {
             System.out.println(line);
         });

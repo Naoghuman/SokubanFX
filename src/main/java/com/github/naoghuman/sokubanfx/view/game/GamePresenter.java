@@ -32,8 +32,8 @@ import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
 import com.github.naoghuman.sokubanfx.map.movement.EMovement;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -138,7 +138,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         
         lMapInfo.setText("Map " + actualMapModel.getLevel()); // NOI18N
         
-        final List<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
+        final ObservableList<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
         taMapDisplay.setText(null);
         mapAsStrings.stream().forEach((line) -> {
             taMapDisplay.appendText(line);
@@ -203,7 +203,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             
             // Update box
             final Coordinates boxToMove = movement.getCoordinatesBoxToMove();
-            final List<Coordinates> boxes = actualMapModel.getBoxes();
+            final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
             for (Coordinates box : boxes) {
                 if (
                         box.getX() == boxToMove.getX()

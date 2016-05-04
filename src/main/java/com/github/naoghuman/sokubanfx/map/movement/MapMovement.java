@@ -23,7 +23,7 @@ import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.collision.CollisionChecker;
 import com.github.naoghuman.sokubanfx.map.collision.CollisionResult;
-import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -125,7 +125,7 @@ public class MapMovement {
         return checkMovementResult;
     }
     
-    private Coordinates tranlateCoordinatesForBoxToMove(EDirection direction, Coordinates player, List<Coordinates> coordinatesBoxes) {
+    private Coordinates tranlateCoordinatesForBoxToMove(EDirection direction, Coordinates player, ObservableList<Coordinates> coordinatesBoxes) {
         final Coordinates coordinatesCalculatedBox = this.calculateCoordinates(direction, player);
         Coordinates coordinatesCalculatedBoxToMove = Coordinates.getDefault();
         for (Coordinates coordinatesBox : coordinatesBoxes) {
