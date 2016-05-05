@@ -69,12 +69,13 @@ public class StartApplication extends Application implements IActionConfiguratio
         final ApplicationView applicationView = new ApplicationView();
         final ApplicationPresenter applicationPresenter = applicationView.getRealPresenter();
         
-        final Scene scene = new Scene(applicationView.getView(), 1280, 720);
+        final Scene scene = new Scene(applicationView.getView(), 1080, 720);
         scene.setOnKeyReleased((KeyEvent event) -> {
             this.onKeyReleased(event);
         });
         primaryStage.setTitle(this.getProperty(KEY__APPLICATION__TITLE) + this.getProperty(KEY__APPLICATION__VERSION));
         primaryStage.setScene(scene);
+        primaryStage.setResizable(Boolean.FALSE);
         primaryStage.setOnCloseRequest((WindowEvent we) -> {
            we.consume();
            
