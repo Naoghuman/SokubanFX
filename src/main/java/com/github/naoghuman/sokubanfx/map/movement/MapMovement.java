@@ -76,11 +76,10 @@ public class MapMovement {
         if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.NONE)) {
             checkMovementResult.setAnimation(EAnimation.NONE);
             
-            final EMovement movement = EMovement.PLAYER;
-            movement.setBoxToMove(Coordinates.getDefault());
+            checkMovementResult.setBoxToMove(Coordinates.getDefault());
+            checkMovementResult.setMovement(EMovement.PLAYER);
             final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-            movement.setPlayerToMove(coordinatesPlayerToMove);
-            checkMovementResult.setMovement(movement);
+            checkMovementResult.setPlayerToMove(coordinatesPlayerToMove);
             
             return checkMovementResult;
         }
@@ -115,12 +114,11 @@ public class MapMovement {
             checkMovementResult.setAnimation(EAnimation.NONE);
         }
         
-        final EMovement movement = EMovement.PLAYER_AND_BOX;
         final Coordinates coordinatesBoxToMove = this.tranlateCoordinatesForBoxToMove(direction, mapModel.getPlayer(), mapModel.getBoxes());
-        movement.setBoxToMove(coordinatesBoxToMove);
+        checkMovementResult.setBoxToMove(coordinatesBoxToMove);
+        checkMovementResult.setMovement(EMovement.PLAYER_AND_BOX);
         final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-        movement.setPlayerToMove(coordinatesPlayerToMove);
-        checkMovementResult.setMovement(movement);
+        checkMovementResult.setPlayerToMove(coordinatesPlayerToMove);
         
         return checkMovementResult;
     }

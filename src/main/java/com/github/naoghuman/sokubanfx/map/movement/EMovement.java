@@ -16,8 +16,6 @@
  */
 package com.github.naoghuman.sokubanfx.map.movement;
 
-import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
-
 /**
  *
  * @author Naoghuman
@@ -27,24 +25,5 @@ public enum EMovement {
     NONE,
     PLAYER,
     PLAYER_AND_BOX;
-    
-    private Coordinates coordinatesBoxToMove = Coordinates.getDefault();
-    private Coordinates coordinatesPlayerToMove = Coordinates.getDefault();
-
-    public Coordinates getBoxToMove() {
-        return coordinatesBoxToMove;
-    }
-
-    public void setBoxToMove(Coordinates coordinatesBoxToMove) {
-        this.coordinatesBoxToMove = coordinatesBoxToMove;
-    }
-
-    public Coordinates getPlayerToMove() {
-        return coordinatesPlayerToMove;
-    }
-
-    public void setPlayerToMove(Coordinates coordinatesPlayerToMove) {
-        this.coordinatesPlayerToMove = coordinatesPlayerToMove;
-    }
     
 }

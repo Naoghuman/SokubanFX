@@ -17,6 +17,7 @@
 package com.github.naoghuman.sokubanfx.map.movement;
 
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
+import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 
 /**
  *
@@ -30,10 +31,29 @@ public class CheckMovementResult {
     
     private boolean checkIsMapFinish = Boolean.FALSE;
     
+    private Coordinates coordinatesBoxToMove = Coordinates.getDefault();
+    private Coordinates coordinatesPlayerToMove = Coordinates.getDefault();
+    
     private EAnimation animation = EAnimation.NONE;
     private EMovement movement = EMovement.NONE;
     
     private CheckMovementResult() { }
+    
+    public Coordinates getBoxToMove() {
+        return coordinatesBoxToMove;
+    }
+
+    public void setBoxToMove(Coordinates coordinatesBoxToMove) {
+        this.coordinatesBoxToMove = coordinatesBoxToMove;
+    }
+
+    public Coordinates getPlayerToMove() {
+        return coordinatesPlayerToMove;
+    }
+
+    public void setPlayerToMove(Coordinates coordinatesPlayerToMove) {
+        this.coordinatesPlayerToMove = coordinatesPlayerToMove;
+    }
 
     public boolean isCheckIsMapFinish() {
         return checkIsMapFinish;

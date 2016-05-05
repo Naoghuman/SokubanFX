@@ -193,7 +193,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         ) {
             // Update player
             final Coordinates player = actualMapModel.getPlayer();
-            final Coordinates playerToMove = movement.getPlayerToMove();
+            final Coordinates playerToMove = checkMovementResult.getPlayerToMove();
             player.setX(playerToMove.getTranslateX());
             player.setY(playerToMove.getTranslateY());
             
@@ -203,7 +203,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             }
             
             // Update box
-            final Coordinates boxToMove = movement.getBoxToMove();
+            final Coordinates boxToMove = checkMovementResult.getBoxToMove();
             final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
             boxes.stream()
                     .filter(box -> {
