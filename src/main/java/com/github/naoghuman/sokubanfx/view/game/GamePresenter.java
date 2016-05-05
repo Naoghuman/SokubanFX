@@ -202,7 +202,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             }
             
             // Update box
-            final Coordinates boxToMove = movement.getCoordinatesBoxToMove();
+            final Coordinates boxToMove = movement.getBoxToMove();
             final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
             boxes.stream()
                     .filter(box -> {
@@ -211,7 +211,8 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
                                 && box.getY() == boxToMove.getY();
                         return shouldBoxUpdate;
                     })
-                    .forEach(box -> {
+                    .findFirst()
+                    .ifPresent(box -> {
                         box.setX(boxToMove.getTranslateX());
                         box.setY(boxToMove.getTranslateY());
                     });
