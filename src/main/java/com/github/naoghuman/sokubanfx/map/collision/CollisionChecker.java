@@ -20,6 +20,7 @@ import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
+import java.util.concurrent.atomic.AtomicInteger;
 import javafx.collections.ObservableList;
 
 /**
@@ -141,22 +142,25 @@ public class CollisionChecker {
         
         final ObservableList<Coordinates> places = mapModel.getPlaces();
         final ObservableList<Coordinates> boxes = mapModel.getBoxes();
-        int counter = 0;
-        for (Coordinates place : places) {
-            for (Coordinates box : boxes) {
-                if (
-                        place.getX() == box.getX()
-                        && place.getY() == box.getY()
-                ) {
-                    ++counter;
-                    break;
-                }
-            }
-        }
+        
+        final AtomicInteger counter = new AtomicInteger(0);
+        places.forEach(place -> {
+            boxes.stream()
+                    .filter(box -> {
+                        final boolean shouldCounterIncrement = 
+                                place.getX() == box.getX()
+                                && place.getY() == box.getY();
+                        return shouldCounterIncrement;
+                    })
+                    .findFirst()
+                    .ifPresent(box -> {
+                        counter.set(counter.get() + 1);
+                    });
+        });
         
         // All boxes are on places?
         final int maxPlaces = places.size();
-        final boolean allBoxesAreOnPlaces = (maxPlaces == counter);
+        final boolean allBoxesAreOnPlaces = (maxPlaces == counter.get());
         CollisionResult collisionResult = CollisionResult.NONE;
         if (allBoxesAreOnPlaces) {
             collisionResult = CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH;
