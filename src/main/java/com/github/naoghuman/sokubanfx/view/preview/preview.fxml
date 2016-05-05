@@ -11,41 +11,42 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter">
     <children>
-        <StackPane alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <StackPane alignment="TOP_LEFT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <children>
-                <VBox fx:id="vbRandomMap" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0.3);">
-                    <StackPane.margin>
-                        <Insets bottom="128.0" top="54.0" />
-                    </StackPane.margin>
+                <VBox spacing="14.0">
+                    <children>
+                        <VBox fx:id="vbRandomMap" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0.3);" VBox.vgrow="ALWAYS">
+                            <StackPane.margin>
+                                <Insets bottom="128.0" top="54.0" />
+                            </StackPane.margin>
+                        </VBox>
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#onActionStartGame" prefHeight="100.0" prefWidth="300.0">
+                            <graphic>
+                                <Label fx:id="lPlayGame" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="56.0" text="icon" />
+                            </graphic>
+                            <font>
+                                <Font size="40.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </children>
                 </VBox>
             </children>
         </StackPane>
-      <VBox alignment="BOTTOM_CENTER" layoutX="240.0" layoutY="361.0" spacing="14.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
-         <children>
-              <Button focusTraversable="false" layoutX="240.0" layoutY="361.0" mnemonicParsing="false" onAction="#onActionStartGame" prefHeight="100.0" prefWidth="240.0" AnchorPane.bottomAnchor="14.0">
-               <graphic>
-                  <Label fx:id="lPlayGame" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="56.0" text="icon" />
-               </graphic>
-               <font>
-                  <Font size="40.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-         </children>
-      </VBox>
-      <VBox mouseTransparent="true" prefWidth="300.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-         <children>
-            <Label text="KeyEvents">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </Label>
-            <Label text="- ESC -&gt; close the application" />
-            <Label text="- BACKSPACE -&gt; shows the menu" />
-            <Label text="- ENTER -&gt; start the game" />
-            <Label text="- SPACE -&gt; start the game" />
-         </children>
-      </VBox>
+        <VBox mouseTransparent="true" prefWidth="275.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <children>
+                <Label text="KeyEvents">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <Label text="- ESC -&gt; close the application" />
+                <Label text="- BACKSPACE -&gt; shows the menu" />
+                <Label text="- ENTER -&gt; start the game" />
+                <Label text="- SPACE -&gt; start the game" />
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

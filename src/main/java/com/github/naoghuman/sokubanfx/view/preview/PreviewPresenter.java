@@ -102,7 +102,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
     
     private Label getLabel(String text) {
         final Label label = new Label(text);
-        label.setFont(new Font("Monospaced Regular", 18.0d));
+        label.setFont(new Font("Monospaced Regular", 16.0d));
         
         return label;
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,55 +8,87 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="apGameArea" prefHeight="427.0" prefWidth="652.0" style="-fx-background-color: MEDIUMAQUAMARINE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.game.GamePresenter">
+<AnchorPane id="AnchorPane" fx:id="apGameArea" prefHeight="447.0" prefWidth="658.0" style="-fx-background-color: MEDIUMAQUAMARINE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.game.GamePresenter">
     <children>
-        <Label fx:id="lMapInfo" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Map" />
-        <TextArea fx:id="taMapDisplay" editable="false" focusTraversable="false" layoutX="14.0" layoutY="31.0" prefHeight="350.0" prefWidth="400.0">
-            <font>
-                <Font name="Monospaced Regular" size="20.0" />
-            </font>
-        </TextArea>
-        <Button fx:id="bMovePlayerUp" focusTraversable="false" layoutX="474.0" layoutY="31.0" mnemonicParsing="false" onAction="#onActionButtonUp" prefHeight="25.0" prefWidth="64.0" text="Up">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <Button fx:id="bMovePlayerLeft" focusTraversable="false" layoutX="422.0" layoutY="68.0" mnemonicParsing="false" onAction="#onActionButtonLeft" prefHeight="25.0" prefWidth="64.0" text="Left">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <Button fx:id="bMovePlayerRight" focusTraversable="false" layoutX="518.0" layoutY="68.0" mnemonicParsing="false" onAction="#onActionButtonRight" prefHeight="25.0" prefWidth="64.0" text="Right">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <Button fx:id="bMovePlayerDown" focusTraversable="false" layoutX="474.0" layoutY="102.0" mnemonicParsing="false" onAction="#onActionButtonDown" prefHeight="25.0" prefWidth="64.0" text="Down">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <Button fx:id="bResetMap" focusTraversable="false" layoutX="422.0" layoutY="142.0" mnemonicParsing="false" onAction="#onActionButtonResetMap" prefHeight="25.0" prefWidth="159.0" text="Reset Map">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-        <TextArea focusTraversable="false" layoutX="14.0" layoutY="393.0" prefHeight="20.0" prefWidth="400.0" text="# &#10;# Tiles are:&#10;#  -    = Empty sign&#10;#  A, B = Walls from the level&#10;#  0    = Player :)&#10;#  1    = Box which the player should move to the place&#10;#  2    = Place where a box is needed&#10;#" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="390.0">
-            <font>
-                <Font name="Monospaced Regular" size="11.0" />
-            </font>
-        </TextArea>
-      <VBox mouseTransparent="true" prefWidth="275.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-         <children>
-            <Label text="KeyEvents">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </Label>
-            <Label text="- ESC -&gt; close the application" />
-            <Label text="- BACKSPACE -&gt; shows the menu" />
-            <Label text="- W or UP -&gt; move the player up" />
-            <Label text="- S or DOWN -&gt; move the player down" />
-            <Label text="- A or LEFT -&gt; move the player left" />
-            <Label text="- D or RIGHT -&gt; move the player right" />
-            <Label text="- ENTER -&gt; reset the map" />
-            <Label text="- SPACE -&gt; reset the map" />
-         </children>
-      </VBox>
+        <StackPane alignment="CENTER_LEFT" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="14.0" StackPane.alignment="CENTER">
+                    <children>
+                        <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="380.0" StackPane.alignment="CENTER">
+                            <children>
+                                <Label fx:id="lMapInfo" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="400.0" text="Map" />
+                                <TextArea fx:id="taMapDisplay" editable="false" focusTraversable="false" prefHeight="350.0" prefWidth="380.0">
+                                    <font>
+                                        <Font name="Monospaced Regular" size="18.0" />
+                                    </font>
+                                </TextArea>
+                            </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="159.0" spacing="7.0">
+                            <children>
+                                <Button fx:id="bMovePlayerUp" focusTraversable="false" layoutX="474.0" layoutY="31.0" mnemonicParsing="false" onAction="#onActionButtonUp" prefHeight="25.0" prefWidth="64.0" text="Up">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <HBox>
+                                    <children>
+                                        <Button fx:id="bMovePlayerLeft" focusTraversable="false" mnemonicParsing="false" onAction="#onActionButtonLeft" prefHeight="25.0" prefWidth="64.0" text="Left">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </Button>
+                                        <Pane maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="bMovePlayerRight" focusTraversable="false" mnemonicParsing="false" onAction="#onActionButtonRight" prefHeight="25.0" prefWidth="64.0" text="Right">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Button fx:id="bMovePlayerDown" focusTraversable="false" mnemonicParsing="false" onAction="#onActionButtonDown" prefHeight="25.0" prefWidth="64.0" text="Down">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Button fx:id="bResetMap" focusTraversable="false" mnemonicParsing="false" onAction="#onActionButtonResetMap" prefHeight="25.0" prefWidth="159.0" text="Reset Map">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </StackPane>
+        <VBox mouseTransparent="true" prefWidth="275.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <children>
+                <Label text="KeyEvents">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <Label text="- ESC -&gt; close the application" />
+                <Label text="- BACKSPACE -&gt; shows the menu" />
+                <Label text="- W or UP -&gt; move the player up" />
+                <Label text="- S or DOWN -&gt; move the player down" />
+                <Label text="- A or LEFT -&gt; move the player left" />
+                <Label text="- D or RIGHT -&gt; move the player right" />
+                <Label text="- ENTER -&gt; reset the map" />
+                <Label text="- SPACE -&gt; reset the map" />
+                <Pane prefHeight="7.0" />
+                <Label text="Tiles">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <Label text="* '-' = Empty sign" />
+                <Label text="* 'A', 'B' = Walls" />
+                <Label text="* '0' = Player :)" />
+                <Label text="* '1' = Box" />
+                <Label text="* '2' = Place" />
+            </children>
+        </VBox>
     </children>
 </AnchorPane>
