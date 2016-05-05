@@ -90,7 +90,7 @@ public enum MapFacade implements IMapConfiguration {
         
         final CheckMovementResult checkMovementResult = mapMovement.checkIsMapFinish(mapModel);
         
-        return checkMovementResult.isCheckIsMapFinish();
+        return checkMovementResult.isMapFinish();
     }
     
     public MapModel loadMap(int level) {

@@ -270,7 +270,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.DOWN, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
         if (shouldCheckIfMapIsFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
@@ -283,7 +283,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.LEFT, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
         if (shouldCheckIfMapIsFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
@@ -305,7 +305,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.RIGHT, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
-        final boolean checkIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        final boolean checkIfMapIsFinished = checkMovementResult.isMapFinish();
         if (checkIfMapIsFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
@@ -318,7 +318,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.UP, actualMapModel);
         this.evaluatePlayerMoveTo(checkMovementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isCheckIsMapFinish();
+        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
         if (shouldCheckIfMapIsFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);

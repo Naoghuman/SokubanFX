@@ -52,7 +52,7 @@ public class MapMovement {
         
         final CheckMovementResult checkMovementResult = CheckMovementResult.getDefault();
         if (collisionResultCheckCollisionPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
-            checkMovementResult.setCheckIsMapFinish(Boolean.TRUE);
+            checkMovementResult.setIsMapFinish(Boolean.TRUE);
         }
         
         return checkMovementResult;
@@ -106,7 +106,7 @@ public class MapMovement {
         final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
             checkMovementResult.setAnimation(EAnimation.REALLY_GREAT);
-            checkMovementResult.setCheckIsMapFinish(Boolean.TRUE);
+            checkMovementResult.setIsMapFinish(Boolean.TRUE);
         }
         
         // Player -> Box -> None

@@ -29,7 +29,7 @@ public class CheckMovementResult {
         return new CheckMovementResult();
     }
     
-    private boolean checkIsMapFinish = Boolean.FALSE;
+    private boolean isMapFinish = Boolean.FALSE;
     
     private Coordinates coordinatesBoxToMove = Coordinates.getDefault();
     private Coordinates coordinatesPlayerToMove = Coordinates.getDefault();
@@ -55,12 +55,12 @@ public class CheckMovementResult {
         this.coordinatesPlayerToMove = coordinatesPlayerToMove;
     }
 
-    public boolean isCheckIsMapFinish() {
-        return checkIsMapFinish;
+    public boolean isMapFinish() {
+        return isMapFinish;
     }
 
-    public void setCheckIsMapFinish(boolean checkIsMapFinish) {
-        this.checkIsMapFinish = checkIsMapFinish;
+    public void setIsMapFinish(boolean isMapFinish) {
+        this.isMapFinish = isMapFinish;
     }
 
     public EAnimation getAnimation() {
