@@ -29,7 +29,7 @@ public class EDirectionTest {
     }
 
     @Test
-    public void updateDirection() {
+    public void translate() {
         assertEquals(-1, EDirection.DOWN.translate());
         assertEquals(+1, EDirection.LEFT.translate());
         assertEquals( 0, EDirection.NONE.translate());
