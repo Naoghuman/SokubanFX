@@ -23,10 +23,10 @@ import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
  *
  * @author Naoghuman
  */
-public class CheckMovementResult {
+public class MovementResult {
     
-    public static final CheckMovementResult getDefault() {
-        return new CheckMovementResult();
+    public static final MovementResult getDefault() {
+        return new MovementResult();
     }
     
     private boolean isMapFinish = Boolean.FALSE;
@@ -37,7 +37,7 @@ public class CheckMovementResult {
     private EAnimation animation = EAnimation.NONE;
     private EMovement movement = EMovement.NONE;
     
-    private CheckMovementResult() { }
+    private MovementResult() { }
     
     public Coordinates getBoxToMove() {
         return coordinatesBoxToMove;

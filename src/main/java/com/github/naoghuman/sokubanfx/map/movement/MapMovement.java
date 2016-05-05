@@ -43,84 +43,84 @@ public class MapMovement {
         return coordinatesCalculated;
     }
     
-    public CheckMovementResult checkIsMapFinish(MapModel mapModel) {
+    public MovementResult checkIsMapFinish(MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check is Map finish"); // NOI18N
         
         // Player -> Box -> Place -> Finished
         final CollisionResult collisionResultCheckCollisionPlayerBoxPlaceFinish = 
                 CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
         
-        final CheckMovementResult checkMovementResult = CheckMovementResult.getDefault();
+        final MovementResult movementResult = MovementResult.getDefault();
         if (collisionResultCheckCollisionPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
-            checkMovementResult.setIsMapFinish(Boolean.TRUE);
+            movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
-        return checkMovementResult;
+        return movementResult;
     }
     
-    public CheckMovementResult checkMovePlayerTo(EDirection direction, MapModel mapModel) {
+    public MovementResult checkMovePlayerTo(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check move player to direction: " + direction.toString()); // NOI18N
         
         // Player -> Wall
         final CollisionResult collisionResultCheckCollisionPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        final CheckMovementResult checkMovementResult = CheckMovementResult.getDefault();
+        final MovementResult movementResult = MovementResult.getDefault();
         if (collisionResultCheckCollisionPlayerWall.equals(CollisionResult.PLAYER_AGAINST__WALL)) {
-            checkMovementResult.setAnimation(EAnimation.WHAT_HAPPEN);
-            checkMovementResult.setMovement(EMovement.NONE);
+            movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
+            movementResult.setMovement(EMovement.NONE);
             
-            return checkMovementResult;
+            return movementResult;
         }
 
         // Player -> Box
         final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.NONE)) {
-            checkMovementResult.setAnimation(EAnimation.NONE);
+            movementResult.setAnimation(EAnimation.NONE);
             
-            checkMovementResult.setBoxToMove(Coordinates.getDefault());
-            checkMovementResult.setMovement(EMovement.PLAYER);
+            movementResult.setBoxToMove(Coordinates.getDefault());
+            movementResult.setMovement(EMovement.PLAYER);
             final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-            checkMovementResult.setPlayerToMove(coordinatesPlayerToMove);
+            movementResult.setPlayerToMove(coordinatesPlayerToMove);
             
-            return checkMovementResult;
+            return movementResult;
         }
         
         // Player -> Box -> Box
         final CollisionResult collisionResultCheckCollisionPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBoxBox.equals(CollisionResult.PLAYER_AGAINST__BOX_BOX)) {
-            checkMovementResult.setAnimation(EAnimation.WHAT_HAPPEN);
-            checkMovementResult.setMovement(EMovement.NONE);
+            movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
+            movementResult.setMovement(EMovement.NONE);
             
-            return checkMovementResult;
+            return movementResult;
         }
         
         // Player -> Box -> Wall
         final CollisionResult collisionResultCheckCollisionPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBoxWall.equals(CollisionResult.PLAYER_AGAINST__BOX_WALL)) {
-            checkMovementResult.setAnimation(EAnimation.WHAT_HAPPEN);
-            checkMovementResult.setMovement(EMovement.NONE);
+            movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
+            movementResult.setMovement(EMovement.NONE);
             
-            return checkMovementResult;
+            return movementResult;
         }
 
         // Player -> Box -> Place
         final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
         if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
-            checkMovementResult.setAnimation(EAnimation.REALLY_GREAT);
-            checkMovementResult.setIsMapFinish(Boolean.TRUE);
+            movementResult.setAnimation(EAnimation.REALLY_GREAT);
+            movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
         // Player -> Box -> None
         if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_NONE)) {
-            checkMovementResult.setAnimation(EAnimation.NONE);
+            movementResult.setAnimation(EAnimation.NONE);
         }
         
         final Coordinates coordinatesBoxToMove = this.tranlateCoordinatesForBoxToMove(direction, mapModel.getPlayer(), mapModel.getBoxes());
-        checkMovementResult.setBoxToMove(coordinatesBoxToMove);
-        checkMovementResult.setMovement(EMovement.PLAYER_AND_BOX);
+        movementResult.setBoxToMove(coordinatesBoxToMove);
+        movementResult.setMovement(EMovement.PLAYER_AND_BOX);
         final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-        checkMovementResult.setPlayerToMove(coordinatesPlayerToMove);
+        movementResult.setPlayerToMove(coordinatesPlayerToMove);
         
-        return checkMovementResult;
+        return movementResult;
     }
     
     private Coordinates tranlateCoordinatesForBoxToMove(EDirection direction, Coordinates player, ObservableList<Coordinates> coordinatesBoxes) {

@@ -22,7 +22,7 @@ import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
 import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
-import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
+import com.github.naoghuman.sokubanfx.map.movement.MovementResult;
 import java.util.Random;
 import javafx.collections.ObservableList;
 
@@ -88,9 +88,8 @@ public enum MapFacade implements IMapConfiguration {
     public boolean isMapFinish(MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Is Map finish"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = mapMovement.checkIsMapFinish(mapModel);
-        
-        return checkMovementResult.isMapFinish();
+        final MovementResult movementResult = mapMovement.checkIsMapFinish(mapModel);
+        return movementResult.isMapFinish();
     }
     
     public MapModel loadMap(int level) {
@@ -102,11 +101,11 @@ public enum MapFacade implements IMapConfiguration {
         return mapModel;
     }
     
-    public CheckMovementResult playerMoveTo(EDirection direction, MapModel mapModel) {
+    public MovementResult playerMoveTo(EDirection direction, MapModel mapModel) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Player move to direction: " + direction); // NOI18N
 
-        final CheckMovementResult checkMovementResult = mapMovement.checkMovePlayerTo(direction, mapModel);
-        return checkMovementResult;
+        final MovementResult movementResult = mapMovement.checkMovePlayerTo(direction, mapModel);
+        return movementResult;
     }
     
 }

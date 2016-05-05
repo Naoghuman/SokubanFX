@@ -29,7 +29,7 @@ import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.MapFacade;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
-import com.github.naoghuman.sokubanfx.map.movement.CheckMovementResult;
+import com.github.naoghuman.sokubanfx.map.movement.MovementResult;
 import com.github.naoghuman.sokubanfx.map.movement.EMovement;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -176,8 +176,8 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         // keyevents= true
     }
     
-    private void evaluatePlayerMoveTo(CheckMovementResult checkMovementResult) {
-        final EAnimation animation = checkMovementResult.getAnimation();
+    private void evaluatePlayerMoveTo(MovementResult movementResult) {
+        final EAnimation animation = movementResult.getAnimation();
         if (
                 animation.equals(EAnimation.REALLY_GREAT)
                 || animation.equals(EAnimation.WHAT_HAPPEN)
@@ -186,14 +186,14 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             
         }
         
-        final EMovement movement = checkMovementResult.getMovement();
+        final EMovement movement = movementResult.getMovement();
         if (
                 movement.equals(EMovement.PLAYER)
                 || movement.equals(EMovement.PLAYER_AND_BOX)
         ) {
             // Update player
             final Coordinates player = actualMapModel.getPlayer();
-            final Coordinates playerToMove = checkMovementResult.getPlayerToMove();
+            final Coordinates playerToMove = movementResult.getPlayerToMove();
             player.setX(playerToMove.getTranslateX());
             player.setY(playerToMove.getTranslateY());
             
@@ -203,7 +203,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             }
             
             // Update box
-            final Coordinates boxToMove = checkMovementResult.getBoxToMove();
+            final Coordinates boxToMove = movementResult.getBoxToMove();
             final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
             boxes.stream()
                     .filter(box -> {
@@ -267,11 +267,11 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonDown() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button down"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.DOWN, actualMapModel);
-        this.evaluatePlayerMoveTo(checkMovementResult);
+        final MovementResult movementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.DOWN, actualMapModel);
+        this.evaluatePlayerMoveTo(movementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
-        if (shouldCheckIfMapIsFinished) {
+        final boolean checkIsMapFinished = movementResult.isMapFinish();
+        if (checkIsMapFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
         }
@@ -280,11 +280,11 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonLeft() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button left"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.LEFT, actualMapModel);
-        this.evaluatePlayerMoveTo(checkMovementResult);
+        final MovementResult movementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.LEFT, actualMapModel);
+        this.evaluatePlayerMoveTo(movementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
-        if (shouldCheckIfMapIsFinished) {
+        final boolean checkIsMapFinished = movementResult.isMapFinish();
+        if (checkIsMapFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
         }
@@ -302,11 +302,11 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonRight() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button right"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.RIGHT, actualMapModel);
-        this.evaluatePlayerMoveTo(checkMovementResult);
+        final MovementResult movementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.RIGHT, actualMapModel);
+        this.evaluatePlayerMoveTo(movementResult);
         
-        final boolean checkIfMapIsFinished = checkMovementResult.isMapFinish();
-        if (checkIfMapIsFinished) {
+        final boolean checkIsMapFinished = movementResult.isMapFinish();
+        if (checkIsMapFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
         }
@@ -315,11 +315,11 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     public void onActionButtonUp() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action Button up"); // NOI18N
         
-        final CheckMovementResult checkMovementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.UP, actualMapModel);
-        this.evaluatePlayerMoveTo(checkMovementResult);
+        final MovementResult movementResult = MapFacade.INSTANCE.playerMoveTo(EDirection.UP, actualMapModel);
+        this.evaluatePlayerMoveTo(movementResult);
         
-        final boolean shouldCheckIfMapIsFinished = checkMovementResult.isMapFinish();
-        if (shouldCheckIfMapIsFinished) {
+        final boolean checkIsMapFinished = movementResult.isMapFinish();
+        if (checkIsMapFinished) {
             final boolean isMapFinish = MapFacade.INSTANCE.isMapFinish(actualMapModel);
             this.evaluateIsMapFinish(isMapFinish);
         }
