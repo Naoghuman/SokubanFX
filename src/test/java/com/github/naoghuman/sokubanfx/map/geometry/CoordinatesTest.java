@@ -16,7 +16,6 @@
  */
 package com.github.naoghuman.sokubanfx.map.geometry;
 
-import com.github.naoghuman.sokubanfx.map.geometry.Coordinates;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

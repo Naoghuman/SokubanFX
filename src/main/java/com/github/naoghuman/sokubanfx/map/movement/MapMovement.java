@@ -77,9 +77,9 @@ public class MapMovement {
             checkMovementResult.setAnimation(EAnimation.NONE);
             
             final EMovement movement = EMovement.PLAYER;
-            movement.setCoordinatesBoxToMove(Coordinates.getDefault());
+            movement.setBoxToMove(Coordinates.getDefault());
             final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-            movement.setCoordinatesPlayerToMove(coordinatesPlayerToMove);
+            movement.setPlayerToMove(coordinatesPlayerToMove);
             checkMovementResult.setMovement(movement);
             
             return checkMovementResult;
@@ -117,9 +117,9 @@ public class MapMovement {
         
         final EMovement movement = EMovement.PLAYER_AND_BOX;
         final Coordinates coordinatesBoxToMove = this.tranlateCoordinatesForBoxToMove(direction, mapModel.getPlayer(), mapModel.getBoxes());
-        movement.setCoordinatesBoxToMove(coordinatesBoxToMove);
+        movement.setBoxToMove(coordinatesBoxToMove);
         final Coordinates coordinatesPlayerToMove = this.translateCoordinates(direction, mapModel.getPlayer());
-        movement.setCoordinatesPlayerToMove(coordinatesPlayerToMove);
+        movement.setPlayerToMove(coordinatesPlayerToMove);
         checkMovementResult.setMovement(movement);
         
         return checkMovementResult;

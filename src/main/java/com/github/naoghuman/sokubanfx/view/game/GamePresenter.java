@@ -193,8 +193,9 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         ) {
             // Update player
             final Coordinates player = actualMapModel.getPlayer();
-            player.setX(player.getTranslateX());
-            player.setY(player.getTranslateY());
+            final Coordinates playerToMove = movement.getPlayerToMove();
+            player.setX(playerToMove.getTranslateX());
+            player.setY(playerToMove.getTranslateY());
             
             if (movement.equals(EMovement.PLAYER)) {
                 this.displayMap();

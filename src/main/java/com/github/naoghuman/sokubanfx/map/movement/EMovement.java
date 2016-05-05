@@ -31,19 +31,19 @@ public enum EMovement {
     private Coordinates coordinatesBoxToMove = Coordinates.getDefault();
     private Coordinates coordinatesPlayerToMove = Coordinates.getDefault();
 
-    public Coordinates getCoordinatesBoxToMove() {
+    public Coordinates getBoxToMove() {
         return coordinatesBoxToMove;
     }
 
-    public void setCoordinatesBoxToMove(Coordinates coordinatesBoxToMove) {
+    public void setBoxToMove(Coordinates coordinatesBoxToMove) {
         this.coordinatesBoxToMove = coordinatesBoxToMove;
     }
 
-    public Coordinates getCoordinatesPlayerToMove() {
+    public Coordinates getPlayerToMove() {
         return coordinatesPlayerToMove;
     }
 
-    public void setCoordinatesPlayerToMove(Coordinates coordinatesPlayerToMove) {
+    public void setPlayerToMove(Coordinates coordinatesPlayerToMove) {
         this.coordinatesPlayerToMove = coordinatesPlayerToMove;
     }
     
