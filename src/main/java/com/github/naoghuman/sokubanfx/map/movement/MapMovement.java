@@ -47,11 +47,9 @@ public class MapMovement {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check is Map finish"); // NOI18N
         
         // Player -> Box -> Place -> Finished
-        final CollisionResult collisionResultCheckCollisionPlayerBoxPlaceFinish = 
-                CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
-        
+        final CollisionResult collisionResultPlayerBoxPlaceFinish = CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
         final MovementResult movementResult = MovementResult.getDefault();
-        if (collisionResultCheckCollisionPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
+        if (collisionResultPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
             movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
@@ -62,9 +60,9 @@ public class MapMovement {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check move player to direction: " + direction.toString()); // NOI18N
         
         // Player -> Wall
-        final CollisionResult collisionResultCheckCollisionPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        final CollisionResult collisionResultPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
         final MovementResult movementResult = MovementResult.getDefault();
-        if (collisionResultCheckCollisionPlayerWall.equals(CollisionResult.PLAYER_AGAINST__WALL)) {
+        if (collisionResultPlayerWall.equals(CollisionResult.PLAYER_AGAINST__WALL)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -72,8 +70,8 @@ public class MapMovement {
         }
 
         // Player -> Box
-        final CollisionResult collisionResultCheckCollisionPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        if (collisionResultCheckCollisionPlayerBox.equals(CollisionResult.NONE)) {
+        final CollisionResult collisionResultPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        if (collisionResultPlayerBox.equals(CollisionResult.NONE)) {
             movementResult.setAnimation(EAnimation.NONE);
             
             movementResult.setBoxToMove(Coordinates.getDefault());
@@ -85,8 +83,8 @@ public class MapMovement {
         }
         
         // Player -> Box -> Box
-        final CollisionResult collisionResultCheckCollisionPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        if (collisionResultCheckCollisionPlayerBoxBox.equals(CollisionResult.PLAYER_AGAINST__BOX_BOX)) {
+        final CollisionResult collisionResultPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        if (collisionResultPlayerBoxBox.equals(CollisionResult.PLAYER_AGAINST__BOX_BOX)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -94,8 +92,8 @@ public class MapMovement {
         }
         
         // Player -> Box -> Wall
-        final CollisionResult collisionResultCheckCollisionPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        if (collisionResultCheckCollisionPlayerBoxWall.equals(CollisionResult.PLAYER_AGAINST__BOX_WALL)) {
+        final CollisionResult collisionResultPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        if (collisionResultPlayerBoxWall.equals(CollisionResult.PLAYER_AGAINST__BOX_WALL)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -103,14 +101,14 @@ public class MapMovement {
         }
 
         // Player -> Box -> Place
-        final CollisionResult collisionResultCheckCollisionPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
+        final CollisionResult collisionResultPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        if (collisionResultPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
             movementResult.setAnimation(EAnimation.REALLY_GREAT);
             movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
         // Player -> Box -> None
-        if (collisionResultCheckCollisionPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_NONE)) {
+        if (collisionResultPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_NONE)) {
             movementResult.setAnimation(EAnimation.NONE);
         }
         
