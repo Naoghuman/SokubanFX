@@ -186,39 +186,38 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         }
         
         final EMovement movement = movementResult.getMovement();
-        if (
-                movement.equals(EMovement.PLAYER)
-                || movement.equals(EMovement.PLAYER_AND_BOX)
-        ) {
-            // Update player
-            final Coordinates player = actualMapModel.getPlayer();
-            final Coordinates playerToMove = movementResult.getPlayerToMove();
-            player.setX(playerToMove.getTranslateX());
-            player.setY(playerToMove.getTranslateY());
-            
-            if (movement.equals(EMovement.PLAYER)) {
-                this.displayMap();
-                return;
-            }
-            
-            // Update box
-            final Coordinates boxToMove = movementResult.getBoxToMove();
-            final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
-            boxes.stream()
-                    .filter(box -> {
-                        final boolean shouldBoxUpdate = 
-                                box.getX() == boxToMove.getX()
-                                && box.getY() == boxToMove.getY();
-                        return shouldBoxUpdate;
-                    })
-                    .findFirst()
-                    .ifPresent(box -> {
-                        box.setX(boxToMove.getTranslateX());
-                        box.setY(boxToMove.getTranslateY());
-                    });
-            
-            this.displayMap();
+        if (movement.equals(EMovement.NONE)) {
+            return;
         }
+
+        // Update player
+        final Coordinates player = actualMapModel.getPlayer();
+        final Coordinates playerToMove = movementResult.getPlayerToMove();
+        player.setX(playerToMove.getTranslateX());
+        player.setY(playerToMove.getTranslateY());
+
+        if (movement.equals(EMovement.PLAYER)) {
+            this.displayMap();
+            return;
+        }
+
+        // Update box
+        final Coordinates boxToMove = movementResult.getBoxToMove();
+        final ObservableList<Coordinates> boxes = actualMapModel.getBoxes();
+        boxes.stream()
+                .filter(box -> {
+                    final boolean shouldBoxUpdate = 
+                            box.getX() == boxToMove.getX()
+                            && box.getY() == boxToMove.getY();
+                    return shouldBoxUpdate;
+                })
+                .findFirst()
+                .ifPresent(box -> {
+                    box.setX(boxToMove.getTranslateX());
+                    box.setY(boxToMove.getTranslateY());
+                });
+
+        this.displayMap();
     }
     
     private Label getLabel(String text) {
