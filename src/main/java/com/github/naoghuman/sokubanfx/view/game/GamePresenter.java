@@ -330,19 +330,22 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             this.evaluateIsMapFinish(isMapFinish);
         }
     }
+    
     /*
-    * KeyEvents in GameView
-    * W UP        -> move up
-    * S DOWN      -> move down
-    * A LEFT      -> move left
-    * D RIGHT     -> move right
-    * ENTER SPACE -> reset map
-    * ESC         -> close application (from ApplicationView)
-    */
+     * KeyEvents in GameView
+     * W UP        -> move up
+     * S DOWN      -> move down
+     * A LEFT      -> move left
+     * D RIGHT     -> move right
+     * ENTER SPACE -> reset map
+     * 
+     * BACKSPACE   -> not needed - catched in ApplicationView (shows the menu)
+     * ESC         -> not needed - catched in ApplicationView (close the application)
+     */
     private void onKeyRelease(KeyEvent keyEvent) {
         final KeyCode keyCode = keyEvent.getCode();
         LoggerFacade.INSTANCE.debug(this.getClass(), "On KeyRelease: " + keyCode); // NOI18N
-
+        
         if (
                 keyCode.equals(KeyCode.ENTER)
                 || keyCode.equals(KeyCode.SPACE)
@@ -355,35 +358,15 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             return;
         }
         
-        if (
-                keyCode.equals(KeyCode.W)
-                || keyCode.equals(KeyCode.UP)
-        ) {
-            this.onActionButtonUp();
-            return;
-        }
-        
-        if (
-                keyCode.equals(KeyCode.S)
-                || keyCode.equals(KeyCode.DOWN)
-        ) {
-            this.onActionButtonDown();
-            return;
-        }
-        
-        if (
-                keyCode.equals(KeyCode.A)
-                || keyCode.equals(KeyCode.LEFT)
-        ) {
-            this.onActionButtonLeft();
-            return;
-        }
-        
-        if (
-                keyCode.equals(KeyCode.D)
-                || keyCode.equals(KeyCode.RIGHT)
-        ) {
-            this.onActionButtonRight();
+        switch(keyCode) {
+            case W:
+            case UP:    { this.onActionButtonUp();    break; }
+            case S:
+            case DOWN:  { this.onActionButtonDown();  break; }
+            case A:
+            case LEFT:  { this.onActionButtonLeft();  break; }
+            case D:
+            case RIGHT: { this.onActionButtonRight(); break; }
         }
     }
     
