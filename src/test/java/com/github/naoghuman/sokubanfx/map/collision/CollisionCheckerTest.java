@@ -71,8 +71,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=11) and a wall at (y=12)
         boxes.clear();
@@ -88,7 +88,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) and a wall at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+        assertEquals("There is a box before the player (y=11) and a wall at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", ECollisionResult.PLAYER_AGAINST__BOX_WALL, result);
     }
     
     @Test
@@ -106,8 +106,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=9) and a wall at (y=8)
         boxes.clear();
@@ -123,7 +123,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) and a wall at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+        assertEquals("There is a box before the player (y=9) and a wall at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", ECollisionResult.PLAYER_AGAINST__BOX_WALL, result);
     }
     
     @Test
@@ -141,8 +141,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (x=9) and a wall at (x=8)
         boxes.clear();
@@ -158,7 +158,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) and a wall at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+        assertEquals("There is a box before the player (x=9) and a wall at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", ECollisionResult.PLAYER_AGAINST__BOX_WALL, result);
     }
     
     
@@ -177,8 +177,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (x=11) and a wall at (x=12)
         boxes.clear();
@@ -194,7 +194,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) and a wall at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", CollisionResult.PLAYER_AGAINST__BOX_WALL, result);
+        assertEquals("There is a box before the player (x=11) and a wall at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_WALL", ECollisionResult.PLAYER_AGAINST__BOX_WALL, result);
     }
     
     @Test
@@ -209,8 +209,8 @@ public class CollisionCheckerTest {
         boxes.add(Coordinates.getDefault(10, 15));
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) and no second box (y!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=11) and a second box (y=12) before the first box
         boxes.clear();
@@ -221,7 +221,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) and a second box (y=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", CollisionResult.PLAYER_AGAINST__BOX_BOX, result);
+        assertEquals("There is a box before the player (y=11) and a second box (y=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", ECollisionResult.PLAYER_AGAINST__BOX_BOX, result);
     }
     
     @Test
@@ -236,8 +236,8 @@ public class CollisionCheckerTest {
         boxes.add(Coordinates.getDefault(10, 15));
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) and no second box (y!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=9) and a second box (y=8) before the first box
         boxes.clear();
@@ -248,7 +248,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) and a second box (y=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", CollisionResult.PLAYER_AGAINST__BOX_BOX, result);
+        assertEquals("There is a box before the player (y=9) and a second box (y=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", ECollisionResult.PLAYER_AGAINST__BOX_BOX, result);
     }
     
     @Test
@@ -263,8 +263,8 @@ public class CollisionCheckerTest {
         boxes.add(Coordinates.getDefault(15, 10));
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) and no second box (x!=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (x=9) and a second box (x=8) before the first box
         boxes.clear();
@@ -275,7 +275,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) and a second box (x=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", CollisionResult.PLAYER_AGAINST__BOX_BOX, result);
+        assertEquals("There is a box before the player (x=9) and a second box (x=8) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", ECollisionResult.PLAYER_AGAINST__BOX_BOX, result);
     }
     
     @Test
@@ -290,8 +290,8 @@ public class CollisionCheckerTest {
         boxes.add(Coordinates.getDefault(15, 10));
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) and no second box (x!=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=11) and a second box (y=12) before the first box
         boxes.clear();
@@ -302,7 +302,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) and a second box (x=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", CollisionResult.PLAYER_AGAINST__BOX_BOX, result);
+        assertEquals("There is a box before the player (x=11) and a second box (x=12) before the first box -> CollisionResult.PLAYER_AGAINST__BOX_BOX", ECollisionResult.PLAYER_AGAINST__BOX_BOX, result);
     }
     
     @Test
@@ -320,8 +320,8 @@ public class CollisionCheckerTest {
         places.clear();
         mapModel.setPlaces(places);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) but no place at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        assertEquals("There is a box before the player (y=11) but no place at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=11) and a place at (y=12)
         boxes.clear();
@@ -337,7 +337,7 @@ public class CollisionCheckerTest {
         mapModel.setPlaces(places);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) and a place at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", CollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
+        assertEquals("There is a box before the player (y=11) and a place at (y=12) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", ECollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
     }
 
     @Test
@@ -355,8 +355,8 @@ public class CollisionCheckerTest {
         places.clear();
         mapModel.setPlaces(places);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) but no place at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        assertEquals("There is a box before the player (y=9) but no place at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (y=9) and a place at (y=8)
         boxes.clear();
@@ -372,7 +372,7 @@ public class CollisionCheckerTest {
         mapModel.setPlaces(places);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) and a place at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", CollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
+        assertEquals("There is a box before the player (y=9) and a place at (y=8) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", ECollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
     }
 
     @Test
@@ -390,8 +390,8 @@ public class CollisionCheckerTest {
         places.clear();
         mapModel.setPlaces(places);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) but no place at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        assertEquals("There is a box before the player (x=9) but no place at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (x=9) and a place at (x=8)
         boxes.clear();
@@ -407,7 +407,7 @@ public class CollisionCheckerTest {
         mapModel.setPlaces(places);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (x=9) and a place at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", CollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
+        assertEquals("There is a box before the player (x=9) and a place at (x=8) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", ECollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
     }
 
     @Test
@@ -425,8 +425,8 @@ public class CollisionCheckerTest {
         places.clear();
         mapModel.setPlaces(places);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) but no place at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", CollisionResult.PLAYER_AGAINST__BOX_NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        assertEquals("There is a box before the player (x=11) but no place at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_NONE", ECollisionResult.PLAYER_AGAINST__BOX_NONE, result);
         
         // There is a box before the player (x=11) and a place at (x=12)
         boxes.clear();
@@ -442,7 +442,7 @@ public class CollisionCheckerTest {
         mapModel.setPlaces(places);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        assertEquals("There is a box before the player (x=11) and a place at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", CollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
+        assertEquals("There is a box before the player (x=11) and a place at (x=12) -> CollisionResult.PLAYER_AGAINST__BOX_PLACE", ECollisionResult.PLAYER_AGAINST__BOX_PLACE, result);
     }
     
     @Test
@@ -454,8 +454,8 @@ public class CollisionCheckerTest {
         boxes.clear();
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("No boxes are in the map or no boxes on x -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        assertEquals("No boxes are in the map or no boxes on x -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are boxes on x but not under the player (not y=11)
         boxes.clear();
@@ -465,7 +465,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on x but not under the player (not y=11) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are boxes on x but not under the player (not y=11) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a box before the player (y=11)
         boxes.clear();
@@ -475,7 +475,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) -> CollisionResult.PLAYER_AGAINST__BOX", CollisionResult.PLAYER_AGAINST__BOX, result);
+        assertEquals("There is a box before the player (y=11) -> CollisionResult.PLAYER_AGAINST__BOX", ECollisionResult.PLAYER_AGAINST__BOX, result);
     }
     
     @Test
@@ -487,8 +487,8 @@ public class CollisionCheckerTest {
         boxes.clear();
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("No boxes are in the map or no boxes on x -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        assertEquals("No boxes are in the map or no boxes on x -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are boxes on x but not under the player (not y=9)
         boxes.clear();
@@ -498,7 +498,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on x but not under the player (not y=9) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are boxes on x but not under the player (not y=9) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a box behind the player (y=9)
         boxes.clear();
@@ -508,7 +508,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There is a box behind the player (y=9) -> CollisionResult.PLAYER_AGAINST__BOX", CollisionResult.PLAYER_AGAINST__BOX, result);
+        assertEquals("There is a box behind the player (y=9) -> CollisionResult.PLAYER_AGAINST__BOX", ECollisionResult.PLAYER_AGAINST__BOX, result);
     }
     
     @Test
@@ -520,8 +520,8 @@ public class CollisionCheckerTest {
         boxes.clear();
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("No boxes are in the map or no boxes on y -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        assertEquals("No boxes are in the map or no boxes on y -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are boxes on y but not under the player (not x=9)
         boxes.clear();
@@ -531,7 +531,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on y but not under the player (not x=9) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are boxes on y but not under the player (not x=9) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a box before the player (y=9)
         boxes.clear();
@@ -541,7 +541,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=9) -> CollisionResult.PLAYER_AGAINST__BOX", CollisionResult.PLAYER_AGAINST__BOX, result);
+        assertEquals("There is a box before the player (y=9) -> CollisionResult.PLAYER_AGAINST__BOX", ECollisionResult.PLAYER_AGAINST__BOX, result);
     }
     
     @Test
@@ -553,8 +553,8 @@ public class CollisionCheckerTest {
         boxes.clear();
         mapModel.setBoxes(boxes);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("No boxes are in the map or no boxes on y -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        assertEquals("No boxes are in the map or no boxes on y -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are boxes on y but not under the player (not x=11)
         boxes.clear();
@@ -564,7 +564,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There are boxes on y but not under the player (not x=11) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are boxes on y but not under the player (not x=11) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a box before the player (y=11)
         boxes.clear();
@@ -574,7 +574,7 @@ public class CollisionCheckerTest {
         mapModel.setBoxes(boxes);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        assertEquals("There is a box before the player (y=11) -> CollisionResult.PLAYER_AGAINST__BOX", CollisionResult.PLAYER_AGAINST__BOX, result);
+        assertEquals("There is a box before the player (y=11) -> CollisionResult.PLAYER_AGAINST__BOX", ECollisionResult.PLAYER_AGAINST__BOX, result);
     }
     
     @Test
@@ -586,8 +586,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are walls on x but not under the player (not y=11)
         walls.clear();
@@ -597,7 +597,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There are walls on x but not under the player (not y=11) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are walls on x but not under the player (not y=11) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a wall before the player (y=11)
         walls.clear();
@@ -607,7 +607,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There is a wall before the player (y=11) -> CollisionResult.PLAYER_AGAINST__WALL", CollisionResult.PLAYER_AGAINST__WALL, result);
+        assertEquals("There is a wall before the player (y=11) -> CollisionResult.PLAYER_AGAINST__WALL", ECollisionResult.PLAYER_AGAINST__WALL, result);
     }
     
     @Test
@@ -619,8 +619,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on x -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are walls on x but not under the player (not y=9)
         walls.clear();
@@ -630,7 +630,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There are walls on x but not under the player (not y=9) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are walls on x but not under the player (not y=9) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a wall behind the player (y=9)
         walls.clear();
@@ -640,7 +640,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There is a wall behind the player (y=9) -> CollisionResult.PLAYER_AGAINST__WALL", CollisionResult.PLAYER_AGAINST__WALL, result);
+        assertEquals("There is a wall behind the player (y=9) -> CollisionResult.PLAYER_AGAINST__WALL", ECollisionResult.PLAYER_AGAINST__WALL, result);
     }
     
     @Test
@@ -652,8 +652,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are walls on y but not under the player (not x=9)
         walls.clear();
@@ -663,7 +663,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There are walls on y but not under the player (not x=9) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are walls on y but not under the player (not x=9) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a wall before the player (y=9)
         walls.clear();
@@ -673,7 +673,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There is a wall before the player (y=9) -> CollisionResult.PLAYER_AGAINST__WALL", CollisionResult.PLAYER_AGAINST__WALL, result);
+        assertEquals("There is a wall before the player (y=9) -> CollisionResult.PLAYER_AGAINST__WALL", ECollisionResult.PLAYER_AGAINST__WALL, result);
     }
     
     @Test
@@ -685,8 +685,8 @@ public class CollisionCheckerTest {
         walls.clear();
         mapModel.setWalls(walls);
         
-        CollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        ECollisionResult result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        assertEquals("No walls are in the map or no walls on y -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There are walls on y but not under the player (not x=11)
         walls.clear();
@@ -696,7 +696,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There are walls on y but not under the player (not x=11) -> CollisionResult.NO_COLLISION", CollisionResult.NONE, result);
+        assertEquals("There are walls on y but not under the player (not x=11) -> CollisionResult.NO_COLLISION", ECollisionResult.NONE, result);
         
         // There is a wall before the player (y=11)
         walls.clear();
@@ -706,7 +706,7 @@ public class CollisionCheckerTest {
         mapModel.setWalls(walls);
         
         result = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
-        assertEquals("There is a wall before the player (y=11) -> CollisionResult.PLAYER_AGAINST__WALL", CollisionResult.PLAYER_AGAINST__WALL, result);
+        assertEquals("There is a wall before the player (y=11) -> CollisionResult.PLAYER_AGAINST__WALL", ECollisionResult.PLAYER_AGAINST__WALL, result);
     }
     
 }

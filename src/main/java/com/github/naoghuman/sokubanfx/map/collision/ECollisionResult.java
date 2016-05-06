@@ -20,7 +20,7 @@ package com.github.naoghuman.sokubanfx.map.collision;
  *
  * @author Naoghuman
  */
-public enum CollisionResult {
+public enum ECollisionResult {
     
     NONE,                      // ...
     PLAYER_AGAINST__BOX,       // player -> box

@@ -22,7 +22,7 @@ import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.animation.EAnimation;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.collision.CollisionChecker;
-import com.github.naoghuman.sokubanfx.map.collision.CollisionResult;
+import com.github.naoghuman.sokubanfx.map.collision.ECollisionResult;
 import javafx.collections.ObservableList;
 
 /**
@@ -47,9 +47,9 @@ public class MapMovement {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check is Map finish"); // NOI18N
         
         // Player -> Box -> Place -> Finished
-        final CollisionResult collisionResultPlayerBoxPlaceFinish = CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
+        final ECollisionResult collisionResultPlayerBoxPlaceFinish = CollisionChecker.getDefault().checkCollisionPlayerBoxPlaceFinish(mapModel);
         final MovementResult movementResult = MovementResult.getDefault();
-        if (collisionResultPlayerBoxPlaceFinish.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
+        if (collisionResultPlayerBoxPlaceFinish.equals(ECollisionResult.PLAYER_AGAINST__BOX_PLACE_AND_FINISH)) {
             movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
@@ -60,9 +60,9 @@ public class MapMovement {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Check move player to direction: " + direction.toString()); // NOI18N
         
         // Player -> Wall
-        final CollisionResult collisionResultPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
+        final ECollisionResult collisionResultPlayerWall = CollisionChecker.getDefault().checkCollisionPlayerWall(direction, mapModel);
         final MovementResult movementResult = MovementResult.getDefault();
-        if (collisionResultPlayerWall.equals(CollisionResult.PLAYER_AGAINST__WALL)) {
+        if (collisionResultPlayerWall.equals(ECollisionResult.PLAYER_AGAINST__WALL)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -70,8 +70,8 @@ public class MapMovement {
         }
 
         // Player -> Box
-        final CollisionResult collisionResultPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
-        if (collisionResultPlayerBox.equals(CollisionResult.NONE)) {
+        final ECollisionResult collisionResultPlayerBox = CollisionChecker.getDefault().checkCollisionPlayerBox(direction, mapModel);
+        if (collisionResultPlayerBox.equals(ECollisionResult.NONE)) {
             movementResult.setAnimation(EAnimation.NONE);
             
             movementResult.setBoxToMove(Coordinates.getDefault());
@@ -83,8 +83,8 @@ public class MapMovement {
         }
         
         // Player -> Box -> Box
-        final CollisionResult collisionResultPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
-        if (collisionResultPlayerBoxBox.equals(CollisionResult.PLAYER_AGAINST__BOX_BOX)) {
+        final ECollisionResult collisionResultPlayerBoxBox = CollisionChecker.getDefault().checkCollisionPlayerBoxBox(direction, mapModel);
+        if (collisionResultPlayerBoxBox.equals(ECollisionResult.PLAYER_AGAINST__BOX_BOX)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -92,8 +92,8 @@ public class MapMovement {
         }
         
         // Player -> Box -> Wall
-        final CollisionResult collisionResultPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
-        if (collisionResultPlayerBoxWall.equals(CollisionResult.PLAYER_AGAINST__BOX_WALL)) {
+        final ECollisionResult collisionResultPlayerBoxWall = CollisionChecker.getDefault().checkCollisionPlayerBoxWall(direction, mapModel);
+        if (collisionResultPlayerBoxWall.equals(ECollisionResult.PLAYER_AGAINST__BOX_WALL)) {
             movementResult.setAnimation(EAnimation.WHAT_HAPPEN);
             movementResult.setMovement(EMovement.NONE);
             
@@ -101,14 +101,14 @@ public class MapMovement {
         }
 
         // Player -> Box -> Place
-        final CollisionResult collisionResultPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
-        if (collisionResultPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
+        final ECollisionResult collisionResultPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
+        if (collisionResultPlayerBoxPlace.equals(ECollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
             movementResult.setAnimation(EAnimation.REALLY_GREAT);
             movementResult.setIsMapFinish(Boolean.TRUE);
         }
         
         // Player -> Box -> None
-        if (collisionResultPlayerBoxPlace.equals(CollisionResult.PLAYER_AGAINST__BOX_NONE)) {
+        if (collisionResultPlayerBoxPlace.equals(ECollisionResult.PLAYER_AGAINST__BOX_NONE)) {
             movementResult.setAnimation(EAnimation.NONE);
         }
         
