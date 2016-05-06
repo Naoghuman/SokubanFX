@@ -45,6 +45,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import org.kordamp.ikonli.Ikon;
 import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -88,34 +89,20 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     private void initializeButtons() {
         LoggerFacade.INSTANCE.info(this.getClass(), "Initialize buttons"); // NOI18N
         
-        FontIcon fi = new FontIcon(Elusive.ARROW_DOWN);
-        fi.setIconSize(24);
-        bMovePlayerDown.setGraphic(fi);
-        bMovePlayerDown.setText(null);
-        bMovePlayerDown.setTooltip(new Tooltip("Move player down")); // NOI18N
+        this.initializeButton(bMovePlayerDown, Elusive.ARROW_DOWN, "Move player down"); // NOI18N
+        this.initializeButton(bMovePlayerLeft, Elusive.ARROW_LEFT, "Move player left"); // NOI18N
+        this.initializeButton(bMovePlayerRight, Elusive.ARROW_RIGHT, "Move player right"); // NOI18N
+        this.initializeButton(bMovePlayerUp, Elusive.ARROW_UP, "Move player up"); // NOI18N
         
-        fi = new FontIcon(Elusive.ARROW_LEFT);
+        this.initializeButton(bResetMap, Elusive.REFRESH, "Reset the map"); // NOI18N
+    }
+    
+    private void initializeButton(Button btn, Ikon icon, String tooltip) {
+        final FontIcon fi = new FontIcon(icon);
         fi.setIconSize(24);
-        bMovePlayerLeft.setGraphic(fi);
-        bMovePlayerLeft.setText(null);
-        bMovePlayerLeft.setTooltip(new Tooltip("Move player down")); // NOI18N
-        
-        fi = new FontIcon(Elusive.ARROW_RIGHT);
-        fi.setIconSize(24);
-        bMovePlayerRight.setGraphic(fi);
-        bMovePlayerRight.setText(null);
-        bMovePlayerRight.setTooltip(new Tooltip("Move player down")); // NOI18N
-        
-        fi = new FontIcon(Elusive.ARROW_UP);
-        fi.setIconSize(24);
-        bMovePlayerUp.setGraphic(fi);
-        bMovePlayerUp.setText(null);
-        bMovePlayerUp.setTooltip(new Tooltip("Move player down")); // NOI18N
-        
-        fi = new FontIcon(Elusive.REFRESH);
-        fi.setIconSize(24);
-        bResetMap.setGraphic(fi);
-        bResetMap.setTooltip(new Tooltip("Reset the map")); // NOI18N
+        btn.setGraphic(fi);
+        btn.setText(null);
+        btn.setTooltip(new Tooltip(tooltip));
     }
     
     private void initializePreferences() {
