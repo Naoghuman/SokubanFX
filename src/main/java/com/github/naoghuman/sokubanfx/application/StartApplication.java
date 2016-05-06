@@ -69,7 +69,7 @@ public class StartApplication extends Application implements IActionConfiguratio
         final ApplicationView applicationView = new ApplicationView();
         final ApplicationPresenter applicationPresenter = applicationView.getRealPresenter();
         
-        final Scene scene = new Scene(applicationView.getView(), 1080, 720);
+        final Scene scene = new Scene(applicationView.getView(), 1280, 720);
         scene.setOnKeyReleased((KeyEvent event) -> {
             this.onKeyReleased(event);
         });

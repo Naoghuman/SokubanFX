@@ -11,9 +11,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSTEELBLUE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.naoghuman.sokubanfx.view.preview.PreviewPresenter">
     <children>
-        <StackPane alignment="TOP_LEFT" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <StackPane alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox spacing="14.0">
+                <VBox alignment="TOP_CENTER" spacing="14.0">
                     <children>
                         <VBox fx:id="vbRandomMap" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0.3);" VBox.vgrow="ALWAYS">
                             <StackPane.margin>
@@ -32,6 +32,12 @@
                             </cursor>
                         </Button>
                     </children>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <padding>
+                  <Insets bottom="50.0" top="50.0" />
+               </padding>
                 </VBox>
             </children>
         </StackPane>

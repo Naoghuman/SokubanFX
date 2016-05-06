@@ -39,11 +39,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -59,8 +60,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     @FXML private Button bMovePlayerRight;
     @FXML private Button bMovePlayerUp;
     @FXML private Button bResetMap;
-    @FXML private Label lMapInfo;
-    @FXML private TextArea taMapDisplay;
+    @FXML private VBox vbMap;
     
     private boolean listenToKeyEvents = Boolean.TRUE;
     
@@ -76,8 +76,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         assert (bMovePlayerRight != null) : "fx:id=\"bMovePlayerRight\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
         assert (bMovePlayerUp != null)    : "fx:id=\"bMovePlayerUp\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
         assert (bResetMap != null)    : "fx:id=\"bResetMap\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
-        assert (lMapInfo != null)     : "fx:id=\"lMapInfo\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
-        assert (taMapDisplay != null) : "fx:id=\"taMapDisplay\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
+        assert (vbMap != null)        : "fx:id=\"vbMap\" was not injected: check your FXML file 'Game.fxml'."; // NOI18N
         
         this.initializeButtons();
         this.initializePreferences();
@@ -136,13 +135,13 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     private void displayMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Display Map"); // NOI18N
         
-        lMapInfo.setText("Map " + actualMapModel.getLevel()); // NOI18N
+        vbMap.getChildren().clear();
+        vbMap.getChildren().add(this.getLabel("Map: " + actualMapModel.getLevel())); // NOI18N
+        vbMap.getChildren().add(this.getLabel("")); // NOI18N
         
         final ObservableList<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
-        taMapDisplay.setText(null);
-        mapAsStrings.stream().forEach((line) -> {
-            taMapDisplay.appendText(line);
-            taMapDisplay.appendText("\n"); // NOI18N
+        mapAsStrings.stream().forEach(line -> {
+            vbMap.getChildren().add(this.getLabel(line));
         });
     }
 
@@ -220,6 +219,13 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
             
             this.displayMap();
         }
+    }
+    
+    private Label getLabel(String text) {
+        final Label label = new Label(text);
+        label.setFont(new Font("Monospaced Regular", 16.0d));
+        
+        return label;
     }
     
     private void loadActualMap() {

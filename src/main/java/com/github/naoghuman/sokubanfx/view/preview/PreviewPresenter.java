@@ -37,7 +37,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -52,7 +51,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class PreviewPresenter implements Initializable, IActionConfiguration, IRegisterActions {
     
-    @FXML private ImageView iv;
     @FXML private Label lPlayGame;
     @FXML private VBox vbRandomMap;
     
