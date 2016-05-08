@@ -14,6 +14,8 @@ Content
 ===
 
 * [Screenshots](#Screenshots)
+    * [SokubanFX v0.2.0-PROTOTYPE](#SokubanFX_v0-2-0)
+    * [SokubanFX v0.1.0-PROTOTYPE](#SokubanFX_v0-1-0)
 * [Features](#Features)
 * [Requirements](#Requirements)
 * [Installation](#Installation)
@@ -27,8 +29,21 @@ Content
 Screenshots<a name="Screenshots" />
 ---
 
-##### SokubanFX v0.1.0-PROTOTYPE
-Click on the picture to see the prototype in action ![emoticon_smile.png][emoticon_smile] in YouTube.
+<br />
+##### SokubanFX v0.2.0-PROTOTYPE<a name="SokubanFX_v0-2-0" />
+
+Click on the picture to see the `SokubanFX v0.2.0-PROTOTYPE` in action 
+![emoticon_smile.png][emoticon_smile] in YouTube.
+
+[![sokubanfx_v0.2.0-PROTOTYPE.png][sokubanfx_v0.2.0-PROTOTYPE]](https://www.youtube.com/watch?v=iKBfqk0ANj8 "SokubanFX v0.2.0-PROTOTYPE")
+
+
+<br />
+##### SokubanFX v0.1.0-PROTOTYPE<a name="SokubanFX_v0-1-0" />
+
+Click on the picture to see the `SokubanFX v0.1.0-PROTOTYPE` in action 
+![emoticon_smile.png][emoticon_smile] in YouTube.
+
 [![sokubanfx_v0.1.0-PROTOTYPE.png][sokubanfx_v0.1.0-PROTOTYPE]](https://www.youtube.com/watch?v=Kp1vWjLTIvY "SokubanFX v0.1.0-PROTOTYPE")
 
 
@@ -111,6 +126,7 @@ Contact<a name="Contact" />
 [//]: # (Images)
 
 [sokubanfx_v0.1.0-PROTOTYPE]:https://cloud.githubusercontent.com/assets/8161815/14934322/9fe78dec-0ead-11e6-9899-cbc4d0eb2576.png
+[sokubanfx_v0.2.0-PROTOTYPE]:https://cloud.githubusercontent.com/assets/8161815/15099058/64cdb6fa-154c-11e6-813f-3c275c13e3a9.png
 
 [emoticon_smile]:https://cloud.githubusercontent.com/assets/8161815/10268707/76d6c5f2-6ac1-11e5-9330-15a8943f1b0d.png
 [emoticon_grin]:https://cloud.githubusercontent.com/assets/8161815/10268709/7b073800-6ac1-11e5-85b3-d0e342acc403.png
