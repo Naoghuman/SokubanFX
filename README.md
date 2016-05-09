@@ -35,6 +35,7 @@ Screenshots<a name="Screenshots" />
 <br />
 ##### Sokuban Clone<a name="SokubanClone" />
 
+Here you can see the game which I wrote `2008` in [Java] (Swing2D).  
 Have fun with it by playing over 150 levels! [Download Sokuban Clone]
 
 ![sokuban-clone1.png][sokuban-clone1]
@@ -77,7 +78,9 @@ Requirements<a name="Requirements" />
 Installation<a name="Installation" />
 ---
 
-* ...
+* Current version is [SokubanFX v0.2.0-PROTOTYPE] (05.2016).
+* Download it and unzip the folder to a place of your choose.
+* Doubleclick the jar file inside the folder and have fun ![emoticon_smile.png][emoticon_smile].
 
 
 
@@ -119,6 +122,7 @@ Contact<a name="Contact" />
 
 [//]: # (Links)
 
+[Download Sokuban Clone]:https://github.com/Naoghuman/sokuban-clone/releases/tag/v1.0
 [famfamfam]:http://www.famfamfam.com/
 [famfamfam ReadMe]:https://github.com/Naoghuman/NetBeansIDE-AfterburnerFX-Plugin/files/7315/readme_famfamfam.txt
 [FXML]:http://docs.oracle.com/javafx/2/fxml_get_started/jfxpub-fxml_get_started.htm
@@ -131,7 +135,7 @@ Contact<a name="Contact" />
 [NetBeans IDE]:https://netbeans.org/
 [Open Source]:https://en.wikipedia.org/wiki/Open_source
 [Pull Request]:https://help.github.com/articles/using-pull-requests
-[Download Sokuban Clone]:https://github.com/Naoghuman/sokuban-clone/releases/tag/v1.0
+[SokubanFX v0.2.0-PROTOTYPE]:https://github.com/Naoghuman/SokubanFX/releases/tag/v0.2.0
 
 
 
