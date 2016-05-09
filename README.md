@@ -6,7 +6,8 @@ SokubanFX
 Intention
 ===
 
-JavaFX application from my swing application sokuban-clone.
+Inspired by my [Java] (Swing2D) game `Sokuban-Clone` which I wrote `2008` I 
+rewrite the game with [JavaFX].
 
 Current version is `0.2.0-PROTOTYPE` (05.2016).
 

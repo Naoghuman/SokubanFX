@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
     <name>SokubanFX</name>
     
-    <description>JavaFX application from my swing application sokuban-clone.</description>
+    <description>Inspired by my Java (Swing2D) game Sokuban-Clone which I wrote 2008 I rewrite the game with JavaFX.</description>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
