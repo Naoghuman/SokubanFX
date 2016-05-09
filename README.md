@@ -6,7 +6,7 @@ SokubanFX
 Intention
 ===
 
-Inspired by my [Java] &#40;Swing2D&#41; game `Sokuban-Clone` which I wrote `2008` I 
+Inspired by my [Java] game `Sokuban-Clone` which I wrote `2008` I 
 rewrite the game with [JavaFX].
 
 Current version is `0.2.0-PROTOTYPE` &#40;05.2016&#41;.
@@ -35,7 +35,7 @@ Screenshots<a name="Screenshots" />
 <br />
 ##### Sokuban Clone<a name="SokubanClone" />
 
-Here you can see a screenshot from the game which I wrote `2008` in [Java] &#40;Swing2D&#41;.  
+Here you can see a screenshot from the game which I wrote `2008` in [Java].  
 Have fun with it by playing over 150 levels! [Download Sokuban Clone]
 
 ![sokuban-clone1.png][sokuban-clone1]
