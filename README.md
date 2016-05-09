@@ -128,6 +128,7 @@ Contact<a name="Contact" />
 [FXML]:http://docs.oracle.com/javafx/2/fxml_get_started/jfxpub-fxml_get_started.htm
 [General Public License 3.0]:http://www.gnu.org/licenses/gpl-3.0.en.html
 [Issue]:https://github.com/Naoghuman/SokubanFX/issues
+[Java]:https://www.java.com/de/download/
 [JavaFX]:http://docs.oracle.com/javase/8/javase-clienttechnologies.htm
 [JDK 8]:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 [JRE 8]:http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
