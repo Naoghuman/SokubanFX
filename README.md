@@ -16,6 +16,7 @@ Content
 ===
 
 * [Screenshots](#Screenshots)
+    * [Sokuban Clone](#SokubanClone)
     * [SokubanFX v0.2.0-PROTOTYPE](#SokubanFX_v0-2-0)
     * [SokubanFX v0.1.0-PROTOTYPE](#SokubanFX_v0-1-0)
 * [Features](#Features)
@@ -30,6 +31,14 @@ Content
 
 Screenshots<a name="Screenshots" />
 ---
+
+<br />
+##### Sokuban Clone<a name="SokubanClone" />
+
+Have fun with it by playing over 150 levels! [Download Sokuban Clone]
+
+![sokuban-clone1.png][sokuban-clone1]
+
 
 <br />
 ##### SokubanFX v0.2.0-PROTOTYPE<a name="SokubanFX_v0-2-0" />
@@ -122,10 +131,13 @@ Contact<a name="Contact" />
 [NetBeans IDE]:https://netbeans.org/
 [Open Source]:https://en.wikipedia.org/wiki/Open_source
 [Pull Request]:https://help.github.com/articles/using-pull-requests
+[Download Sokuban Clone]:https://github.com/Naoghuman/sokuban-clone/releases/tag/v1.0
 
 
 
 [//]: # (Images)
+
+[sokuban-clone1]:https://cloud.githubusercontent.com/assets/8161815/12365174/72d57abc-bbd3-11e5-84d8-80c5d647b897.png
 
 [sokubanfx_v0.1.0-PROTOTYPE]:https://cloud.githubusercontent.com/assets/8161815/14934322/9fe78dec-0ead-11e6-9899-cbc4d0eb2576.png
 [sokubanfx_v0.2.0-PROTOTYPE]:https://cloud.githubusercontent.com/assets/8161815/15099058/64cdb6fa-154c-11e6-813f-3c275c13e3a9.png
