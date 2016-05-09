@@ -3,7 +3,8 @@ Welcome to `SokubanFX` with the new pre-release `v0.3.0-BETA`.
 
 
 #### Summary
-* Point
+* Update the ReadMe.md. Add additional information about my old game Sokuban-Clone. 
+  Write the section 'Installation'.
 * Other point
 
 
