@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.naoghuman</groupId>
     <artifactId>sokubanfx</artifactId>
-    <version>0.2.0-PROTOTYPE</version>
+    <version>0.3.0-BETA</version>
     <packaging>jar</packaging>
     <name>SokubanFX</name>
     

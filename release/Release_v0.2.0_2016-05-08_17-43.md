@@ -1,4 +1,4 @@
-Welcome to `SokubanFX` with the new pre-release `v0.2.0`.
+Welcome to `SokubanFX` with the new pre-release `v0.2.0-PROTOTYPE`.
 
 
 
@@ -6,10 +6,10 @@ Welcome to `SokubanFX` with the new pre-release `v0.2.0`.
 
 * Now 80 maps are available to play.
 * In the Preview all 10sec a new random map will be now shown.
-* Implement KeyEvents for application handling.
-* Extended the JUnit tests.
-* Implement the icon-font Ikonli for actions.
-* Change to lambda expressions.
+* User can now handle the application with KeyEvents.
+* Stabilize the functionalities with JUnit tests.
+* Change internal to lambda expressions.
+* Implement the library Ikonli for icons.
 
 
 

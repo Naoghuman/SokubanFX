@@ -8,6 +8,7 @@ Intention
 
 JavaFX application from my swing application sokuban-clone.
 
+Current version is `0.2.0-PROTOTYPE` (05.2016).
 
 
 Content
