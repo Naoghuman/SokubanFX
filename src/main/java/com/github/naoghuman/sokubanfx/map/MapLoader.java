@@ -33,16 +33,24 @@ class MapLoader implements IMapConfiguration {
         this.init();
     }
     
+    // Register the maps.properties file as a ResourceBundle.
     private void init() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Init MapLoader"); // NOI18N
         
         PropertiesFacade.INSTANCE.register(KEY__MAP__RESOURCE_BUNDLE);
     }
     
+    // Returns the mapped value from the key.
     private String getProperty(String propertyKey) {
         return PropertiesFacade.INSTANCE.getProperty(KEY__MAP__RESOURCE_BUNDLE, propertyKey);
     }
     
+    /**
+     * Loads the map from the ResourceBundle and returns the converted map as a List<String>.
+     * 
+     * @param level Which map should be loaded?
+     * @return The converted map as a list from strings. 
+     */
     public ObservableList<String> loadMapAsStrings(int level) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load map as Strings: " + level); // NOI18N
         
