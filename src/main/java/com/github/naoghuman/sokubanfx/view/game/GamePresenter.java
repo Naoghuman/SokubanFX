@@ -215,7 +215,7 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
     }
     
     private void loadActualMap() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize Map"); // NOI18N
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Load actual Map"); // NOI18N
         
         final int actualMap = PreferencesFacade.INSTANCE.getInt(
                 IMapConfiguration.PROP__ACTUAL_MAP,
