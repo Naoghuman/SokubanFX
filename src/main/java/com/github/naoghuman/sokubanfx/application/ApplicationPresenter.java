@@ -27,6 +27,7 @@ import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
+import com.github.naoghuman.sokubanfx.map.image.MapImageLoader;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -46,6 +47,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -58,7 +60,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
  * @author Naoghuman
  */
 public class ApplicationPresenter implements Initializable, IActionConfiguration, IApplicationConfiguration, IRegisterActions {
-    
+
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
     @FXML private BorderPane bpMenuArea;
@@ -100,7 +102,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void hideHiddenLayer() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Hide hidden layer");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Hide hidden layer"); // NOI18N
         
         apHiddenLayer.setVisible(Boolean.FALSE);
         apHiddenLayer.setManaged(Boolean.FALSE);
@@ -117,7 +119,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void registerOnActionChangeToGameView() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action change to GameView");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action change to GameView"); // NOI18N
         
         ActionFacade.INSTANCE.register(
                 ON_ACTION__CHANGE_TO_GAMEVIEW,
@@ -132,7 +134,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void registerOnActionHideMainMenu() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action hide MainMenu");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action hide MainMenu"); // NOI18N
         
         ActionFacade.INSTANCE.register(
                 ON_ACTION__HIDE_MAINMENU,
@@ -143,7 +145,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void registerOnActionShowBackgroundImage() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show Background image");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show background image"); // NOI18N
         
         ActionFacade.INSTANCE.register(
                 ON_ACTION__SHOW_BACKGROUND_IMAGE,
@@ -155,7 +157,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void registerOnActionShowMainMenu() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show MainMenu");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show MainMenu"); // NOI18N
         
         ActionFacade.INSTANCE.register(
                 ON_ACTION__SHOW_MAINMENU,
@@ -166,7 +168,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void onActionChangeToGameView() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "On action change to GameView");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action change to GameView"); // NOI18N
         
         // Hide PreviewView
         final FadeTransition ftHidePreviewView = new FadeTransition();
@@ -209,7 +211,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void onActionHideMainMenu() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action hide MainMenu"); // NOI18N
         
         // Listen in Preview or GameView on KeyEvents
         PreferencesFacade.INSTANCE.putBoolean(
@@ -267,12 +269,18 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void onActionShowBackgroundImage(String image) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Show Background image: " + image);
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Show background image: " + image); // NOI18N
         
+        ivBackground.setFitWidth(1280.0d);
+        ivBackground.setFitHeight(720.0d);
+        ivBackground.setImage(null);
+        
+        final Image img = MapImageLoader.getDefault().getBackgroundImage(image);
+        ivBackground.setImage(img);
     }
     
     public void onActionShowMainMenu() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu"); // NOI18N
         
         // Dont listen in Preview and GameView on KeyEvents
         PreferencesFacade.INSTANCE.putBoolean(
@@ -342,7 +350,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     }
     
     private void showViewPreview() {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Show view Preview");
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Show view Preview"); // NOI18N
         
         final PreviewView view = new PreviewView();
         final PreviewPresenter presenter = view.getRealPresenter();
