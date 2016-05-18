@@ -29,6 +29,7 @@ public interface IApplicationConfiguration {
     public static final String KEY__APPLICATION__BORDER_SIGN = "application.border.sign"; // NOI18N
     public static final String KEY__APPLICATION__BUILD_DATETIME = "application.build.datetime"; // NOI18N
     public static final String KEY__APPLICATION__DATABASE = "application.database"; // NOI18N
+    public static final String KEY__APPLICATION__DEFAULT_BACKGROUND_IMAGE = "application.default.background.image"; // NOI18N
     public static final String KEY__APPLICATION__MESSAGE_START = "application.message.start"; // NOI18N
     public static final String KEY__APPLICATION__MESSAGE_STOP = "application.message.stop"; // NOI18N
     public static final String KEY__APPLICATION__RESOURCE_BUNDLE = "/com/github/naoghuman/sokubanfx/application/application.properties"; // NOI18N

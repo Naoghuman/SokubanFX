@@ -18,9 +18,12 @@ package com.github.naoghuman.sokubanfx.application;
 
 import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.action.api.IRegisterActions;
+import com.github.naoghuman.lib.action.api.TransferData;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
+import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
@@ -43,6 +46,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
@@ -53,11 +57,12 @@ import org.kordamp.ikonli.javafx.FontIcon;
  *
  * @author Naoghuman
  */
-public class ApplicationPresenter implements Initializable, IActionConfiguration, IRegisterActions {
+public class ApplicationPresenter implements Initializable, IActionConfiguration, IApplicationConfiguration, IRegisterActions {
     
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
     @FXML private BorderPane bpMenuArea;
+    @FXML private ImageView ivBackground;
     @FXML private Label lMenuButton;
     
     @Override
@@ -67,6 +72,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         assert (apHiddenLayer != null) : "fx:id=\"apHiddenLayer\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         assert (bpGameArea != null)    : "fx:id=\"bpGameArea\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         assert (bpMenuArea != null)    : "fx:id=\"bpMenuArea\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (ivBackground != null)  : "fx:id=\"ivBackground\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         assert (lMenuButton != null)   : "fx:id=\"lMenuButton\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         
         this.initializeMenuButton();
@@ -74,6 +80,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         this.registerActions();
         this.hideHiddenLayer();
         
+        this.showBackgroundImage();
         this.showViewPreview();
     }
     
@@ -105,6 +112,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         
         this.registerOnActionChangeToGameView();
         this.registerOnActionHideMainMenu();
+        this.registerOnActionShowBackgroundImage();
         this.registerOnActionShowMainMenu();
     }
     
@@ -130,6 +138,18 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
                 ON_ACTION__HIDE_MAINMENU,
                 (ActionEvent event) -> {
                     this.onActionHideMainMenu();
+                }
+        );
+    }
+    
+    private void registerOnActionShowBackgroundImage() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action show Background image");
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__SHOW_BACKGROUND_IMAGE,
+                (ActionEvent event) -> {
+                    final TransferData transferData = (TransferData) event.getSource();
+                    this.onActionShowBackgroundImage(transferData.getString());
                 }
         );
     }
@@ -246,6 +266,11 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         pt.playFromStart();
     }
     
+    private void onActionShowBackgroundImage(String image) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Show Background image: " + image);
+        
+    }
+    
     public void onActionShowMainMenu() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action show MainMenu");
         
@@ -307,6 +332,13 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         pt.getChildren().addAll(ftShowHiddenLayer, ftShowMenuView, translateTransition);
         
         pt.playFromStart();
+    }
+    
+    private void showBackgroundImage() {
+        final String defaultBackgroundImage = PropertiesFacade.INSTANCE.getProperty(
+                KEY__APPLICATION__RESOURCE_BUNDLE,
+                KEY__APPLICATION__DEFAULT_BACKGROUND_IMAGE);
+        this.onActionShowBackgroundImage(defaultBackgroundImage);
     }
     
     private void showViewPreview() {

@@ -104,7 +104,8 @@ public class MapMovement {
         final ECollisionResult collisionResultPlayerBoxPlace = CollisionChecker.getDefault().checkCollisionPlayerBoxPlace(direction, mapModel);
         if (collisionResultPlayerBoxPlace.equals(ECollisionResult.PLAYER_AGAINST__BOX_PLACE)) {
             movementResult.setAnimation(EAnimation.REALLY_GREAT);
-            movementResult.setIsMapFinish(Boolean.TRUE);
+            movementResult.setIsMapFinish(Boolean.TRUE);// TODO is that okay?
+            // check -> map is only finished if all boxes are on their places
         }
         
         // Player -> Box -> None
