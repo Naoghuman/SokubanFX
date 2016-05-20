@@ -17,7 +17,8 @@
 package com.github.naoghuman.sokubanfx.map.image;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
-import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
@@ -27,14 +28,6 @@ import javafx.scene.image.Image;
  * @author Naoghuman
  */
 public class MapImageLoader {
-    
-    private static final String PATH_TO_IMAGE = 
-            "com" + File.separator // NOI18N
-            + "github" + File.separator // NOI18N
-            + "naoghuman" + File.separator // NOI18N
-            + "sokubanfx" + File.separator // NOI18N
-            + "map" + File.separator // NOI18N
-            + "image" + File.separator; // NOI18N
     
     private static MapImageLoader instance = null;
     
@@ -70,8 +63,15 @@ public class MapImageLoader {
     
     private Image loadImage(String image) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load image: " + image + " from resources"); // NOI18N
+
+        Image img = null;
+        try {
+            final URI uri = MapImageLoader.getDefault().getClass().getResource(image).toURI();
+            img = new Image(uri.toString(), 1280.0d, 720.0d, true, true);
+        } catch (URISyntaxException ex) {
+            LoggerFacade.INSTANCE.error(this.getClass(), "Can't load image: " + image, ex); // NOI18N
+        }
         
-        final Image img = new Image(PATH_TO_IMAGE + image, 1280.0d, 720.0d, true, true);
         return img;
     }
     
