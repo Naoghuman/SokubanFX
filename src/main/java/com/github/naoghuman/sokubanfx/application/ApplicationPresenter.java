@@ -28,6 +28,7 @@ import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import com.github.naoghuman.sokubanfx.map.image.MapImageLoader;
+import com.github.naoghuman.sokubanfx.map.video.MapVideoLoader;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -51,6 +52,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 import org.kordamp.ikonli.elusive.Elusive;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -66,6 +69,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     @FXML private BorderPane bpMenuArea;
     @FXML private ImageView ivBackground;
     @FXML private Label lMenuButton;
+    @FXML private MediaView mediaView;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,6 +80,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         assert (bpMenuArea != null)    : "fx:id=\"bpMenuArea\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         assert (ivBackground != null)  : "fx:id=\"ivBackground\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         assert (lMenuButton != null)   : "fx:id=\"lMenuButton\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
+        assert (mediaView != null)     : "fx:id=\"mediaView\" was not injected: check your FXML file 'Application.fxml'."; // NOI18N
         
         this.initializeMenuButton();
         
@@ -83,6 +88,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         this.hideHiddenLayer();
         
         this.showBackgroundImage();
+        this.showBackgroundVideo();
         this.showViewPreview();
     }
     
@@ -347,6 +353,14 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
                 KEY__APPLICATION__RESOURCE_BUNDLE,
                 KEY__APPLICATION__DEFAULT_BACKGROUND_IMAGE);
         this.onActionShowBackgroundImage(defaultBackgroundImage);
+    }
+    
+    private void showBackgroundVideo() {
+        final MediaPlayer mediaPlayer = MapVideoLoader.getDefault().loadVideo();
+        
+        mediaView.setMediaPlayer(mediaPlayer);
+        mediaView.setFitWidth(1280.0d);
+        mediaView.setFitHeight(720.0d);
     }
     
     private void showViewPreview() {
