@@ -61,13 +61,13 @@ public class MapVideoLoader {
     public MediaPlayer loadVideo() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load video"); // NOI18N
 
-        final String pathWithVideo = System.getProperty("user.dir")+ "/video/bg_all-polished.mp4";
+        final String pathWithVideo = System.getProperty("user.dir")+ "/video/bg_checkered-past.mp4";
         final File videoFile = new File(pathWithVideo);
         LoggerFacade.INSTANCE.debug(this.getClass(), "pathWithVideo: " + videoFile.toURI().toString());
 
         final Media media = new Media(videoFile.toURI().toString());
         final MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setCycleCount(1);//MediaPlayer.INDEFINITE);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.setOnReady(() -> {
             mediaPlayer.play();
         });

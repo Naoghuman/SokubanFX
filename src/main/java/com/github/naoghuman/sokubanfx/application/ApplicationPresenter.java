@@ -25,6 +25,7 @@ import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IImageConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import com.github.naoghuman.sokubanfx.map.image.MapImageLoader;
@@ -62,8 +63,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
  *
  * @author Naoghuman
  */
-public class ApplicationPresenter implements Initializable, IActionConfiguration, IApplicationConfiguration, IRegisterActions {
-
+public class ApplicationPresenter implements Initializable, IActionConfiguration, 
+        IApplicationConfiguration, IImageConfiguration, IRegisterActions
+{
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
     @FXML private BorderPane bpMenuArea;
@@ -350,8 +352,8 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     
     private void showBackgroundImage() {
         final String defaultBackgroundImage = PropertiesFacade.INSTANCE.getProperty(
-                KEY__APPLICATION__RESOURCE_BUNDLE,
-                KEY__APPLICATION__DEFAULT_BACKGROUND_IMAGE);
+                KEY__RESOURCE_BUNDLE__IMAGE,
+                KEY__IMG__DEFAULT_BACKGROUND_IMAGE);
         this.onActionShowBackgroundImage(defaultBackgroundImage);
     }
     

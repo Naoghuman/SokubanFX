@@ -27,6 +27,7 @@ import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IImageConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
 import javafx.animation.PauseTransition;
@@ -43,7 +44,7 @@ import javafx.stage.WindowEvent;
  *
  * @author Naoghuman
  */
-public class StartApplication extends Application implements IActionConfiguration, IApplicationConfiguration {
+public class StartApplication extends Application implements IActionConfiguration, IApplicationConfiguration, IImageConfiguration {
 
     public static void main(String[] args) {
         launch(args);
@@ -53,7 +54,8 @@ public class StartApplication extends Application implements IActionConfiguratio
     public void init() throws Exception {
         super.init();
         
-        PropertiesFacade.INSTANCE.register(KEY__APPLICATION__RESOURCE_BUNDLE);
+        PropertiesFacade.INSTANCE.register(KEY__RESOURCE_BUNDLE__APPLICATION);
+        PropertiesFacade.INSTANCE.register(KEY__RESOURCE_BUNDLE__IMAGE);
         
         final char borderSign = this.getProperty(KEY__APPLICATION__BORDER_SIGN).charAt(0);
         final String message = this.getProperty(KEY__APPLICATION__MESSAGE_START);
@@ -87,7 +89,7 @@ public class StartApplication extends Application implements IActionConfiguratio
     }
     
     private String getProperty(String propertyKey) {
-        return PropertiesFacade.INSTANCE.getProperty(KEY__APPLICATION__RESOURCE_BUNDLE, propertyKey);
+        return PropertiesFacade.INSTANCE.getProperty(KEY__RESOURCE_BUNDLE__APPLICATION, propertyKey);
     }
     
     private void onCloseRequest() {
