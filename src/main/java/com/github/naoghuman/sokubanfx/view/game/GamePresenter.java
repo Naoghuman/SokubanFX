@@ -127,9 +127,10 @@ public class GamePresenter implements Initializable, IActionConfiguration, IRegi
         vbMap.getChildren().add(this.getLabel("")); // NOI18N
         
         final ObservableList<String> mapAsStrings = MapFacade.INSTANCE.convertMapCoordinatesToStrings(actualMapModel);
-        mapAsStrings.stream().forEach(line -> {
-            vbMap.getChildren().add(this.getLabel(line));
-        });
+        mapAsStrings.stream()
+                .forEach(line -> {
+                    vbMap.getChildren().add(this.getLabel(line));
+                });
     }
 
     private void evaluateIsMapFinish(boolean isMapFinish) {

@@ -30,6 +30,7 @@ import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IImageConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IVideoConfiguration;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -44,8 +45,8 @@ import javafx.stage.WindowEvent;
  *
  * @author Naoghuman
  */
-public class StartApplication extends Application implements IActionConfiguration, IApplicationConfiguration, IImageConfiguration {
-
+public class StartApplication extends Application implements IActionConfiguration, IApplicationConfiguration {
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -55,7 +56,8 @@ public class StartApplication extends Application implements IActionConfiguratio
         super.init();
         
         PropertiesFacade.INSTANCE.register(KEY__RESOURCE_BUNDLE__APPLICATION);
-        PropertiesFacade.INSTANCE.register(KEY__RESOURCE_BUNDLE__IMAGE);
+        PropertiesFacade.INSTANCE.register(IImageConfiguration.KEY__RESOURCE_BUNDLE__IMAGE);
+        PropertiesFacade.INSTANCE.register(IVideoConfiguration.KEY__RESOURCE_BUNDLE__VIDEO);
         
         final char borderSign = this.getProperty(KEY__APPLICATION__BORDER_SIGN).charAt(0);
         final String message = this.getProperty(KEY__APPLICATION__MESSAGE_START);

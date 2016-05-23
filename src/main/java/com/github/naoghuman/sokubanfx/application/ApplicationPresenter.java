@@ -28,8 +28,9 @@ import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IImageConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.IVideoConfiguration;
 import com.github.naoghuman.sokubanfx.map.image.MapImageLoader;
-import com.github.naoghuman.sokubanfx.map.video.MapVideoLoader;
+import com.github.naoghuman.sokubanfx.video.VideoLoader;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -64,7 +65,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
  * @author Naoghuman
  */
 public class ApplicationPresenter implements Initializable, IActionConfiguration, 
-        IApplicationConfiguration, IImageConfiguration, IRegisterActions
+        IApplicationConfiguration, IRegisterActions
 {
     @FXML private AnchorPane apHiddenLayer;
     @FXML private BorderPane bpGameArea;
@@ -352,13 +353,16 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     
     private void showBackgroundImage() {
         final String defaultBackgroundImage = PropertiesFacade.INSTANCE.getProperty(
-                KEY__RESOURCE_BUNDLE__IMAGE,
-                KEY__IMG__DEFAULT_BACKGROUND_IMAGE);
+                IImageConfiguration.KEY__RESOURCE_BUNDLE__IMAGE,
+                IImageConfiguration.KEY__IMG__DEFAULT_BACKGROUND_IMAGE);
         this.onActionShowBackgroundImage(defaultBackgroundImage);
     }
     
     private void showBackgroundVideo() {
-        final MediaPlayer mediaPlayer = MapVideoLoader.getDefault().loadVideo();
+        final int videoIndex = PreferencesFacade.INSTANCE.getInt(
+                IVideoConfiguration.PROP__CHOOSEN_VIDEO,
+                IVideoConfiguration.PROP__CHOOSEN_VIDEO__DEFAULT_VALUE);
+        final MediaPlayer mediaPlayer = VideoLoader.getDefault().loadVideo(videoIndex);
         
         mediaView.setMediaPlayer(mediaPlayer);
         mediaView.setFitWidth(1280.0d);
