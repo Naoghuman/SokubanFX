@@ -14,24 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.configuration;
+package com.github.naoghuman.sokubanfx.configuration.view.game;
 
 /**
  *
  * @author Naoghuman
  */
-public interface IVideoConfiguration {
+public interface IGameConfiguration {
     
-    public static final String KEY__RESOURCE_BUNDLE__VIDEO = "/com/github/naoghuman/sokubanfx/video/video.properties"; // NOI18N
-    public static final String KEY__VIDEO_MAX = "video.max"; // NOI18N
+    public static final String PROP__GAMEVIEW_IS_INITIALZE = "PROP__GAMEVIEW_IS_INITIALZE"; // NOI18N
+    public static final Boolean PROP__GAMEVIEW_IS_INITIALZE__DEFAULT_VALUE = Boolean.FALSE;
     
-    public static final String PREFIX__VIDEO = "video"; // NOI18N
-    
-    public static final String PROP__CHOOSEN_VIDEO = "PROP__CHOOSEN_VIDEO"; // NOI18N
-    public static final int PROP__CHOOSEN_VIDEO__DEFAULT_VALUE = 1;
-    
-    public static final String SUFFIX__FILE = ".file"; // NOI18N
-    public static final String SUFFIX__IMAGE = ".image"; // NOI18N
-    public static final String SUFFIX__TITLE = ".title"; // NOI18N
+    public static final String PROP__KEY_RELEASED__FOR_GAMEVIEW = "PROP__KEY_RELEASED__FOR_GAMEVIEW"; // NOI18N
+    public static final Boolean PROP__KEY_RELEASED__FOR_GAMEVIEW__DEFAULT_VALUE = Boolean.FALSE;
     
 }

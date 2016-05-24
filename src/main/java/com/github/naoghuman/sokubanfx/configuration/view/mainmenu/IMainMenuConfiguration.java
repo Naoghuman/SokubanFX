@@ -14,17 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.configuration;
+package com.github.naoghuman.sokubanfx.configuration.view.mainmenu;
 
 /**
  *
  * @author Naoghuman
  */
-public interface IImageConfiguration {
+public interface IMainMenuConfiguration {
     
-    public static final String KEY__IMG__DEFAULT_BACKGROUND_IMAGE = "default.background.image"; // NOI18N
-    
-    public static final String KEY__RESOURCE_BUNDLE__IMAGE = "/com/github/naoghuman/sokubanfx/map/image/image.properties"; // NOI18N
-    public static final String KEY__RESOURCE_BUNDLE__IMAGE_SETS = "/com/github/naoghuman/sokubanfx/map/image/image-sets.properties"; // NOI18N
+    public static final String PROP__MAIN_MENU_IS_SHOWN = "PROP__MAIN_MENU_IS_SHOWN"; // NOI18N
+    public static final Boolean PROP__MAIN_MENU_IS_SHOWN__DEFAULT_VALUE = Boolean.FALSE;
     
 }

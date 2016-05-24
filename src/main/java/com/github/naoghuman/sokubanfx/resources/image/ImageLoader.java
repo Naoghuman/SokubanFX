@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.map.image;
+package com.github.naoghuman.sokubanfx.resources.image;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import java.net.URI;
@@ -27,21 +27,11 @@ import javafx.scene.image.Image;
  *
  * @author Naoghuman
  */
-public class MapImageLoader {
-    
-    private static MapImageLoader instance = null;
-    
-    public static MapImageLoader getDefault() {
-        if (instance == null) {
-            instance = new MapImageLoader();
-        }
-        
-        return instance;
-    }
+public class ImageLoader {
     
     private ObservableMap<String, Image> backgroundImages;
     
-    private MapImageLoader() {
+    public ImageLoader() {
         this.init();
     }
     
@@ -66,7 +56,7 @@ public class MapImageLoader {
 
         Image img = null;
         try {
-            final URI uri = MapImageLoader.getDefault().getClass().getResource(image).toURI();
+            final URI uri = this.getClass().getResource(image).toURI();
             img = new Image(uri.toString(), 1280.0d, 720.0d, true, true);
         } catch (URISyntaxException ex) {
             LoggerFacade.INSTANCE.error(this.getClass(), "Can't load image: " + image, ex); // NOI18N

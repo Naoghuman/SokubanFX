@@ -19,7 +19,7 @@ package com.github.naoghuman.sokubanfx.map;
 import com.github.naoghuman.sokubanfx.map.model.MapModel;
 import com.github.naoghuman.sokubanfx.map.converter.MapConverter;
 import com.github.naoghuman.sokubanfx.map.movement.MapMovement;
-import com.github.naoghuman.sokubanfx.configuration.IMapConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.map.IMapConfiguration;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.sokubanfx.map.geometry.EDirection;
 import com.github.naoghuman.sokubanfx.map.movement.MovementResult;

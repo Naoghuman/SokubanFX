@@ -14,11 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.video;
+package com.github.naoghuman.sokubanfx.resources.video;
 
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
-import com.github.naoghuman.sokubanfx.configuration.IVideoConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.resources.video.IVideoConfiguration;
 import java.net.URISyntaxException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -28,24 +28,6 @@ import javafx.scene.media.MediaPlayer;
  * @author Naoghuman
  */
 public class VideoLoader implements IVideoConfiguration {
-    
-    private static VideoLoader instance = null;
-    
-    public static VideoLoader getDefault() {
-        if (instance == null) {
-            instance = new VideoLoader();
-        }
-        
-        return instance;
-    }
-    
-    private VideoLoader() {
-        this.init();
-    }
-    
-    private void init() {
-        
-    }
     
     public MediaPlayer loadVideo(int videoIndex) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load video"); // NOI18N
@@ -57,7 +39,7 @@ public class VideoLoader implements IVideoConfiguration {
         
         final String video = PropertiesFacade.INSTANCE.getProperty(KEY__RESOURCE_BUNDLE__VIDEO, sb.toString());
         try {
-            final Media media = new Media(VideoLoader.getDefault().getClass().getResource(video).toURI().toString());
+            final Media media = new Media(this.getClass().getResource(video).toURI().toString());
             final MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setOnReady(() -> {
@@ -66,7 +48,7 @@ public class VideoLoader implements IVideoConfiguration {
             
             return mediaPlayer;
         } catch (URISyntaxException ex) {
-            LoggerFacade.INSTANCE.error(VideoLoader.getDefault().getClass(), "Can't load video: " + video, ex); // NOI18N
+            LoggerFacade.INSTANCE.error(this.getClass(), "Can't load video: " + video, ex); // NOI18N
         }
         
         return null;

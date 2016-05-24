@@ -14,15 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.configuration;
+package com.github.naoghuman.sokubanfx.configuration.map;
 
 /**
  *
  * @author Naoghuman
  */
-public interface IMainMenuConfiguration {
+public interface IMapConfiguration {
     
-    public static final String PROP__MAIN_MENU_IS_SHOWN = "PROP__MAIN_MENU_IS_SHOWN"; // NOI18N
-    public static final Boolean PROP__MAIN_MENU_IS_SHOWN__DEFAULT_VALUE = Boolean.FALSE;
+    public static final String KEY__MAP__MAX = "map.max"; // NOI18N
+    public static final String KEY__MAP__POINT = "map."; // NOI18N
+    public static final String KEY__MAP__RESOURCE_BUNDLE = "/com/github/naoghuman/sokubanfx/map/maps.properties"; // NOI18N
+    
+    public static final String PROP__ACTUAL_MAP = "PROP__ACTUAL_MAP"; // NOI18N
+    public static final int PROP__ACTUAL_MAP__DEFAULT_VALUE = 1;
     
 }

@@ -14,19 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.naoghuman.sokubanfx.configuration;
+package com.github.naoghuman.sokubanfx.configuration.resources.image;
 
 /**
  *
  * @author Naoghuman
  */
-public interface IMapConfiguration {
+public interface IImageConfiguration {
     
-    public static final String KEY__MAP__MAX = "map.max"; // NOI18N
-    public static final String KEY__MAP__POINT = "map."; // NOI18N
-    public static final String KEY__MAP__RESOURCE_BUNDLE = "/com/github/naoghuman/sokubanfx/map/maps.properties"; // NOI18N
+    public static final String KEY__IMG__DEFAULT_BACKGROUND_IMAGE = "default.background.image"; // NOI18N
     
-    public static final String PROP__ACTUAL_MAP = "PROP__ACTUAL_MAP"; // NOI18N
-    public static final int PROP__ACTUAL_MAP__DEFAULT_VALUE = 1;
+    public static final String KEY__RESOURCE_BUNDLE__IMAGE = "/com/github/naoghuman/sokubanfx/resources/image/image.properties"; // NOI18N
+    public static final String KEY__RESOURCE_BUNDLE__IMAGE_SETS = "/com/github/naoghuman/sokubanfx/resources/image/image-sets.properties"; // NOI18N
     
 }

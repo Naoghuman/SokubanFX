@@ -22,15 +22,16 @@ import com.github.naoghuman.lib.action.api.TransferData;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.preferences.api.PreferencesFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
-import com.github.naoghuman.sokubanfx.configuration.IActionConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IApplicationConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IGameConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IImageConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IMainMenuConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IPreviewConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.IVideoConfiguration;
-import com.github.naoghuman.sokubanfx.map.image.MapImageLoader;
-import com.github.naoghuman.sokubanfx.video.VideoLoader;
+import com.github.naoghuman.sokubanfx.configuration.application.IActionConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.application.IApplicationConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.view.game.IGameConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.resources.image.IImageConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.view.mainmenu.IMainMenuConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.view.preview.IPreviewConfiguration;
+import com.github.naoghuman.sokubanfx.configuration.resources.video.IVideoConfiguration;
+import com.github.naoghuman.sokubanfx.resources.ResourcesFacade;
+import com.github.naoghuman.sokubanfx.resources.image.ImageLoader;
+import com.github.naoghuman.sokubanfx.resources.video.VideoLoader;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -284,7 +285,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ivBackground.setFitHeight(720.0d);
         ivBackground.setImage(null);
         
-        final Image img = MapImageLoader.getDefault().getBackgroundImage(image);
+        final Image img = ResourcesFacade.getDefault().getImageLoader().getBackgroundImage(image);
         ivBackground.setImage(img);
     }
     
@@ -362,7 +363,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         final int videoIndex = PreferencesFacade.INSTANCE.getInt(
                 IVideoConfiguration.PROP__CHOOSEN_VIDEO,
                 IVideoConfiguration.PROP__CHOOSEN_VIDEO__DEFAULT_VALUE);
-        final MediaPlayer mediaPlayer = VideoLoader.getDefault().loadVideo(videoIndex);
+        final MediaPlayer mediaPlayer = ResourcesFacade.getDefault().getVideoLoader().loadVideo(videoIndex);
         
         mediaView.setMediaPlayer(mediaPlayer);
         mediaView.setFitWidth(1280.0d);
