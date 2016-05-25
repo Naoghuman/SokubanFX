@@ -30,8 +30,6 @@ import com.github.naoghuman.sokubanfx.configuration.view.mainmenu.IMainMenuConfi
 import com.github.naoghuman.sokubanfx.configuration.view.preview.IPreviewConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.resources.video.IVideoConfiguration;
 import com.github.naoghuman.sokubanfx.resources.ResourcesFacade;
-import com.github.naoghuman.sokubanfx.resources.image.ImageLoader;
-import com.github.naoghuman.sokubanfx.resources.video.VideoLoader;
 import com.github.naoghuman.sokubanfx.view.mainmenu.MainMenuView;
 import com.github.naoghuman.sokubanfx.view.game.GamePresenter;
 import com.github.naoghuman.sokubanfx.view.game.GameView;
@@ -74,6 +72,8 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
     @FXML private ImageView ivBackground;
     @FXML private Label lMenuButton;
     @FXML private MediaView mediaView;
+    
+    private MediaPlayer mediaPlayer;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -265,6 +265,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
             apHiddenLayer.setVisible(Boolean.FALSE);
             apHiddenLayer.setManaged(Boolean.FALSE);
             
+            if (mediaPlayer != null && mediaPlayer.getStatus().equals(MediaPlayer.Status.PAUSED)) {
+                mediaPlayer.play();
+            }
+            
             // MainMenuView is hidden
             PreferencesFacade.INSTANCE.putBoolean(
                     IMainMenuConfiguration.PROP__MAIN_MENU_IS_SHOWN,
@@ -335,6 +339,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ftShowMenuView.setNode(menu);
         ftShowMenuView.setOnFinished((ActionEvent event) -> {
             bpMenuArea.setMouseTransparent(Boolean.FALSE);
+            
+            if (mediaPlayer != null && mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING)) {
+                mediaPlayer.pause();
+            }
         });
         
         // Move menu
@@ -363,8 +371,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         final int videoIndex = PreferencesFacade.INSTANCE.getInt(
                 IVideoConfiguration.PROP__CHOOSEN_VIDEO,
                 IVideoConfiguration.PROP__CHOOSEN_VIDEO__DEFAULT_VALUE);
-        final MediaPlayer mediaPlayer = ResourcesFacade.getDefault().getVideoLoader().loadVideo(videoIndex);
-        
+        mediaPlayer = ResourcesFacade.getDefault().getVideoLoader().loadVideo(videoIndex);
+        mediaPlayer.setOnReady(() -> {
+            mediaPlayer.play();
+        });
         mediaView.setMediaPlayer(mediaPlayer);
         mediaView.setFitWidth(1280.0d);
         mediaView.setFitHeight(720.0d);
