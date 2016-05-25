@@ -52,7 +52,7 @@ public class MainMenuPresenter implements Initializable, IActionConfiguration {
         lMenuButton.setCursor(Cursor.HAND);
         
         final FontIcon fiBlockMenu = new FontIcon(Elusive.REMOVE_SIGN);
-        fiBlockMenu.setIconSize(56);
+        fiBlockMenu.setIconSize(36);
         lMenuButton.setGraphic(fiBlockMenu);
     }
     
