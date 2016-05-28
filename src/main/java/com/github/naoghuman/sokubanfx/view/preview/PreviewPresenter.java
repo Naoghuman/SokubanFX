@@ -74,9 +74,9 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         lPlayGame.setText(null);
         lPlayGame.setCursor(Cursor.HAND);
         
-        final FontIcon fiBlockMenu = new FontIcon(Elusive.PLAY_ALT);
-        fiBlockMenu.setIconSize(56);
-        lPlayGame.setGraphic(fiBlockMenu);
+        final FontIcon fiPlayAlt = new FontIcon(Elusive.PLAY_ALT);
+        fiPlayAlt.setIconSize(56);
+        lPlayGame.setGraphic(fiPlayAlt);
     }
     
     private void initializeShowNextRandomMap() {
