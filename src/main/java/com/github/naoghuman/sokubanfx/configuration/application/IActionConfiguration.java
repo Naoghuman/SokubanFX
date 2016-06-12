@@ -27,6 +27,7 @@ public interface IActionConfiguration {
     public final static String ON_ACTION__HIDE_MAINMENU = "ON_ACTION__HIDE_MAINMENU"; // NOI18N
     public final static String ON_ACTION__KEY_RELEASED__FOR_GAME = "ON_ACTION__KEY_RELEASED__FOR_GAME"; // NOI18N
     public final static String ON_ACTION__KEY_RELEASED__FOR_PREVIEW = "ON_ACTION__KEY_RELEASED__FOR_PREVIEW"; // NOI18N
+    public final static String ON_ACTION__MANAGED_MAP_PLAYER = "ON_ACTION__MANAGED_MAP_PLAYER"; // NOI18N
     public final static String ON_ACTION__SHOW_BACKGROUND_IMAGE = "ON_ACTION__SHOW_BACKGROUND_IMAGE"; // NOI18N
     public final static String ON_ACTION__SHOW_MAINMENU = "ON_ACTION__SHOW_MAINMENU"; // NOI18N
     

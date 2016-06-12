@@ -90,7 +90,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         }
         
         ptShowNextRandomMap = new PauseTransition();
-        ptShowNextRandomMap.setDuration(Duration.seconds(10.0d));
+        ptShowNextRandomMap.setDuration(Duration.seconds(15.0d));
         ptShowNextRandomMap.setOnFinished((ActionEvent event) -> {
             this.onActionHideMap();
         });
@@ -111,6 +111,7 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         
         this.initializePreferences();
         
+        this.registerOnActionManagedMapPlayer();
         this.registerOnKeyReleased();
     }
     
@@ -121,6 +122,17 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         PreferencesFacade.INSTANCE.putBoolean(
                 IPreviewConfiguration.PROP__KEY_RELEASED__FOR_PREVIEW,
                 Boolean.TRUE);
+    }
+    
+    private void registerOnActionManagedMapPlayer() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Register on action managed Map player"); // NOI18N
+        
+        ActionFacade.INSTANCE.register(
+                ON_ACTION__MANAGED_MAP_PLAYER,
+                (ActionEvent event) -> {
+                    this.onActionManagedMapPlayer();
+                }
+        );
     }
 
     private void registerOnKeyReleased() {
@@ -150,7 +162,24 @@ public class PreviewPresenter implements Initializable, IActionConfiguration, IR
         ftHideMap.playFromStart();
     }
     
-    public void onActionNextRandomMap() {
+    private void onActionManagedMapPlayer() {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "On action managed Map player"); // NOI18N
+        
+        if (ptShowNextRandomMap == null) {
+            return;
+        }
+        
+        if (ptShowNextRandomMap.getStatus().equals(Animation.Status.RUNNING)) {
+            ptShowNextRandomMap.pause();
+            return;
+        }
+        
+        if (ptShowNextRandomMap.getStatus().equals(Animation.Status.PAUSED)) {
+            ptShowNextRandomMap.play();
+        }
+    }
+    
+    private void onActionNextRandomMap() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "On action next random Map"); // NOI18N
         
         final int randomMapIndex = MapFacade.INSTANCE.getRandomMapIndex();

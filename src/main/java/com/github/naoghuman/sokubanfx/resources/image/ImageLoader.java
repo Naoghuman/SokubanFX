@@ -39,19 +39,19 @@ public class ImageLoader {
         backgroundImages = FXCollections.observableHashMap();
     }
     
-    public Image getBackgroundImage(String backgroundImage) {
-        LoggerFacade.INSTANCE.debug(this.getClass(), "Load background image: " + backgroundImage); // NOI18N
+    public Image loadImage(String name) {
+        LoggerFacade.INSTANCE.debug(this.getClass(), "Load background image: " + name); // NOI18N
         
         final Image image = backgroundImages.computeIfAbsent(
-                backgroundImage,
+                name,
                 key -> {
-                    return this.loadImage(key);
+                    return this.load(key);
                 });
         
         return image;
     }
     
-    private Image loadImage(String image) {
+    private Image load(String image) {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Load image: " + image + " from resources"); // NOI18N
 
         Image img = null;

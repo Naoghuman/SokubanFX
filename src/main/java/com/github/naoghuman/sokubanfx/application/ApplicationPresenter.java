@@ -107,6 +107,14 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         lMenuButton.setGraphic(fiBlockMenu);
     }
     
+    private boolean hasMediaPlayerFollowing(MediaPlayer.Status mediaPlayerStatus) {
+        if (mediaPlayer != null && mediaPlayer.getStatus().equals(mediaPlayerStatus)) {
+            return Boolean.TRUE;
+        }
+        
+        return Boolean.FALSE;
+    }
+    
     public void initializeAfterWindowIsShowing() {
         LoggerFacade.INSTANCE.debug(this.getClass(), "Initialize ApplicationPresenter after window is showing"); // NOI18N
     }
@@ -265,9 +273,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
             apHiddenLayer.setVisible(Boolean.FALSE);
             apHiddenLayer.setManaged(Boolean.FALSE);
             
-            if (mediaPlayer != null && mediaPlayer.getStatus().equals(MediaPlayer.Status.PAUSED)) {
+            if (this.hasMediaPlayerFollowing(MediaPlayer.Status.PAUSED)) {
                 mediaPlayer.play();
             }
+            ActionFacade.INSTANCE.handle(ON_ACTION__MANAGED_MAP_PLAYER);
             
             // MainMenuView is hidden
             PreferencesFacade.INSTANCE.putBoolean(
@@ -289,7 +298,7 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ivBackground.setFitHeight(720.0d);
         ivBackground.setImage(null);
         
-        final Image img = ResourcesFacade.getDefault().getImageLoader().getBackgroundImage(image);
+        final Image img = ResourcesFacade.getDefault().getImageLoader().loadImage(image);
         ivBackground.setImage(img);
     }
     
@@ -340,9 +349,10 @@ public class ApplicationPresenter implements Initializable, IActionConfiguration
         ftShowMenuView.setOnFinished((ActionEvent event) -> {
             bpMenuArea.setMouseTransparent(Boolean.FALSE);
             
-            if (mediaPlayer != null && mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING)) {
+            if (this.hasMediaPlayerFollowing(MediaPlayer.Status.PLAYING)) {
                 mediaPlayer.pause();
             }
+            ActionFacade.INSTANCE.handle(ON_ACTION__MANAGED_MAP_PLAYER);
         });
         
         // Move menu

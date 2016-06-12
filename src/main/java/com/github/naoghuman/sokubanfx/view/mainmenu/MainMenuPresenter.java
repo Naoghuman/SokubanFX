@@ -20,7 +20,6 @@ import com.github.naoghuman.lib.action.api.ActionFacade;
 import com.github.naoghuman.lib.logger.api.LoggerFacade;
 import com.github.naoghuman.lib.properties.api.PropertiesFacade;
 import com.github.naoghuman.sokubanfx.configuration.application.IActionConfiguration;
-import com.github.naoghuman.sokubanfx.configuration.resources.image.IImageConfiguration;
 import com.github.naoghuman.sokubanfx.configuration.resources.video.IVideoConfiguration;
 import com.github.naoghuman.sokubanfx.resources.ResourcesFacade;
 import java.net.URL;
